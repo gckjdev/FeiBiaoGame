@@ -21,6 +21,15 @@
 		C2D7FEE014E67399006F94A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC514E67399006F94A0 /* CoreData.framework */; };
 		C2D7FEE814E67399006F94A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2D7FEE614E67399006F94A0 /* InfoPlist.strings */; };
 		C2D7FEEB14E67399006F94A0 /* ShurikenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEEA14E67399006F94A0 /* ShurikenTests.m */; };
+		C2D7FEF914E6748D006F94A0 /* SKCommonBlueToothService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEF614E6748D006F94A0 /* SKCommonBlueToothService.m */; };
+		C2D7FEFA14E6748D006F94A0 /* SKCommonGameCenterService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEF814E6748D006F94A0 /* SKCommonGameCenterService.m */; };
+		C2D7FF0114E6749C006F94A0 /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEFC14E6749C006F94A0 /* EntryController.m */; };
+		C2D7FF0214E6749C006F94A0 /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D7FEFD14E6749C006F94A0 /* EntryController.xib */; };
+		C2D7FF0314E6749C006F94A0 /* ShurikenGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEFF14E6749C006F94A0 /* ShurikenGameController.m */; };
+		C2D7FF0414E6749C006F94A0 /* ShurikenGameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D7FF0014E6749C006F94A0 /* ShurikenGameController.xib */; };
+		C2D7FF0614E674AE006F94A0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FF0514E674AE006F94A0 /* QuartzCore.framework */; };
+		C2D7FF0814E674B4006F94A0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FF0714E674B4006F94A0 /* GameKit.framework */; };
+		C2D7FF0A14E674BC006F94A0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FF0914E674BC006F94A0 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +61,19 @@
 		C2D7FEE714E67399006F94A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C2D7FEE914E67399006F94A0 /* ShurikenTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShurikenTests.h; sourceTree = "<group>"; };
 		C2D7FEEA14E67399006F94A0 /* ShurikenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShurikenTests.m; sourceTree = "<group>"; };
+		C2D7FEF514E6748D006F94A0 /* SKCommonBlueToothService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonBlueToothService.h; sourceTree = "<group>"; };
+		C2D7FEF614E6748D006F94A0 /* SKCommonBlueToothService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonBlueToothService.m; sourceTree = "<group>"; };
+		C2D7FEF714E6748D006F94A0 /* SKCommonGameCenterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonGameCenterService.h; sourceTree = "<group>"; };
+		C2D7FEF814E6748D006F94A0 /* SKCommonGameCenterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonGameCenterService.m; sourceTree = "<group>"; };
+		C2D7FEFB14E6749C006F94A0 /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		C2D7FEFC14E6749C006F94A0 /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
+		C2D7FEFD14E6749C006F94A0 /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
+		C2D7FEFE14E6749C006F94A0 /* ShurikenGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShurikenGameController.h; sourceTree = "<group>"; };
+		C2D7FEFF14E6749C006F94A0 /* ShurikenGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShurikenGameController.m; sourceTree = "<group>"; };
+		C2D7FF0014E6749C006F94A0 /* ShurikenGameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShurikenGameController.xib; sourceTree = "<group>"; };
+		C2D7FF0514E674AE006F94A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C2D7FF0714E674B4006F94A0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C2D7FF0914E674BC006F94A0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D7FF0A14E674BC006F94A0 /* AudioToolbox.framework in Frameworks */,
+				C2D7FF0814E674B4006F94A0 /* GameKit.framework in Frameworks */,
+				C2D7FF0614E674AE006F94A0 /* QuartzCore.framework in Frameworks */,
 				C2D7FEC014E67399006F94A0 /* UIKit.framework in Frameworks */,
 				C2D7FEC214E67399006F94A0 /* Foundation.framework in Frameworks */,
 				C2D7FEC414E67399006F94A0 /* CoreGraphics.framework in Frameworks */,
@@ -83,6 +108,9 @@
 		C2D7FEB014E67398006F94A0 = {
 			isa = PBXGroup;
 			children = (
+				C2D7FF0914E674BC006F94A0 /* AudioToolbox.framework */,
+				C2D7FF0714E674B4006F94A0 /* GameKit.framework */,
+				C2D7FF0514E674AE006F94A0 /* QuartzCore.framework */,
 				C2D7FEC714E67399006F94A0 /* Shuriken */,
 				C2D7FEE314E67399006F94A0 /* ShurikenTests */,
 				C2D7FEBE14E67399006F94A0 /* Frameworks */,
@@ -114,6 +142,13 @@
 		C2D7FEC714E67399006F94A0 /* Shuriken */ = {
 			isa = PBXGroup;
 			children = (
+				C2D7FEFB14E6749C006F94A0 /* EntryController.h */,
+				C2D7FEFC14E6749C006F94A0 /* EntryController.m */,
+				C2D7FEFD14E6749C006F94A0 /* EntryController.xib */,
+				C2D7FEFE14E6749C006F94A0 /* ShurikenGameController.h */,
+				C2D7FEFF14E6749C006F94A0 /* ShurikenGameController.m */,
+				C2D7FF0014E6749C006F94A0 /* ShurikenGameController.xib */,
+				C2D7FEF414E67475006F94A0 /* SK_Common */,
 				C2D7FED014E67399006F94A0 /* SKAppDelegate.h */,
 				C2D7FED114E67399006F94A0 /* SKAppDelegate.m */,
 				C2D7FED314E67399006F94A0 /* Shuriken.xcdatamodeld */,
@@ -150,6 +185,17 @@
 				C2D7FEE614E67399006F94A0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2D7FEF414E67475006F94A0 /* SK_Common */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEF514E6748D006F94A0 /* SKCommonBlueToothService.h */,
+				C2D7FEF614E6748D006F94A0 /* SKCommonBlueToothService.m */,
+				C2D7FEF714E6748D006F94A0 /* SKCommonGameCenterService.h */,
+				C2D7FEF814E6748D006F94A0 /* SKCommonGameCenterService.m */,
+			);
+			name = SK_Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +269,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D7FECC14E67399006F94A0 /* InfoPlist.strings in Resources */,
+				C2D7FF0214E6749C006F94A0 /* EntryController.xib in Resources */,
+				C2D7FF0414E6749C006F94A0 /* ShurikenGameController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +308,10 @@
 				C2D7FECE14E67399006F94A0 /* main.m in Sources */,
 				C2D7FED214E67399006F94A0 /* SKAppDelegate.m in Sources */,
 				C2D7FED514E67399006F94A0 /* Shuriken.xcdatamodeld in Sources */,
+				C2D7FEF914E6748D006F94A0 /* SKCommonBlueToothService.m in Sources */,
+				C2D7FEFA14E6748D006F94A0 /* SKCommonGameCenterService.m in Sources */,
+				C2D7FF0114E6749C006F94A0 /* EntryController.m in Sources */,
+				C2D7FF0314E6749C006F94A0 /* ShurikenGameController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
