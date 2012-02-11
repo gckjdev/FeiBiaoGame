@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2D7FEC014E67399006F94A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEBF14E67399006F94A0 /* UIKit.framework */; };
+		C2D7FEC214E67399006F94A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC114E67399006F94A0 /* Foundation.framework */; };
+		C2D7FEC414E67399006F94A0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC314E67399006F94A0 /* CoreGraphics.framework */; };
+		C2D7FEC614E67399006F94A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC514E67399006F94A0 /* CoreData.framework */; };
+		C2D7FECC14E67399006F94A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2D7FECA14E67399006F94A0 /* InfoPlist.strings */; };
+		C2D7FECE14E67399006F94A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FECD14E67399006F94A0 /* main.m */; };
+		C2D7FED214E67399006F94A0 /* SKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FED114E67399006F94A0 /* SKAppDelegate.m */; };
+		C2D7FED514E67399006F94A0 /* Shuriken.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FED314E67399006F94A0 /* Shuriken.xcdatamodeld */; };
+		C2D7FEDD14E67399006F94A0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEDC14E67399006F94A0 /* SenTestingKit.framework */; };
+		C2D7FEDE14E67399006F94A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEBF14E67399006F94A0 /* UIKit.framework */; };
+		C2D7FEDF14E67399006F94A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC114E67399006F94A0 /* Foundation.framework */; };
+		C2D7FEE014E67399006F94A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D7FEC514E67399006F94A0 /* CoreData.framework */; };
+		C2D7FEE814E67399006F94A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2D7FEE614E67399006F94A0 /* InfoPlist.strings */; };
+		C2D7FEEB14E67399006F94A0 /* ShurikenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D7FEEA14E67399006F94A0 /* ShurikenTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C2D7FEE114E67399006F94A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2D7FEB214E67398006F94A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2D7FEBA14E67399006F94A0;
+			remoteInfo = Shuriken;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C2D7FEBB14E67399006F94A0 /* Shuriken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuriken.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2D7FEBF14E67399006F94A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C2D7FEC114E67399006F94A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C2D7FEC314E67399006F94A0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C2D7FEC514E67399006F94A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C2D7FEC914E67399006F94A0 /* Shuriken-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shuriken-Info.plist"; sourceTree = "<group>"; };
+		C2D7FECB14E67399006F94A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2D7FECD14E67399006F94A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2D7FECF14E67399006F94A0 /* Shuriken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shuriken-Prefix.pch"; sourceTree = "<group>"; };
+		C2D7FED014E67399006F94A0 /* SKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAppDelegate.h; sourceTree = "<group>"; };
+		C2D7FED114E67399006F94A0 /* SKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAppDelegate.m; sourceTree = "<group>"; };
+		C2D7FED414E67399006F94A0 /* Shuriken.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shuriken.xcdatamodel; sourceTree = "<group>"; };
+		C2D7FEDB14E67399006F94A0 /* ShurikenTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShurikenTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2D7FEDC14E67399006F94A0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C2D7FEE514E67399006F94A0 /* ShurikenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShurikenTests-Info.plist"; sourceTree = "<group>"; };
+		C2D7FEE714E67399006F94A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2D7FEE914E67399006F94A0 /* ShurikenTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShurikenTests.h; sourceTree = "<group>"; };
+		C2D7FEEA14E67399006F94A0 /* ShurikenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShurikenTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2D7FEB814E67399006F94A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FEC014E67399006F94A0 /* UIKit.framework in Frameworks */,
+				C2D7FEC214E67399006F94A0 /* Foundation.framework in Frameworks */,
+				C2D7FEC414E67399006F94A0 /* CoreGraphics.framework in Frameworks */,
+				C2D7FEC614E67399006F94A0 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2D7FED714E67399006F94A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FEDD14E67399006F94A0 /* SenTestingKit.framework in Frameworks */,
+				C2D7FEDE14E67399006F94A0 /* UIKit.framework in Frameworks */,
+				C2D7FEDF14E67399006F94A0 /* Foundation.framework in Frameworks */,
+				C2D7FEE014E67399006F94A0 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2D7FEB014E67398006F94A0 = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEC714E67399006F94A0 /* Shuriken */,
+				C2D7FEE314E67399006F94A0 /* ShurikenTests */,
+				C2D7FEBE14E67399006F94A0 /* Frameworks */,
+				C2D7FEBC14E67399006F94A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2D7FEBC14E67399006F94A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEBB14E67399006F94A0 /* Shuriken.app */,
+				C2D7FEDB14E67399006F94A0 /* ShurikenTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2D7FEBE14E67399006F94A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEBF14E67399006F94A0 /* UIKit.framework */,
+				C2D7FEC114E67399006F94A0 /* Foundation.framework */,
+				C2D7FEC314E67399006F94A0 /* CoreGraphics.framework */,
+				C2D7FEC514E67399006F94A0 /* CoreData.framework */,
+				C2D7FEDC14E67399006F94A0 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2D7FEC714E67399006F94A0 /* Shuriken */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FED014E67399006F94A0 /* SKAppDelegate.h */,
+				C2D7FED114E67399006F94A0 /* SKAppDelegate.m */,
+				C2D7FED314E67399006F94A0 /* Shuriken.xcdatamodeld */,
+				C2D7FEC814E67399006F94A0 /* Supporting Files */,
+			);
+			path = Shuriken;
+			sourceTree = "<group>";
+		};
+		C2D7FEC814E67399006F94A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEC914E67399006F94A0 /* Shuriken-Info.plist */,
+				C2D7FECA14E67399006F94A0 /* InfoPlist.strings */,
+				C2D7FECD14E67399006F94A0 /* main.m */,
+				C2D7FECF14E67399006F94A0 /* Shuriken-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2D7FEE314E67399006F94A0 /* ShurikenTests */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEE914E67399006F94A0 /* ShurikenTests.h */,
+				C2D7FEEA14E67399006F94A0 /* ShurikenTests.m */,
+				C2D7FEE414E67399006F94A0 /* Supporting Files */,
+			);
+			path = ShurikenTests;
+			sourceTree = "<group>";
+		};
+		C2D7FEE414E67399006F94A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2D7FEE514E67399006F94A0 /* ShurikenTests-Info.plist */,
+				C2D7FEE614E67399006F94A0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2D7FEBA14E67399006F94A0 /* Shuriken */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2D7FEEE14E67399006F94A0 /* Build configuration list for PBXNativeTarget "Shuriken" */;
+			buildPhases = (
+				C2D7FEB714E67399006F94A0 /* Sources */,
+				C2D7FEB814E67399006F94A0 /* Frameworks */,
+				C2D7FEB914E67399006F94A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shuriken;
+			productName = Shuriken;
+			productReference = C2D7FEBB14E67399006F94A0 /* Shuriken.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2D7FEDA14E67399006F94A0 /* ShurikenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2D7FEF114E67399006F94A0 /* Build configuration list for PBXNativeTarget "ShurikenTests" */;
+			buildPhases = (
+				C2D7FED614E67399006F94A0 /* Sources */,
+				C2D7FED714E67399006F94A0 /* Frameworks */,
+				C2D7FED814E67399006F94A0 /* Resources */,
+				C2D7FED914E67399006F94A0 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2D7FEE214E67399006F94A0 /* PBXTargetDependency */,
+			);
+			name = ShurikenTests;
+			productName = ShurikenTests;
+			productReference = C2D7FEDB14E67399006F94A0 /* ShurikenTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2D7FEB214E67398006F94A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C2D7FEB514E67398006F94A0 /* Build configuration list for PBXProject "Shuriken" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C2D7FEB014E67398006F94A0;
+			productRefGroup = C2D7FEBC14E67399006F94A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2D7FEBA14E67399006F94A0 /* Shuriken */,
+				C2D7FEDA14E67399006F94A0 /* ShurikenTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2D7FEB914E67399006F94A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FECC14E67399006F94A0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2D7FED814E67399006F94A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FEE814E67399006F94A0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C2D7FED914E67399006F94A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2D7FEB714E67399006F94A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FECE14E67399006F94A0 /* main.m in Sources */,
+				C2D7FED214E67399006F94A0 /* SKAppDelegate.m in Sources */,
+				C2D7FED514E67399006F94A0 /* Shuriken.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2D7FED614E67399006F94A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2D7FEEB14E67399006F94A0 /* ShurikenTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C2D7FEE214E67399006F94A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2D7FEBA14E67399006F94A0 /* Shuriken */;
+			targetProxy = C2D7FEE114E67399006F94A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C2D7FECA14E67399006F94A0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2D7FECB14E67399006F94A0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C2D7FEE614E67399006F94A0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2D7FEE714E67399006F94A0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2D7FEEC14E67399006F94A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C2D7FEED14E67399006F94A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2D7FEEF14E67399006F94A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "Shuriken/Shuriken-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C2D7FEF014E67399006F94A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "Shuriken/Shuriken-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C2D7FEF214E67399006F94A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shuriken.app/Shuriken";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "ShurikenTests/ShurikenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C2D7FEF314E67399006F94A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shuriken.app/Shuriken";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "ShurikenTests/ShurikenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2D7FEB514E67398006F94A0 /* Build configuration list for PBXProject "Shuriken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D7FEEC14E67399006F94A0 /* Debug */,
+				C2D7FEED14E67399006F94A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2D7FEEE14E67399006F94A0 /* Build configuration list for PBXNativeTarget "Shuriken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D7FEEF14E67399006F94A0 /* Debug */,
+				C2D7FEF014E67399006F94A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C2D7FEF114E67399006F94A0 /* Build configuration list for PBXNativeTarget "ShurikenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2D7FEF214E67399006F94A0 /* Debug */,
+				C2D7FEF314E67399006F94A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C2D7FED314E67399006F94A0 /* Shuriken.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C2D7FED414E67399006F94A0 /* Shuriken.xcdatamodel */,
+			);
+			currentVersion = C2D7FED414E67399006F94A0 /* Shuriken.xcdatamodel */;
+			path = Shuriken.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C2D7FEB214E67398006F94A0 /* Project object */;
+}
