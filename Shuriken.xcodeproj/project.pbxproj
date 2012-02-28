@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C25204D314FCAD5E00904942 /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204D414FCAD5E00904942 /* EntryController.xib */; };
+		C25204DD14FCAF1800904942 /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204DB14FCAF1800904942 /* RecordController.m */; };
+		C25204DE14FCAF1800904942 /* RecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204DC14FCAF1800904942 /* RecordController.xib */; };
+		C25204E214FCAF3700904942 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204E014FCAF3700904942 /* HelpController.m */; };
+		C25204E314FCAF3700904942 /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E114FCAF3700904942 /* HelpController.xib */; };
+		C25204E714FCAF4B00904942 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204E514FCAF4B00904942 /* SettingController.m */; };
+		C25204E814FCAF4B00904942 /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E614FCAF4B00904942 /* SettingController.xib */; };
 		C2E3A4E114FB207A00EBFFC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */; };
 		C2E3A4E314FB207A00EBFFC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */; };
 		C2E3A4E514FB207A00EBFFC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E414FB207A00EBFFC1 /* CoreGraphics.framework */; };
@@ -22,7 +29,6 @@
 		C2E3A50914FB207A00EBFFC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A50714FB207A00EBFFC1 /* InfoPlist.strings */; };
 		C2E3A50C14FB207A00EBFFC1 /* ShurikenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A50B14FB207A00EBFFC1 /* ShurikenTests.m */; };
 		C2E3A51D14FB231700EBFFC1 /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A51714FB231700EBFFC1 /* EntryController.m */; };
-		C2E3A51E14FB231700EBFFC1 /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A51914FB231700EBFFC1 /* EntryController.xib */; };
 		C2E3A52A14FB237100EBFFC1 /* SKCommonBlueToothService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52214FB237100EBFFC1 /* SKCommonBlueToothService.m */; };
 		C2E3A52B14FB237100EBFFC1 /* SKCommonGameCenterService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52414FB237100EBFFC1 /* SKCommonGameCenterService.m */; };
 		C2E3A52C14FB237100EBFFC1 /* SKCommonMultiPlayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52614FB237100EBFFC1 /* SKCommonMultiPlayerService.m */; };
@@ -48,6 +54,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C25204D414FCAD5E00904942 /* EntryController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
+		C25204DA14FCAF1800904942 /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
+		C25204DB14FCAF1800904942 /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
+		C25204DC14FCAF1800904942 /* RecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordController.xib; sourceTree = "<group>"; };
+		C25204DF14FCAF3700904942 /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
+		C25204E014FCAF3700904942 /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
+		C25204E114FCAF3700904942 /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpController.xib; sourceTree = "<group>"; };
+		C25204E414FCAF4B00904942 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		C25204E514FCAF4B00904942 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		C25204E614FCAF4B00904942 /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
 		C2E3A4DC14FB207A00EBFFC1 /* Shuriken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuriken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,7 +83,6 @@
 		C2E3A50A14FB207A00EBFFC1 /* ShurikenTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShurikenTests.h; sourceTree = "<group>"; };
 		C2E3A50B14FB207A00EBFFC1 /* ShurikenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShurikenTests.m; sourceTree = "<group>"; };
 		C2E3A51714FB231700EBFFC1 /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
-		C2E3A51914FB231700EBFFC1 /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		C2E3A51A14FB231700EBFFC1 /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
 		C2E3A52114FB237100EBFFC1 /* SKCommonBlueToothService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonBlueToothService.h; sourceTree = "<group>"; };
 		C2E3A52214FB237100EBFFC1 /* SKCommonBlueToothService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonBlueToothService.m; sourceTree = "<group>"; };
@@ -154,18 +169,27 @@
 		C2E3A4E814FB207A00EBFFC1 /* Shuriken */ = {
 			isa = PBXGroup;
 			children = (
-				C2E3A53D14FB597200EBFFC1 /* Resource */,
-				C2E3A51F14FB234100EBFFC1 /* SKCommon */,
 				C2E3A53814FB555100EBFFC1 /* GameController.h */,
 				C2E3A53914FB555200EBFFC1 /* GameController.m */,
 				C2E3A53A14FB555200EBFFC1 /* GameController.xib */,
 				C2E3A51A14FB231700EBFFC1 /* EntryController.h */,
 				C2E3A51714FB231700EBFFC1 /* EntryController.m */,
-				C2E3A51914FB231700EBFFC1 /* EntryController.xib */,
+				C25204D414FCAD5E00904942 /* EntryController.xib */,
 				C2E3A4F114FB207A00EBFFC1 /* SKAppDelegate.h */,
 				C2E3A4F214FB207A00EBFFC1 /* SKAppDelegate.m */,
 				C2E3A4F414FB207A00EBFFC1 /* Shuriken.xcdatamodeld */,
+				C2E3A53D14FB597200EBFFC1 /* Resource */,
+				C2E3A51F14FB234100EBFFC1 /* SKCommon */,
 				C2E3A4E914FB207A00EBFFC1 /* Supporting Files */,
+				C25204DA14FCAF1800904942 /* RecordController.h */,
+				C25204DB14FCAF1800904942 /* RecordController.m */,
+				C25204DC14FCAF1800904942 /* RecordController.xib */,
+				C25204DF14FCAF3700904942 /* HelpController.h */,
+				C25204E014FCAF3700904942 /* HelpController.m */,
+				C25204E114FCAF3700904942 /* HelpController.xib */,
+				C25204E414FCAF4B00904942 /* SettingController.h */,
+				C25204E514FCAF4B00904942 /* SettingController.m */,
+				C25204E614FCAF4B00904942 /* SettingController.xib */,
 			);
 			path = Shuriken;
 			sourceTree = "<group>";
@@ -296,6 +320,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = C2E3A4D114FB207900EBFFC1;
 			productRefGroup = C2E3A4DD14FB207A00EBFFC1 /* Products */;
@@ -314,11 +339,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2E3A4ED14FB207A00EBFFC1 /* InfoPlist.strings in Resources */,
-				C2E3A51E14FB231700EBFFC1 /* EntryController.xib in Resources */,
+				C25204D314FCAD5E00904942 /* EntryController.xib in Resources */,
 				C2E3A53C14FB555200EBFFC1 /* GameController.xib in Resources */,
 				C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */,
 				C2E3A54114FB597200EBFFC1 /* shield.png in Resources */,
 				C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */,
+				C25204DE14FCAF1800904942 /* RecordController.xib in Resources */,
+				C25204E314FCAF3700904942 /* HelpController.xib in Resources */,
+				C25204E814FCAF4B00904942 /* SettingController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +390,9 @@
 				C2E3A52C14FB237100EBFFC1 /* SKCommonMultiPlayerService.m in Sources */,
 				C2E3A52D14FB237100EBFFC1 /* AnimationManager.m in Sources */,
 				C2E3A53B14FB555200EBFFC1 /* GameController.m in Sources */,
+				C25204DD14FCAF1800904942 /* RecordController.m in Sources */,
+				C25204E214FCAF3700904942 /* HelpController.m in Sources */,
+				C25204E714FCAF4B00904942 /* SettingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
