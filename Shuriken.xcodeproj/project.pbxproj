@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2E3A4E114FB207A00EBFFC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */; };
+		C2E3A4E314FB207A00EBFFC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */; };
+		C2E3A4E514FB207A00EBFFC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E414FB207A00EBFFC1 /* CoreGraphics.framework */; };
+		C2E3A4E714FB207A00EBFFC1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E614FB207A00EBFFC1 /* CoreData.framework */; };
+		C2E3A4ED14FB207A00EBFFC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A4EB14FB207A00EBFFC1 /* InfoPlist.strings */; };
+		C2E3A4EF14FB207A00EBFFC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A4EE14FB207A00EBFFC1 /* main.m */; };
+		C2E3A4F314FB207A00EBFFC1 /* SKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A4F214FB207A00EBFFC1 /* SKAppDelegate.m */; };
+		C2E3A4F614FB207A00EBFFC1 /* Shuriken.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A4F414FB207A00EBFFC1 /* Shuriken.xcdatamodeld */; };
+		C2E3A4FE14FB207A00EBFFC1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4FD14FB207A00EBFFC1 /* SenTestingKit.framework */; };
+		C2E3A4FF14FB207A00EBFFC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */; };
+		C2E3A50014FB207A00EBFFC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */; };
+		C2E3A50114FB207A00EBFFC1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E614FB207A00EBFFC1 /* CoreData.framework */; };
+		C2E3A50914FB207A00EBFFC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A50714FB207A00EBFFC1 /* InfoPlist.strings */; };
+		C2E3A50C14FB207A00EBFFC1 /* ShurikenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A50B14FB207A00EBFFC1 /* ShurikenTests.m */; };
+		C2E3A51D14FB231700EBFFC1 /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A51714FB231700EBFFC1 /* EntryController.m */; };
+		C2E3A51E14FB231700EBFFC1 /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A51914FB231700EBFFC1 /* EntryController.xib */; };
+		C2E3A52A14FB237100EBFFC1 /* SKCommonBlueToothService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52214FB237100EBFFC1 /* SKCommonBlueToothService.m */; };
+		C2E3A52B14FB237100EBFFC1 /* SKCommonGameCenterService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52414FB237100EBFFC1 /* SKCommonGameCenterService.m */; };
+		C2E3A52C14FB237100EBFFC1 /* SKCommonMultiPlayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52614FB237100EBFFC1 /* SKCommonMultiPlayerService.m */; };
+		C2E3A52D14FB237100EBFFC1 /* AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A52914FB237100EBFFC1 /* AnimationManager.m */; };
+		C2E3A52F14FB241900EBFFC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A52E14FB241900EBFFC1 /* QuartzCore.framework */; };
+		C2E3A53114FB242200EBFFC1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A53014FB242200EBFFC1 /* AudioToolbox.framework */; };
+		C2E3A53314FB242B00EBFFC1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A53214FB242B00EBFFC1 /* GameKit.framework */; };
+		C2E3A53B14FB555200EBFFC1 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E3A53914FB555200EBFFC1 /* GameController.m */; };
+		C2E3A53C14FB555200EBFFC1 /* GameController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53A14FB555200EBFFC1 /* GameController.xib */; };
+		C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53E14FB597200EBFFC1 /* feibiao.png */; };
+		C2E3A54114FB597200EBFFC1 /* shield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53F14FB597200EBFFC1 /* shield.png */; };
+		C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A54614FB785900EBFFC1 /* brokenShield.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C2E3A50214FB207A00EBFFC1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2E3A4D314FB207900EBFFC1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2E3A4DB14FB207A00EBFFC1;
+			remoteInfo = Shuriken;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C2E3A4DC14FB207A00EBFFC1 /* Shuriken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuriken.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C2E3A4E414FB207A00EBFFC1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C2E3A4E614FB207A00EBFFC1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C2E3A4EA14FB207A00EBFFC1 /* Shuriken-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shuriken-Info.plist"; sourceTree = "<group>"; };
+		C2E3A4EC14FB207A00EBFFC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2E3A4EE14FB207A00EBFFC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2E3A4F014FB207A00EBFFC1 /* Shuriken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shuriken-Prefix.pch"; sourceTree = "<group>"; };
+		C2E3A4F114FB207A00EBFFC1 /* SKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKAppDelegate.h; sourceTree = "<group>"; };
+		C2E3A4F214FB207A00EBFFC1 /* SKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKAppDelegate.m; sourceTree = "<group>"; };
+		C2E3A4F514FB207A00EBFFC1 /* Shuriken.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shuriken.xcdatamodel; sourceTree = "<group>"; };
+		C2E3A4FC14FB207A00EBFFC1 /* ShurikenTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShurikenTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2E3A4FD14FB207A00EBFFC1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C2E3A50614FB207A00EBFFC1 /* ShurikenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShurikenTests-Info.plist"; sourceTree = "<group>"; };
+		C2E3A50814FB207A00EBFFC1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2E3A50A14FB207A00EBFFC1 /* ShurikenTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShurikenTests.h; sourceTree = "<group>"; };
+		C2E3A50B14FB207A00EBFFC1 /* ShurikenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShurikenTests.m; sourceTree = "<group>"; };
+		C2E3A51714FB231700EBFFC1 /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
+		C2E3A51914FB231700EBFFC1 /* EntryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
+		C2E3A51A14FB231700EBFFC1 /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		C2E3A52114FB237100EBFFC1 /* SKCommonBlueToothService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonBlueToothService.h; sourceTree = "<group>"; };
+		C2E3A52214FB237100EBFFC1 /* SKCommonBlueToothService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonBlueToothService.m; sourceTree = "<group>"; };
+		C2E3A52314FB237100EBFFC1 /* SKCommonGameCenterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonGameCenterService.h; sourceTree = "<group>"; };
+		C2E3A52414FB237100EBFFC1 /* SKCommonGameCenterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonGameCenterService.m; sourceTree = "<group>"; };
+		C2E3A52514FB237100EBFFC1 /* SKCommonMultiPlayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonMultiPlayerService.h; sourceTree = "<group>"; };
+		C2E3A52614FB237100EBFFC1 /* SKCommonMultiPlayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonMultiPlayerService.m; sourceTree = "<group>"; };
+		C2E3A52814FB237100EBFFC1 /* AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationManager.h; sourceTree = "<group>"; };
+		C2E3A52914FB237100EBFFC1 /* AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationManager.m; sourceTree = "<group>"; };
+		C2E3A52E14FB241900EBFFC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C2E3A53014FB242200EBFFC1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C2E3A53214FB242B00EBFFC1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C2E3A53814FB555100EBFFC1 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		C2E3A53914FB555200EBFFC1 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
+		C2E3A53A14FB555200EBFFC1 /* GameController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameController.xib; sourceTree = "<group>"; };
+		C2E3A53E14FB597200EBFFC1 /* feibiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feibiao.png; sourceTree = "<group>"; };
+		C2E3A53F14FB597200EBFFC1 /* shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield.png; sourceTree = "<group>"; };
+		C2E3A54614FB785900EBFFC1 /* brokenShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShield.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2E3A4D914FB207A00EBFFC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A53314FB242B00EBFFC1 /* GameKit.framework in Frameworks */,
+				C2E3A53114FB242200EBFFC1 /* AudioToolbox.framework in Frameworks */,
+				C2E3A52F14FB241900EBFFC1 /* QuartzCore.framework in Frameworks */,
+				C2E3A4E114FB207A00EBFFC1 /* UIKit.framework in Frameworks */,
+				C2E3A4E314FB207A00EBFFC1 /* Foundation.framework in Frameworks */,
+				C2E3A4E514FB207A00EBFFC1 /* CoreGraphics.framework in Frameworks */,
+				C2E3A4E714FB207A00EBFFC1 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2E3A4F814FB207A00EBFFC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A4FE14FB207A00EBFFC1 /* SenTestingKit.framework in Frameworks */,
+				C2E3A4FF14FB207A00EBFFC1 /* UIKit.framework in Frameworks */,
+				C2E3A50014FB207A00EBFFC1 /* Foundation.framework in Frameworks */,
+				C2E3A50114FB207A00EBFFC1 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2E3A4D114FB207900EBFFC1 = {
+			isa = PBXGroup;
+			children = (
+				C2E3A4E814FB207A00EBFFC1 /* Shuriken */,
+				C2E3A50414FB207A00EBFFC1 /* ShurikenTests */,
+				C2E3A4DF14FB207A00EBFFC1 /* Frameworks */,
+				C2E3A4DD14FB207A00EBFFC1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2E3A4DD14FB207A00EBFFC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A4DC14FB207A00EBFFC1 /* Shuriken.app */,
+				C2E3A4FC14FB207A00EBFFC1 /* ShurikenTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2E3A4DF14FB207A00EBFFC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A53214FB242B00EBFFC1 /* GameKit.framework */,
+				C2E3A53014FB242200EBFFC1 /* AudioToolbox.framework */,
+				C2E3A52E14FB241900EBFFC1 /* QuartzCore.framework */,
+				C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */,
+				C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */,
+				C2E3A4E414FB207A00EBFFC1 /* CoreGraphics.framework */,
+				C2E3A4E614FB207A00EBFFC1 /* CoreData.framework */,
+				C2E3A4FD14FB207A00EBFFC1 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C2E3A4E814FB207A00EBFFC1 /* Shuriken */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A53D14FB597200EBFFC1 /* Resource */,
+				C2E3A51F14FB234100EBFFC1 /* SKCommon */,
+				C2E3A53814FB555100EBFFC1 /* GameController.h */,
+				C2E3A53914FB555200EBFFC1 /* GameController.m */,
+				C2E3A53A14FB555200EBFFC1 /* GameController.xib */,
+				C2E3A51A14FB231700EBFFC1 /* EntryController.h */,
+				C2E3A51714FB231700EBFFC1 /* EntryController.m */,
+				C2E3A51914FB231700EBFFC1 /* EntryController.xib */,
+				C2E3A4F114FB207A00EBFFC1 /* SKAppDelegate.h */,
+				C2E3A4F214FB207A00EBFFC1 /* SKAppDelegate.m */,
+				C2E3A4F414FB207A00EBFFC1 /* Shuriken.xcdatamodeld */,
+				C2E3A4E914FB207A00EBFFC1 /* Supporting Files */,
+			);
+			path = Shuriken;
+			sourceTree = "<group>";
+		};
+		C2E3A4E914FB207A00EBFFC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A4EA14FB207A00EBFFC1 /* Shuriken-Info.plist */,
+				C2E3A4EB14FB207A00EBFFC1 /* InfoPlist.strings */,
+				C2E3A4EE14FB207A00EBFFC1 /* main.m */,
+				C2E3A4F014FB207A00EBFFC1 /* Shuriken-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2E3A50414FB207A00EBFFC1 /* ShurikenTests */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A50A14FB207A00EBFFC1 /* ShurikenTests.h */,
+				C2E3A50B14FB207A00EBFFC1 /* ShurikenTests.m */,
+				C2E3A50514FB207A00EBFFC1 /* Supporting Files */,
+			);
+			path = ShurikenTests;
+			sourceTree = "<group>";
+		};
+		C2E3A50514FB207A00EBFFC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A50614FB207A00EBFFC1 /* ShurikenTests-Info.plist */,
+				C2E3A50714FB207A00EBFFC1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2E3A51F14FB234100EBFFC1 /* SKCommon */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A52014FB237100EBFFC1 /* MultiPlayerService */,
+				C2E3A52714FB237100EBFFC1 /* Animation */,
+			);
+			name = SKCommon;
+			sourceTree = "<group>";
+		};
+		C2E3A52014FB237100EBFFC1 /* MultiPlayerService */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A52114FB237100EBFFC1 /* SKCommonBlueToothService.h */,
+				C2E3A52214FB237100EBFFC1 /* SKCommonBlueToothService.m */,
+				C2E3A52314FB237100EBFFC1 /* SKCommonGameCenterService.h */,
+				C2E3A52414FB237100EBFFC1 /* SKCommonGameCenterService.m */,
+				C2E3A52514FB237100EBFFC1 /* SKCommonMultiPlayerService.h */,
+				C2E3A52614FB237100EBFFC1 /* SKCommonMultiPlayerService.m */,
+			);
+			name = MultiPlayerService;
+			path = SKCommon/MultiPlayerService;
+			sourceTree = SOURCE_ROOT;
+		};
+		C2E3A52714FB237100EBFFC1 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A52814FB237100EBFFC1 /* AnimationManager.h */,
+				C2E3A52914FB237100EBFFC1 /* AnimationManager.m */,
+			);
+			name = Animation;
+			path = SKCommon/Animation;
+			sourceTree = SOURCE_ROOT;
+		};
+		C2E3A53D14FB597200EBFFC1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C2E3A54614FB785900EBFFC1 /* brokenShield.png */,
+				C2E3A53E14FB597200EBFFC1 /* feibiao.png */,
+				C2E3A53F14FB597200EBFFC1 /* shield.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2E3A4DB14FB207A00EBFFC1 /* Shuriken */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2E3A50F14FB207A00EBFFC1 /* Build configuration list for PBXNativeTarget "Shuriken" */;
+			buildPhases = (
+				C2E3A4D814FB207A00EBFFC1 /* Sources */,
+				C2E3A4D914FB207A00EBFFC1 /* Frameworks */,
+				C2E3A4DA14FB207A00EBFFC1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shuriken;
+			productName = Shuriken;
+			productReference = C2E3A4DC14FB207A00EBFFC1 /* Shuriken.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C2E3A4FB14FB207A00EBFFC1 /* ShurikenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2E3A51214FB207A00EBFFC1 /* Build configuration list for PBXNativeTarget "ShurikenTests" */;
+			buildPhases = (
+				C2E3A4F714FB207A00EBFFC1 /* Sources */,
+				C2E3A4F814FB207A00EBFFC1 /* Frameworks */,
+				C2E3A4F914FB207A00EBFFC1 /* Resources */,
+				C2E3A4FA14FB207A00EBFFC1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C2E3A50314FB207A00EBFFC1 /* PBXTargetDependency */,
+			);
+			name = ShurikenTests;
+			productName = ShurikenTests;
+			productReference = C2E3A4FC14FB207A00EBFFC1 /* ShurikenTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2E3A4D314FB207900EBFFC1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C2E3A4D614FB207900EBFFC1 /* Build configuration list for PBXProject "Shuriken" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C2E3A4D114FB207900EBFFC1;
+			productRefGroup = C2E3A4DD14FB207A00EBFFC1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2E3A4DB14FB207A00EBFFC1 /* Shuriken */,
+				C2E3A4FB14FB207A00EBFFC1 /* ShurikenTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2E3A4DA14FB207A00EBFFC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A4ED14FB207A00EBFFC1 /* InfoPlist.strings in Resources */,
+				C2E3A51E14FB231700EBFFC1 /* EntryController.xib in Resources */,
+				C2E3A53C14FB555200EBFFC1 /* GameController.xib in Resources */,
+				C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */,
+				C2E3A54114FB597200EBFFC1 /* shield.png in Resources */,
+				C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2E3A4F914FB207A00EBFFC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A50914FB207A00EBFFC1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C2E3A4FA14FB207A00EBFFC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2E3A4D814FB207A00EBFFC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A4EF14FB207A00EBFFC1 /* main.m in Sources */,
+				C2E3A4F314FB207A00EBFFC1 /* SKAppDelegate.m in Sources */,
+				C2E3A4F614FB207A00EBFFC1 /* Shuriken.xcdatamodeld in Sources */,
+				C2E3A51D14FB231700EBFFC1 /* EntryController.m in Sources */,
+				C2E3A52A14FB237100EBFFC1 /* SKCommonBlueToothService.m in Sources */,
+				C2E3A52B14FB237100EBFFC1 /* SKCommonGameCenterService.m in Sources */,
+				C2E3A52C14FB237100EBFFC1 /* SKCommonMultiPlayerService.m in Sources */,
+				C2E3A52D14FB237100EBFFC1 /* AnimationManager.m in Sources */,
+				C2E3A53B14FB555200EBFFC1 /* GameController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2E3A4F714FB207A00EBFFC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2E3A50C14FB207A00EBFFC1 /* ShurikenTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C2E3A50314FB207A00EBFFC1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2E3A4DB14FB207A00EBFFC1 /* Shuriken */;
+			targetProxy = C2E3A50214FB207A00EBFFC1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C2E3A4EB14FB207A00EBFFC1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2E3A4EC14FB207A00EBFFC1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C2E3A50714FB207A00EBFFC1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2E3A50814FB207A00EBFFC1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C2E3A50D14FB207A00EBFFC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C2E3A50E14FB207A00EBFFC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2E3A51014FB207A00EBFFC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "Shuriken/Shuriken-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C2E3A51114FB207A00EBFFC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "Shuriken/Shuriken-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C2E3A51314FB207A00EBFFC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shuriken.app/Shuriken";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "ShurikenTests/ShurikenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C2E3A51414FB207A00EBFFC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shuriken.app/Shuriken";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shuriken/Shuriken-Prefix.pch";
+				INFOPLIST_FILE = "ShurikenTests/ShurikenTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2E3A4D614FB207900EBFFC1 /* Build configuration list for PBXProject "Shuriken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2E3A50D14FB207A00EBFFC1 /* Debug */,
+				C2E3A50E14FB207A00EBFFC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2E3A50F14FB207A00EBFFC1 /* Build configuration list for PBXNativeTarget "Shuriken" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2E3A51014FB207A00EBFFC1 /* Debug */,
+				C2E3A51114FB207A00EBFFC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2E3A51214FB207A00EBFFC1 /* Build configuration list for PBXNativeTarget "ShurikenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2E3A51314FB207A00EBFFC1 /* Debug */,
+				C2E3A51414FB207A00EBFFC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C2E3A4F414FB207A00EBFFC1 /* Shuriken.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C2E3A4F514FB207A00EBFFC1 /* Shuriken.xcdatamodel */,
+			);
+			currentVersion = C2E3A4F514FB207A00EBFFC1 /* Shuriken.xcdatamodel */;
+			path = Shuriken.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C2E3A4D314FB207900EBFFC1 /* Project object */;
+}
