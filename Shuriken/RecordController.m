@@ -7,8 +7,12 @@
 //
 
 #import "RecordController.h"
+#import "RecordManager.h"
+#import "Record.h"
+#import "RecordCell.h"
 
 @implementation RecordController
+@synthesize records;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +41,7 @@
 
 - (void)viewDidUnload
 {
+    [self setRecords:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -52,5 +57,28 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)dealloc {
+    [records release];
+    [super dealloc];
+}
+
+#pragma mark - tableview delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[RecordManager shareInstance].recordArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:[RecordCell getCellIdentifier]];
+    if (cell == nil) {
+        cell = [RecordCell createRecordCell];
+        
+    }
+    Record* aRecord = [[RecordManager shareInstance].recordArray objectAtIndex:indexPath.row];
+    [cell setCellWithRecord:aRecord];
+    
+    return cell;
+}
+
 
 @end

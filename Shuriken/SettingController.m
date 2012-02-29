@@ -7,8 +7,15 @@
 //
 
 #import "SettingController.h"
+#import "SettingsManager.h"
 
 @implementation SettingController
+@synthesize nameLabel;
+@synthesize vibrationSwitch;
+@synthesize soundSwitch;
+@synthesize name;
+@synthesize vibrationButton;
+@synthesize soundButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +39,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    SettingsManager* manager = [SettingsManager shareInstance];
+    [self.name setPlaceholder:manager.playerName];
+    self.name.delegate = self;
+    [self.vibrationButton setSelected:manager.isVibration];
+    [self.soundButton setSelected:manager.isSoundOn];
+    [self.vibrationSwitch setText:NSLocalizedString(@"vibration", @"振动")];
+    [self.soundSwitch setText:NSLocalizedString(@"sound", @"音效")];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setNameLabel:nil];
+    [self setVibrationSwitch:nil];
+    [self setSoundSwitch:nil];
+    [self setName:nil];
+    [self setVibrationButton:nil];
+    [self setSoundButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -51,6 +71,40 @@
 - (IBAction)backToEntry:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)dealloc {
+    [nameLabel release];
+    [vibrationSwitch release];
+    [soundSwitch release];
+    [name release];
+    [vibrationButton release];
+    [soundButton release];
+    [super dealloc];
+}
+
+- (IBAction)clickButton:(id)sender
+{
+    UIButton* button = (UIButton*)sender;
+    [button setSelected:(!button.isSelected)];
+}
+
+- (IBAction)setttingDone:(id)sender
+{
+    SettingsManager* manager = [SettingsManager shareInstance];
+    [manager setIsVibration:self.vibrationButton.isSelected];
+    [manager setIsSoundOn:self.soundButton.isSelected];
+    NSString* aName = self.name.text;
+    if (aName && aName.length > 0) {
+        [manager setPlayerName:aName];
+    }
+    [manager saveSettings];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

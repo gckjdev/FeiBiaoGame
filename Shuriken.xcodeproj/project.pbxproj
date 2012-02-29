@@ -14,6 +14,13 @@
 		C25204E314FCAF3700904942 /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E114FCAF3700904942 /* HelpController.xib */; };
 		C25204E714FCAF4B00904942 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204E514FCAF4B00904942 /* SettingController.m */; };
 		C25204E814FCAF4B00904942 /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E614FCAF4B00904942 /* SettingController.xib */; };
+		C25204EC14FCBD6D00904942 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204EB14FCBD6D00904942 /* SettingsManager.m */; };
+		C25204EF14FCBDFD00904942 /* RecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204EE14FCBDFD00904942 /* RecordManager.m */; };
+		C252050214FDC82F00904942 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C252050114FDC82E00904942 /* RecordCell.m */; };
+		C252050414FDC88200904942 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C252050314FDC88100904942 /* RecordCell.xib */; };
+		C252050714FDCE3A00904942 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = C252050614FDCE3A00904942 /* Record.m */; };
+		C252050B14FDD83500904942 /* TimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C252050A14FDD83500904942 /* TimeUtils.m */; };
+		C252050E14FDE04800904942 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C252050D14FDE04800904942 /* MessageManager.m */; };
 		C2E3A4E114FB207A00EBFFC1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */; };
 		C2E3A4E314FB207A00EBFFC1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */; };
 		C2E3A4E514FB207A00EBFFC1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E3A4E414FB207A00EBFFC1 /* CoreGraphics.framework */; };
@@ -64,6 +71,19 @@
 		C25204E414FCAF4B00904942 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		C25204E514FCAF4B00904942 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		C25204E614FCAF4B00904942 /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
+		C25204EA14FCBD6D00904942 /* SettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsManager.h; sourceTree = "<group>"; };
+		C25204EB14FCBD6D00904942 /* SettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsManager.m; sourceTree = "<group>"; };
+		C25204ED14FCBDFD00904942 /* RecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordManager.h; sourceTree = "<group>"; };
+		C25204EE14FCBDFD00904942 /* RecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordManager.m; sourceTree = "<group>"; };
+		C252050014FDC82E00904942 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		C252050114FDC82E00904942 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		C252050314FDC88100904942 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
+		C252050514FDCE3A00904942 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		C252050614FDCE3A00904942 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		C252050914FDD83500904942 /* TimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeUtils.h; sourceTree = "<group>"; };
+		C252050A14FDD83500904942 /* TimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeUtils.m; sourceTree = "<group>"; };
+		C252050C14FDE04800904942 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
+		C252050D14FDE04800904942 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
 		C2E3A4DC14FB207A00EBFFC1 /* Shuriken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuriken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E3A4E014FB207A00EBFFC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C2E3A4E214FB207A00EBFFC1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -132,6 +152,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C25204E914FCBD3C00904942 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C25204EA14FCBD6D00904942 /* SettingsManager.h */,
+				C25204EB14FCBD6D00904942 /* SettingsManager.m */,
+				C25204ED14FCBDFD00904942 /* RecordManager.h */,
+				C25204EE14FCBDFD00904942 /* RecordManager.m */,
+				C252050C14FDE04800904942 /* MessageManager.h */,
+				C252050D14FDE04800904942 /* MessageManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		C25204F014FCBE6000904942 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C252050514FDCE3A00904942 /* Record.h */,
+				C252050614FDCE3A00904942 /* Record.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C252050814FDD83500904942 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				C252050914FDD83500904942 /* TimeUtils.h */,
+				C252050A14FDD83500904942 /* TimeUtils.m */,
+			);
+			name = Date;
+			path = "../../Common_iPhone_20/Core/Core-Utils-Misc/Date";
+			sourceTree = "<group>";
+		};
 		C2E3A4D114FB207900EBFFC1 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +221,9 @@
 		C2E3A4E814FB207A00EBFFC1 /* Shuriken */ = {
 			isa = PBXGroup;
 			children = (
+				C252050814FDD83500904942 /* Date */,
+				C25204F014FCBE6000904942 /* Model */,
+				C25204E914FCBD3C00904942 /* Manager */,
 				C2E3A53814FB555100EBFFC1 /* GameController.h */,
 				C2E3A53914FB555200EBFFC1 /* GameController.m */,
 				C2E3A53A14FB555200EBFFC1 /* GameController.xib */,
@@ -190,6 +245,9 @@
 				C25204E414FCAF4B00904942 /* SettingController.h */,
 				C25204E514FCAF4B00904942 /* SettingController.m */,
 				C25204E614FCAF4B00904942 /* SettingController.xib */,
+				C252050014FDC82E00904942 /* RecordCell.h */,
+				C252050114FDC82E00904942 /* RecordCell.m */,
+				C252050314FDC88100904942 /* RecordCell.xib */,
 			);
 			path = Shuriken;
 			sourceTree = "<group>";
@@ -347,6 +405,7 @@
 				C25204DE14FCAF1800904942 /* RecordController.xib in Resources */,
 				C25204E314FCAF3700904942 /* HelpController.xib in Resources */,
 				C25204E814FCAF4B00904942 /* SettingController.xib in Resources */,
+				C252050414FDC88200904942 /* RecordCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +452,12 @@
 				C25204DD14FCAF1800904942 /* RecordController.m in Sources */,
 				C25204E214FCAF3700904942 /* HelpController.m in Sources */,
 				C25204E714FCAF4B00904942 /* SettingController.m in Sources */,
+				C25204EC14FCBD6D00904942 /* SettingsManager.m in Sources */,
+				C25204EF14FCBDFD00904942 /* RecordManager.m in Sources */,
+				C252050214FDC82F00904942 /* RecordCell.m in Sources */,
+				C252050714FDCE3A00904942 /* Record.m in Sources */,
+				C252050B14FDD83500904942 /* TimeUtils.m in Sources */,
+				C252050E14FDE04800904942 /* MessageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "GameController.h"
 #import "AnimationManager.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "RecordManager.h"
 
 typedef enum{
     IllegalGestureRecognizer = -1,
@@ -189,7 +190,7 @@ typedef enum{
     [self.multiPlayerService findPlayers];
 }
 
-#pragma --alert view delegate;
+#pragma mark - alert view delegate;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -202,7 +203,7 @@ typedef enum{
 }
 
 
-#pragma --multiplayer delegate
+#pragma mark - multiplayer delegate
 - (void)multiPlayerGamePrepared
 {
     [self restartGame];
@@ -236,6 +237,7 @@ typedef enum{
 - (void)gameCanceled
 {
     //[self quitGame];
+    [[RecordManager shareInstance] addResult:-1 rivalName:nil date:[NSDate dateWithTimeIntervalSinceNow:0]];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -371,7 +373,7 @@ typedef enum{
     
 }
 
-#pragma --accelerometer delegate
+#pragma mark - accelerometer delegate
 
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
 {

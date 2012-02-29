@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordController : UIViewController
+@interface RecordController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    
+}
+@property (retain, nonatomic) IBOutlet UITableView *records;
 
 @end
