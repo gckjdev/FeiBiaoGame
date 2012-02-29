@@ -29,6 +29,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *bloodBar;
 @property (retain, nonatomic) IBOutlet UILabel *bloodsCount;
 @property (retain, nonatomic) SKCommonMultiPlayerService* multiPlayerService;
+@property (retain, nonatomic) IBOutlet UIButton *rivalBloodBar;
+@property (retain, nonatomic) IBOutlet UILabel *rivalNameLabel;
 
 - (id)initWithMultiPlayerService:(SKCommonMultiPlayerService*)aMultiPlayerService;
 @end

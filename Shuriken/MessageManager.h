@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 enum MESSAGE_TYPE {
-    MY_NAME = 120120229,
-    I_GET_HURT = 220120229,
-    I_LOSE = 120120229
+    MY_NAME = 201202290,
+    I_GET_HURT ,
+    I_LOSE,
+    ATTACK
     };
 
 @interface MessageManager : NSObject {
@@ -21,5 +22,6 @@ enum MESSAGE_TYPE {
 + (NSData*)makeMyName;
 + (NSData*)makeHurtWithBlood:(NSInteger)bloodCount;
 + (NSData*)makeLoseMessage;
-+ (NSArray*)unpackMessage;
++ (NSData*)makeAttack;
++ (NSArray*)unpackMessage:(NSData*)data;
 @end

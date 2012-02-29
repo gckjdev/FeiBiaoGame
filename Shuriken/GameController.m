@@ -10,6 +10,7 @@
 #import "AnimationManager.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "RecordManager.h"
+#import "MessageManager.h"
 
 typedef enum{
     IllegalGestureRecognizer = -1,
@@ -21,10 +22,6 @@ typedef enum{
     TapGestureRecognizer,
     GestureRecognizerTypeCount
 }GestureRecognizerType;
-
-#define ATTACK  20120206
-#define I_LOSE  120120206
-#define AUCH    220120206
 
 typedef enum{
     ready = 0,
@@ -40,6 +37,8 @@ typedef enum{
 @synthesize bloodBar = _bloodBar;
 @synthesize bloodsCount = _bloodsCount;
 @synthesize multiPlayerService = _multiPlayerService;
+@synthesize rivalBloodBar = _rivalBloodBar;
+@synthesize rivalNameLabel = _rivalNameLabel;
 
 
 - (void)dealloc
@@ -52,7 +51,39 @@ typedef enum{
     [_bloodBar release];
     [_bloodsCount release];
     [_multiPlayerService release];
+    [_rivalBloodBar release];
+    [_rivalNameLabel release];
     [super dealloc];
+}
+
+- (void)gameEnd:(BOOL)didWin
+{
+    UIAlertView* view = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"退出" otherButtonTitles:@"重来", nil];
+    if (didWin) {
+        [view setTitle:@"you win"];
+        [[RecordManager shareInstance] addResult:1 rivalName:self.rivalNameLabel.text date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    } else {
+        [view setTitle:@"you lose"];
+        [[RecordManager shareInstance] addResult:0 rivalName:self.rivalNameLabel.text date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    }
+    [view show];
+    _gameStatus = end;
+}
+
+- (void)quitGame
+{
+    [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
+    [self.multiPlayerService quitMultiPlayersGame];
+}
+
+- (void)setRivalName:(NSString*)aName
+{
+    [self.rivalNameLabel setText:aName];
+}
+
+- (void)setRivalBlood:(int)bloodCount
+{
+    [self.rivalBloodBar setFrame:CGRectMake(60, 21, 24*bloodCount, 19)];
 }
 
 - (void)holdUpShield
@@ -106,6 +137,13 @@ typedef enum{
     NSLog(@"Ouch!");
     _blood--;
     [self.bloodBar setFrame:CGRectMake(60, 362, 24*_blood, 19)];
+    if (_blood > 0) {
+        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeHurtWithBlood:_blood]];
+    } else {
+        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeLoseMessage]];
+        [self gameEnd:NO];
+    }
+    
 }
 
 - (void)throwWeapon
@@ -114,8 +152,7 @@ typedef enum{
     [self.weapon.layer addAnimation:[AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3] forKey:@"throwing"];
     [self.weapon.layer addAnimation:[AnimationManager rotationAnimationWithRoundCount:10 duration:0.3] forKey:@"rotation"];
     if (_isAttacking && _darts >= 1) {
-        NSNumber* number = [NSNumber numberWithInt:ATTACK];
-        NSData* attack = [NSKeyedArchiver archivedDataWithRootObject:number];
+        NSData* attack = [MessageManager makeAttack];
         [self.multiPlayerService sendDataToAllPlayers:attack];
         _darts -- ;
         NSLog(@"attack you !!!!");
@@ -155,7 +192,8 @@ typedef enum{
     _shields = 30;
     _blood = 10;
     _gameStatus = onGo;
-    
+    [self setRivalBlood:10];
+    [self.bloodBar setFrame:CGRectMake(60, 362, 24*10, 19)];
     [_statusChecker invalidate];
     _statusChecker = nil;
     _statusChecker = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refleshStatus) userInfo:nil repeats:YES];
@@ -164,23 +202,7 @@ typedef enum{
     accelerometer.updateInterval = 0.05;
 }
 
-- (void)gameEnd:(BOOL)didWin
-{
-    UIAlertView* view = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"退出" otherButtonTitles:@"重来", nil];
-    if (didWin) {
-        [view setTitle:@"you win"];
-    } else {
-        [view setTitle:@"you lose"];
-    }
-    [view show];
-    _gameStatus = end;
-}
 
-- (void)quitGame
-{
-    [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
-    [self.multiPlayerService quitMultiPlayersGame];
-}
 
 - (void)findMultiPlayers
 {
@@ -207,32 +229,51 @@ typedef enum{
 - (void)multiPlayerGamePrepared
 {
     [self restartGame];
+    NSData* data = [MessageManager makeMyName];
+    [self.multiPlayerService sendDataToAllPlayers:data];
 }
 - (void)multiPlayerGameEnd
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+#define MESSAGE_ID 0
+#define MESSAGE_DELIVER 1
+#define MESSAGE    2
 - (void)gameRecieveData:(NSData*)data from:(NSString*)playerId
 {
-    NSNumber* number = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    if ([number intValue] == ATTACK) {
-        if (_isAttacking || _shields < 0) {
-            [self getHurt];
-        } else {
-            [self defendAnAttack];
+    if (_gameStatus != onGo) {
+        return;
+    }
+    NSArray* array = [MessageManager unpackMessage:data];
+    NSNumber* messageId = [array objectAtIndex:MESSAGE_ID];
+    NSString* message_deliver = [array objectAtIndex:MESSAGE_DELIVER];
+    switch (messageId.intValue) {
+        case MY_NAME: {
+            [self setRivalName:message_deliver];
+            break;
         }
+        case I_LOSE: {
+            [self setRivalBlood:0];
+            [self gameEnd:YES];
+            break;
+        }
+        case I_GET_HURT: {
+            NSNumber* blood = [array objectAtIndex:MESSAGE];
+            [self setRivalBlood:blood.intValue];
+            break;
+        }
+        case ATTACK: {
+            if (_isAttacking || _shields < 0) {
+                [self getHurt];
+            } else {
+                [self defendAnAttack];
+            }
+            break; 
+        }
+        default:
+            break;
     }
-    
-    if ([number intValue] == I_LOSE) {
-        [self gameEnd:YES];
-    }
-    
-    if (_blood <= 0) {
-        NSNumber* number = [NSNumber numberWithInt:I_LOSE];
-        NSData* lose = [NSKeyedArchiver archivedDataWithRootObject:number];
-        [self.multiPlayerService sendDataToAllPlayers:lose];
-        [self gameEnd:NO];
-    }
+
 }
 - (void)gameCanceled
 {
@@ -428,7 +469,6 @@ typedef enum{
     }
     [self.multiPlayerService findPlayers];
     _gameStatus = ready;
-    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -440,6 +480,8 @@ typedef enum{
     [self setShield:nil];
     [self setBloodBar:nil];
     [self setBloodsCount:nil];
+    [self setRivalBloodBar:nil];
+    [self setRivalNameLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
