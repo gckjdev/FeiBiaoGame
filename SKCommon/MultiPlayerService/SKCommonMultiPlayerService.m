@@ -36,19 +36,11 @@
     }
 }
 
-- (void)didConnectToDevice:(NSString*)peerId
+- (void)connectDeviceSuccessfully:(NSString*)peerId
 {
     if (_delegate && [_delegate respondsToSelector:@selector(multiPlayerGamePrepared)]) {
         [_delegate multiPlayerGamePrepared];
     }
-}
-
-- (void)acceptDevice
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(multiPlayerGamePrepared)]) {
-        [_delegate multiPlayerGamePrepared];
-    }
-
 }
 
 - (void)peerDisconnectFromSession:(NSString*)peerId;

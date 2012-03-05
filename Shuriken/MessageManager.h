@@ -12,7 +12,9 @@ enum MESSAGE_TYPE {
     MY_NAME = 201202290,
     I_GET_HURT ,
     I_LOSE,
-    ATTACK
+    ATTACK,
+    POSTURE,
+    RESTART
     };
 
 @interface MessageManager : NSObject {
@@ -23,5 +25,7 @@ enum MESSAGE_TYPE {
 + (NSData*)makeHurtWithBlood:(NSInteger)bloodCount;
 + (NSData*)makeLoseMessage;
 + (NSData*)makeAttack;
++ (NSData*)makePosture:(NSInteger)aPosture;
 + (NSArray*)unpackMessage:(NSData*)data;
++ (NSData*)makeRestart:(NSInteger)aType;
 @end

@@ -107,6 +107,7 @@ AnimationManager *animatinManager;
 
     animation.toValue = [ NSValue valueWithCATransform3D: CATransform3DMakeScale(toScale, toScale, toScale)];
     animation.duration = duration;
+    animation.delegate = delegate;
     animation.fillMode = kCAFillModeForwards;
     animation.removedOnCompletion = removedOnCompletion;
     return animation;

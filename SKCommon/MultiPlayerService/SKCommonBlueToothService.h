@@ -11,8 +11,7 @@
 @protocol SKCommonBlueToothServiceDelegate <NSObject>
 
 - (void)receiveData: (NSData*) data fromPeer: (NSString*) peerID;
-- (void)didConnectToDevice:(NSString*)peerId;
-- (void)acceptDevice;
+- (void)connectDeviceSuccessfully:(NSString*)peerId;
 - (void)peerDisconnectFromSession:(NSString*)peerId;
 - (void)peerPickerCanceled;
 @end

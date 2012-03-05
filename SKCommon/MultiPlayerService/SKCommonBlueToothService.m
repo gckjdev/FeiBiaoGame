@@ -69,21 +69,21 @@
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session
 {
-    //当picker接收到数据后将其释放掉，否则进入不了界面,这里是发起请求端的操作
+    //被接受，点击接受
     [picker dismiss];
     picker.delegate = nil;
-    _actingAsHost = NO;//设为客户端
-    if (_delegate && [_delegate respondsToSelector:@selector(didConnectToDevice:)]) {
-        [_delegate didConnectToDevice:peerID];
+    //_actingAsHost = NO;//设为客户端
+    if (_delegate && [_delegate respondsToSelector:@selector(connectDeviceSuccessfully:)]) {
+        [_delegate connectDeviceSuccessfully:peerID];
     }
 }
 - (void)session:(GKSession *)session
 didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-    //已接受连接请求的代理方法，这里是接受请求端的操作
-    _actingAsHost = NO;//设为客户端
-    if (_delegate && [_delegate respondsToSelector:@selector(acceptDevice)]) {
-        [_delegate acceptDevice];
-    }
+    //弹出是否接受的提示
+    //_actingAsHost = NO;//设为客户端
+//    if (_delegate && [_delegate respondsToSelector:@selector(acceptDevice)]) {
+//        [_delegate didAcceptedByDevice:peer];
+//    }
 }
 
 - (void)session:(GKSession *)session peer:(NSString *)peerID
@@ -116,6 +116,10 @@ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
     
 }
 
+- (void)peerPickerController:(GKPeerPickerController *)picker didSelectConnectionType:(GKPeerPickerConnectionType)type{
+
+}
+
 - (void) receiveData: (NSData*) data fromPeer: (NSString*) peerID
            inSession: (GKSession*) session context: (void*) context {
     if (_delegate && [_delegate respondsToSelector:@selector(receiveData:fromPeer:)]) {
@@ -128,7 +132,7 @@ didReceiveConnectionRequestFromPeer:(NSString *)peerID {
     if (_currentSession) {
         [_currentSession disconnectFromAllPeers];
     }
-    _currentSession = nil;
+    [_currentSession release];
 }
 
 

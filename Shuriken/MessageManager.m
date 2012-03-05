@@ -52,6 +52,26 @@
     return data;
 }
 
++ (NSData*)makePosture:(NSInteger)aPosture
+{
+    NSNumber* messageId = [NSNumber numberWithInt:POSTURE];
+    NSString* name = [SettingsManager getPlayerName];
+    NSNumber* posture = [NSNumber numberWithInt:aPosture];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, posture, nil];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    return data;
+}
+
++ (NSData*)makeRestart:(NSInteger)aType
+{
+    NSNumber* messageId = [NSNumber numberWithInt:RESTART];
+    NSString* name = [SettingsManager getPlayerName];
+    NSNumber* type = [NSNumber numberWithInt:aType];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, type, nil];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    return data;
+}
+
 + (NSArray*)unpackMessage:(NSData*)data
 {
     NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
