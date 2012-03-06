@@ -234,9 +234,6 @@ typedef enum{
 
 - (void)toDefend
 {
-    if (_shields <= 0) {
-        [self toUnavailableDefend];
-    }
     [self holdUpShield];
     [self.shield setHidden:NO];
     [self.weapon setHidden:YES];
@@ -314,7 +311,7 @@ typedef enum{
         [self.weapon setHidden:YES];
     }
     
-    if (_shields <= 0 && _shields + 0.1 > 0 && _posture == DEFENDING) {
+    if (_shields <= 0 && _posture == DEFENDING) {
         [self toUnavailableDefend];
     } 
     [self.weaponsCount setText:[NSString stringWithFormat:@"%d", _darts]];
@@ -327,8 +324,8 @@ typedef enum{
     }
     if ((_counter%50 == 0 && _shields < 30)) {
         _shields = _shields +1;
-        if (_shields-1 < 0 && _shields > 0) {
-            [self.shield setImage:[UIImage imageNamed:@"shield.png"]];
+        if (_posture == UNAVAILABLE_DEFENDING && _shields > 0) {
+            [self toDefend];
         }
     }
 }
@@ -348,7 +345,6 @@ typedef enum{
     UIAccelerometer *accelerometer = [UIAccelerometer sharedAccelerometer];
     accelerometer.delegate = self;
     accelerometer.updateInterval = 0.05;
-    [self.shield setImage:[UIImage imageNamed:@"shield.png"]];
     if (_gameStatus == end || _gameStatus == ready) {
         [self.rivalNameLabel setText:NSLocalizedString(@"waiting", @"")];
     }  
@@ -364,16 +360,18 @@ typedef enum{
 }
 
 #pragma mark - alert view delegate;
-
+#define RESTART_INDEX 1
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (_isRivalReady) {
-        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_RESPONSE]];
-        [self startGame];
-    } else {
-        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
-        [self.readyView setImage:[UIImage imageNamed:@"waiting.png"]];
-        [self.readyView setHidden:NO];
+    if (buttonIndex == RESTART_INDEX) {
+        if (_isRivalReady) {
+            [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_RESPONSE]];
+            [self startGame];
+        } else {
+            [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
+            [self.readyView setImage:[UIImage imageNamed:@"waiting.png"]];
+            [self.readyView setHidden:NO];
+        }
     }
 }
 
@@ -613,7 +611,12 @@ typedef enum{
             break;
         case EXPOSEING: {
             if (abs(acceleration.z*10) < 4) {
-                [self toDefend];
+                if (_shields > 0) {
+                    [self toDefend];
+                } else {
+                    [self toUnavailableDefend];
+                }
+                
             } else if (abs(acceleration.z*10) >7) {
                 [self toAttack];
             }
