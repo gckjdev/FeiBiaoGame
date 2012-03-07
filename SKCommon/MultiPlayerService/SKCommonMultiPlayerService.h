@@ -14,6 +14,11 @@ enum {
     GAMECENTER,
 }ConnectionTypes;
 
+enum MULTI_GAME_TYPE {
+    GAME_CENTER_GAME = 0,
+    BLUETOOTH_GAME = 1
+};
+
 @protocol SKCommonMultiPlayerServiceDelegate <NSObject>
 
 - (void)multiPlayerGamePrepared;
@@ -24,14 +29,15 @@ enum {
 
 @end
 
-@interface SKCommonMultiPlayerService : NSObject  <SKCommonBlueToothServiceDelegate> {
-    int _connectionType;
+@interface SKCommonMultiPlayerService : NSObject  <SKCommonBlueToothServiceDelegate, SKCommonGameCenterServiceDelegate> {
+    int _multiGameType;
     SKCommonBlueToothService* _bluetoothService;
     
 }
 @property (assign, nonatomic) id<SKCommonMultiPlayerServiceDelegate> delegate;
 @property (retain, nonatomic) SKCommonBlueToothService* bluetoothService;
-- (void)findPlayers;
+- (id)initWithMultiPlayerGameType:(NSInteger)aType;
+- (void)findPlayers:(UIViewController*)superController;
 - (void)sendDataToAllPlayers:(NSData*)data;
 - (void)quitMultiPlayersGame;
 @end

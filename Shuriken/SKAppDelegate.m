@@ -8,6 +8,7 @@
 
 #import "SKAppDelegate.h"
 #import "EntryController.h"
+#import "SKCommonGameCenterService.h"
 
 @implementation SKAppDelegate
 
@@ -27,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[SKCommonGameCenterService sharedInstance] authenticateLocalUser];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     EntryController* controller = [[[EntryController alloc] init] autorelease];
     UINavigationController* rootController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
     [controller.navigationController setNavigationBarHidden:YES];

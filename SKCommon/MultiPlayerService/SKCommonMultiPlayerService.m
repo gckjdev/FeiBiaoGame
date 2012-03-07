@@ -18,17 +18,62 @@
     [super dealloc];
 }
 
-- (id)init
+- (id)initWithMultiPlayerGameType:(NSInteger)aType
 {
     self = [super init];
     if (self) {
-        _bluetoothService = [[SKCommonBlueToothService alloc] init];
-        _bluetoothService.delegate = self;
+        _multiGameType = aType;
+        switch (aType) {
+            case BLUETOOTH_GAME:
+                _bluetoothService = [[SKCommonBlueToothService alloc] init];
+                _bluetoothService.delegate = self;
+                break;
+            case GAME_CENTER_GAME: {
+                
+            }
+                break;
+            default:
+                break;
+        }
+
     }
     return self;
 }
 
-#pragma --bluetooth service delegate
+- (void)sendDataToAllPlayers:(NSData*)data
+{
+    if (_bluetoothService) {
+        [_bluetoothService sendData:data];
+    }
+}
+
+- (void)findPlayers:(UIViewController*)superController
+{
+    switch (_multiGameType) {
+        case BLUETOOTH_GAME:
+            if (_bluetoothService == nil) {
+                _bluetoothService = [[SKCommonBlueToothService alloc] init];
+            }
+            [_bluetoothService findDevice];
+            break;
+        case GAME_CENTER_GAME: {
+            [[SKCommonGameCenterService sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:superController delegate:self];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (void)quitMultiPlayersGame
+{
+    if (_bluetoothService) {
+        [_bluetoothService disconnectFromAllPeers];
+    }
+}
+
+#pragma mark - bluetooth service delegate
 - (void)receiveData: (NSData*) data fromPeer: (NSString*) peerID
 {
     if (_delegate && [_delegate respondsToSelector:@selector(gameRecieveData:from:)]) {
@@ -49,7 +94,7 @@
     if (_delegate && [_delegate respondsToSelector:@selector(playerLeaveGame:)]) {
         [_delegate playerLeaveGame:peerId];
     }
-
+    
 }
 
 - (void)peerPickerCanceled
@@ -59,27 +104,25 @@
     }
 }
 
-
-
-- (void)sendDataToAllPlayers:(NSData*)data
+#pragma mark - Game Center Delegate
+- (void)matchStarted
 {
-    if (_bluetoothService) {
-        [_bluetoothService sendData:data];
+    if (_delegate && [_delegate respondsToSelector:@selector(multiPlayerGamePrepared)]) {
+        [_delegate multiPlayerGamePrepared];
     }
 }
 
-- (void)findPlayers
+- (void)matchEnded
 {
-    if (_bluetoothService == nil) {
-        _bluetoothService = [[SKCommonBlueToothService alloc] init];
-    }
-    [_bluetoothService findDevice];
+    
 }
 
-- (void)quitMultiPlayersGame
+- (void)match:(GKMatch *)match didReceiveData:(NSData *)data 
+   fromPlayer:(NSString *)playerID
 {
-    if (_bluetoothService) {
-        [_bluetoothService disconnectFromAllPeers];
+    if (_delegate && [_delegate respondsToSelector:@selector(gameRecieveData:from:)]) {
+        [_delegate gameRecieveData:data from:playerID];
     }
 }
+
 @end

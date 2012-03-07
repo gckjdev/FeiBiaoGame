@@ -85,11 +85,21 @@
 
 - (IBAction)findDevice:(id)sender
 {
-    SKCommonMultiPlayerService* servcie = [[SKCommonMultiPlayerService alloc] init];
+    SKCommonMultiPlayerService* servcie = [[SKCommonMultiPlayerService alloc] initWithMultiPlayerGameType:BLUETOOTH_GAME];
     GameController* vc = [[GameController alloc] initWithMultiPlayerService:servcie];
     [self.navigationController pushViewController:vc animated:YES];
     [servcie release];
     [vc release];
+}
+
+- (IBAction)gameCenterGame:(id)sender
+{
+    SKCommonMultiPlayerService* servcie = [[SKCommonMultiPlayerService alloc] initWithMultiPlayerGameType:GAME_CENTER_GAME];
+    GameController* vc = [[GameController alloc] initWithMultiPlayerService:servcie];
+    [self.navigationController pushViewController:vc animated:YES];
+    [servcie release];
+    [vc release];
+
 }
 
 - (IBAction)testGame:(id)sender

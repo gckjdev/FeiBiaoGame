@@ -17,6 +17,7 @@ enum POSTURE {
     
     };
 
+
 @interface GameController : UIViewController <UIGestureRecognizerDelegate, UIAccelerometerDelegate, UIAlertViewDelegate, SKCommonMultiPlayerServiceDelegate> {
     SKCommonMultiPlayerService* _multiPlayerService;
     NSTimer* _statusChecker;

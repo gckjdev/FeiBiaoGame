@@ -8,12 +8,23 @@
 
 #import "GameController.h"
 #import "AnimationManager.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "SKCommonAudioManager.h"
 #import "RecordManager.h"
 #import "MessageManager.h"
+#import "SettingsManager.h"
+
+#define GAME_ANIMATION @"game_animation"
 
 #define RESTART_REQUEST 0
 #define RESTART_RESPONSE 1
+
+#define FULL_SHURIKEN_COUNT     20
+#define FULL_BLOOD_COUNT        10
+#define FULL_SHIELD_DURABILITY  30
+
+#define OUCH_SOUND_INDEX 0
+#define DEFFEND_SOUND_INDEX 1
+#define ATTACK_SOUND_INDEX  2
 
 typedef enum{
     IllegalGestureRecognizer = -1,
@@ -68,10 +79,10 @@ typedef enum{
     [self.readyView setHidden:NO];
     CAAnimation* anim = [AnimationManager scaleAnimationWithFromScale:0.1 
                                                               toScale:1
-                                                             duration:2
+                                                             duration:1
                                                              delegate:self 
                                                      removeCompeleted:NO];
-    [anim setValue:@"showReady" forKey:@"readyToFightAnim"];
+    [anim setValue:@"showReady" forKey:GAME_ANIMATION];
     [self.readyView.layer addAnimation:anim forKey:@"showReady"];
     
 }
@@ -79,23 +90,25 @@ typedef enum{
 #pragma mark - animation delegate
 
 - (void)animationDidStart:(CAAnimation *)anim {
-    NSString* value = [anim valueForKey:@"readyToFightAnim"];
-    if ([value isEqualToString:@"showFight"]) {
-        //[self.readyView setHidden:NO];
+    NSString* value = [anim valueForKey:GAME_ANIMATION];
+    if ([value isEqualToString:@"throwingWeapon"]) {
+        if ([[SettingsManager shareInstance] isSoundOn]) {
+            [[SKCommonAudioManager defaultManager] playSoundById:ATTACK_SOUND_INDEX];
+        }
     }
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    NSString* value = [anim valueForKey:@"readyToFightAnim"];
+    NSString* value = [anim valueForKey:GAME_ANIMATION];
     if ([value isEqualToString:@"showReady"]) {
         //[self.readyView setHidden:YES];
         [self.readyView setImage:[UIImage imageNamed:@"fight.png"]];
         CAAnimation* anim = [AnimationManager scaleAnimationWithFromScale:0.1 
                                                                   toScale:1
-                                                                 duration:2
+                                                                 duration:1
                                                                  delegate:self 
                                                          removeCompeleted:YES];
-        [anim setValue:@"showFight" forKey:@"readyToFightAnim"];
+        [anim setValue:@"showFight" forKey:GAME_ANIMATION];
         [self.readyView.layer addAnimation:anim forKey:@"fightReady"];
         [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeMyName]];
     }
@@ -103,6 +116,16 @@ typedef enum{
         //
         [self.readyView setHidden:YES];
         _gameStatus = onGo;
+    }
+    if ([value isEqualToString:@"throwingWeapon"]) {
+        if (_posture == ATTACKING && _darts >= 1) {        
+            NSData* attack = [MessageManager makeAttack];
+            [self.multiPlayerService sendDataToAllPlayers:attack];
+            _darts -- ;
+            NSLog(@"attack you !!!!");
+            
+        }
+
     }
 }
 
@@ -264,9 +287,13 @@ typedef enum{
 {
     [self shieldShake];
     NSLog(@"i defend!");
+    if ([[SettingsManager shareInstance] isSoundOn]) {
+        [[SKCommonAudioManager defaultManager] playSoundById:DEFFEND_SOUND_INDEX];
+    }
     _shields = _shields -1;
     _darts ++;
-    if (_shields < 0) {
+    if (_shields < 0)
+    {
         [self shieldBroke];
         [self toUnavailableDefend];
     }
@@ -274,7 +301,12 @@ typedef enum{
 
 - (void)getHurt
 {
-    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+    if ([[SettingsManager shareInstance] isVibration]) {
+        [[SKCommonAudioManager defaultManager] vibrate];
+    }
+    if ([[SettingsManager shareInstance] isSoundOn]) {
+        [[SKCommonAudioManager defaultManager] playSoundById:OUCH_SOUND_INDEX];
+    }    
     NSLog(@"Ouch!");
     _blood--;
     [self updateMyBlood:_blood];
@@ -291,16 +323,12 @@ typedef enum{
 
 - (void)throwWeapon
 {
-    
-    [self.weapon.layer addAnimation:[AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3] forKey:@"throwing"];
+    CAAnimation* anim = [AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3];
+    [anim setValue:@"throwingWeapon" forKey:GAME_ANIMATION];
+    anim.delegate = self;
+    [self.weapon.layer addAnimation:anim forKey:@"throwing"];
     [self.weapon.layer addAnimation:[AnimationManager rotationAnimationWithRoundCount:10 duration:0.3] forKey:@"rotation"];
-    if (_posture == ATTACKING && _darts >= 1) {        
-        NSData* attack = [MessageManager makeAttack];
-        [self.multiPlayerService sendDataToAllPlayers:attack];
-        _darts -- ;
-        NSLog(@"attack you !!!!");
     }
-}
 
 - (void)refleshStatus
 {
@@ -356,7 +384,7 @@ typedef enum{
     if (_multiPlayerService == nil) {
         _multiPlayerService = [[SKCommonMultiPlayerService alloc] init];
     }
-    [self.multiPlayerService findPlayers];
+    [self.multiPlayerService findPlayers:self];
 }
 
 #pragma mark - alert view delegate;
@@ -507,7 +535,7 @@ typedef enum{
 
 - (void)performTapGesture:(UITapGestureRecognizer *)recognizer
 {
-
+    
 }
 
 
@@ -676,8 +704,9 @@ typedef enum{
     for (int type = LongPressGestureRecognizer; type < GestureRecognizerTypeCount; ++ type) {
         [self view:self.view addGestureRecognizer:type delegate:self];
     }
-    [self.multiPlayerService findPlayers];
     _gameStatus = ready;
+    [[SKCommonAudioManager defaultManager] initSounds:[NSArray arrayWithObjects:@"get_hurt.wav", @"hit_shield.wav", @"shuriken_sound.wav" ,nil ]];
+    [self findMultiPlayers];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C206DAA11506119700C8C76B /* SKCommonAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C206DAA01506119700C8C76B /* SKCommonAudioManager.m */; };
+		C206DAA915061B1A00C8C76B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C206DAA815061B1A00C8C76B /* AVFoundation.framework */; };
 		C25204D314FCAD5E00904942 /* EntryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204D414FCAD5E00904942 /* EntryController.xib */; };
 		C25204DD14FCAF1800904942 /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204DB14FCAF1800904942 /* RecordController.m */; };
 		C25204DE14FCAF1800904942 /* RecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204DC14FCAF1800904942 /* RecordController.xib */; };
@@ -55,6 +57,9 @@
 		C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53E14FB597200EBFFC1 /* feibiao.png */; };
 		C2E3A54114FB597200EBFFC1 /* shield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53F14FB597200EBFFC1 /* shield.png */; };
 		C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A54614FB785900EBFFC1 /* brokenShield.png */; };
+		C2FBBB4C15070A9800A016F3 /* get_hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4915070A9800A016F3 /* get_hurt.wav */; };
+		C2FBBB4D15070A9800A016F3 /* hit_shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4A15070A9800A016F3 /* hit_shield.wav */; };
+		C2FBBB4E15070A9800A016F3 /* shuriken_sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4B15070A9800A016F3 /* shuriken_sound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +73,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C206DA9F1506119700C8C76B /* SKCommonAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKCommonAudioManager.h; sourceTree = "<group>"; };
+		C206DAA01506119700C8C76B /* SKCommonAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKCommonAudioManager.m; sourceTree = "<group>"; };
+		C206DAA815061B1A00C8C76B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C25204D414FCAD5E00904942 /* EntryController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryController.xib; sourceTree = "<group>"; };
 		C25204DA14FCAF1800904942 /* RecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordController.h; sourceTree = "<group>"; };
 		C25204DB14FCAF1800904942 /* RecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordController.m; sourceTree = "<group>"; };
@@ -135,6 +143,9 @@
 		C2E3A53E14FB597200EBFFC1 /* feibiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feibiao.png; sourceTree = "<group>"; };
 		C2E3A53F14FB597200EBFFC1 /* shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield.png; sourceTree = "<group>"; };
 		C2E3A54614FB785900EBFFC1 /* brokenShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShield.png; sourceTree = "<group>"; };
+		C2FBBB4915070A9800A016F3 /* get_hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = get_hurt.wav; sourceTree = "<group>"; };
+		C2FBBB4A15070A9800A016F3 /* hit_shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit_shield.wav; sourceTree = "<group>"; };
+		C2FBBB4B15070A9800A016F3 /* shuriken_sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shuriken_sound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C206DAA915061B1A00C8C76B /* AVFoundation.framework in Frameworks */,
 				C2E3A53314FB242B00EBFFC1 /* GameKit.framework in Frameworks */,
 				C2E3A53114FB242200EBFFC1 /* AudioToolbox.framework in Frameworks */,
 				C2E3A52F14FB241900EBFFC1 /* QuartzCore.framework in Frameworks */,
@@ -166,6 +178,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C206DA9E1506116E00C8C76B /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				C206DA9F1506119700C8C76B /* SKCommonAudioManager.h */,
+				C206DAA01506119700C8C76B /* SKCommonAudioManager.m */,
+			);
+			name = Sound;
+			path = SKCommon/Sound;
+			sourceTree = SOURCE_ROOT;
+		};
 		C25204E914FCBD3C00904942 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +223,7 @@
 		C2E3A4D114FB207900EBFFC1 = {
 			isa = PBXGroup;
 			children = (
+				C206DAA815061B1A00C8C76B /* AVFoundation.framework */,
 				C2E3A4E814FB207A00EBFFC1 /* Shuriken */,
 				C2E3A50414FB207A00EBFFC1 /* ShurikenTests */,
 				C2E3A4DF14FB207A00EBFFC1 /* Frameworks */,
@@ -299,6 +322,7 @@
 		C2E3A51F14FB234100EBFFC1 /* SKCommon */ = {
 			isa = PBXGroup;
 			children = (
+				C206DA9E1506116E00C8C76B /* Sound */,
 				C2E3A52014FB237100EBFFC1 /* MultiPlayerService */,
 				C2E3A52714FB237100EBFFC1 /* Animation */,
 			);
@@ -332,6 +356,9 @@
 		C2E3A53D14FB597200EBFFC1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C2FBBB4915070A9800A016F3 /* get_hurt.wav */,
+				C2FBBB4A15070A9800A016F3 /* hit_shield.wav */,
+				C2FBBB4B15070A9800A016F3 /* shuriken_sound.wav */,
 				C25205761504674D00904942 /* fight.png */,
 				C25205731504603700904942 /* ready.png */,
 				C252051314FF78A100904942 /* attacking.png */,
@@ -434,6 +461,9 @@
 				C252051C14FF78A100904942 /* warning.png in Resources */,
 				C25205741504603700904942 /* ready.png in Resources */,
 				C25205771504674D00904942 /* fight.png in Resources */,
+				C2FBBB4C15070A9800A016F3 /* get_hurt.wav in Resources */,
+				C2FBBB4D15070A9800A016F3 /* hit_shield.wav in Resources */,
+				C2FBBB4E15070A9800A016F3 /* shuriken_sound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +516,7 @@
 				C252050714FDCE3A00904942 /* Record.m in Sources */,
 				C252050B14FDD83500904942 /* TimeUtils.m in Sources */,
 				C252050E14FDE04800904942 /* MessageManager.m in Sources */,
+				C206DAA11506119700C8C76B /* SKCommonAudioManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
