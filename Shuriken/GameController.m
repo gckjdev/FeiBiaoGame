@@ -306,7 +306,8 @@ typedef enum{
     }
     if ([[SettingsManager shareInstance] isSoundOn]) {
         [[SKCommonAudioManager defaultManager] playSoundById:OUCH_SOUND_INDEX];
-    }    
+    } 
+    [self.view.layer addAnimation:[AnimationManager shakeFor:10 originX:self.shield.center.x times:10 duration:0.2] forKey:@"SHAKING"];
     NSLog(@"Ouch!");
     _blood--;
     [self updateMyBlood:_blood];
@@ -323,12 +324,14 @@ typedef enum{
 
 - (void)throwWeapon
 {
-    CAAnimation* anim = [AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3];
-    [anim setValue:@"throwingWeapon" forKey:GAME_ANIMATION];
-    anim.delegate = self;
-    [self.weapon.layer addAnimation:anim forKey:@"throwing"];
-    [self.weapon.layer addAnimation:[AnimationManager rotationAnimationWithRoundCount:10 duration:0.3] forKey:@"rotation"];
+    if (_posture == ATTACKING) {
+        CAAnimation* anim = [AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3];
+        [anim setValue:@"throwingWeapon" forKey:GAME_ANIMATION];
+        anim.delegate = self;
+        [self.weapon.layer addAnimation:anim forKey:@"throwing"];
+        [self.weapon.layer addAnimation:[AnimationManager rotationAnimationWithRoundCount:10 duration:0.3] forKey:@"rotation"];
     }
+}
 
 - (void)refleshStatus
 {
@@ -397,6 +400,7 @@ typedef enum{
             [self startGame];
         } else {
             [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
+            _gameStatus = ready;
             [self.readyView setImage:[UIImage imageNamed:@"waiting.png"]];
             [self.readyView setHidden:NO];
         }
@@ -467,6 +471,9 @@ typedef enum{
             NSNumber* type = [array objectAtIndex:MESSAGE];
             if (type.intValue == RESTART_REQUEST) {
                 _isRivalReady = YES;
+                if (_gameStatus == ready) {
+                    [self startGame];
+                }
             }
             if (type.intValue == RESTART_RESPONSE) {
                 [self startGame];

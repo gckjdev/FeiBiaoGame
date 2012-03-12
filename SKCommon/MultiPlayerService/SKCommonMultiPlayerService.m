@@ -42,9 +42,16 @@
 
 - (void)sendDataToAllPlayers:(NSData*)data
 {
-    if (_bluetoothService) {
-        [_bluetoothService sendData:data];
-    }
+    switch (_multiGameType) {
+        case BLUETOOTH_GAME:
+            [_bluetoothService sendData:data];
+            break;
+        case GAME_CENTER_GAME: {
+            [[SKCommonGameCenterService sharedInstance] sendData:data];
+        }
+        default:
+            break;
+    } 
 }
 
 - (void)findPlayers:(UIViewController*)superController
@@ -68,8 +75,10 @@
 
 - (void)quitMultiPlayersGame
 {
-    if (_bluetoothService) {
+    if (_bluetoothService && _multiGameType == BLUETOOTH_GAME) {
         [_bluetoothService disconnectFromAllPeers];
+    } else {
+        [[SKCommonGameCenterService sharedInstance] quitMatch];
     }
 }
 
@@ -112,9 +121,18 @@
     }
 }
 
-- (void)matchEnded
+- (void)quitGame
 {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(gameCanceled)]) {
+        [_delegate gameCanceled];
+    }
+}
+
+- (void)playerLeaveGame:(NSString *)playerId
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(playerLeaveGame:)]) {
+        [_delegate playerLeaveGame:playerId];
+    }
 }
 
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data 
@@ -122,6 +140,13 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(gameRecieveData:from:)]) {
         [_delegate gameRecieveData:data from:playerID];
+    }
+}
+
+- (void)inviteReceived
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(multiPlayerGamePrepared)]) {
+        [_delegate multiPlayerGamePrepared];
     }
 }
 

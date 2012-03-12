@@ -16,6 +16,8 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
 @synthesize gameViewController = _gameViewController;
 @synthesize playersDict = _playersDict;
 @synthesize delegate = _delegate;
+@synthesize pendingInvite = _pendingInvite;
+@synthesize pendingPlayersToInvite = _pendingPlayersToInvite;
 
 + (SKCommonGameCenterService *) sharedInstance {
     if (!globalGetGameCenterService) {
@@ -59,6 +61,14 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
     if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) {
         NSLog(@"Authentication changed: player authenticated.");
         userAuthenticated = TRUE; 
+        [GKMatchmaker sharedMatchmaker].inviteHandler =^(GKInvite *acceptedInvite, NSArray *playersToInvite) {
+            
+            NSLog(@"Received invite");
+            self.pendingInvite = acceptedInvite;
+            self.pendingPlayersToInvite = playersToInvite;
+            [_delegate inviteReceived];
+        };
+        
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) {
         NSLog(@"Authentication changed: player not authenticated");
         userAuthenticated = FALSE;
@@ -74,16 +84,14 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
         if (error != nil) {
             NSLog(@"Error retrieving player info: %@", error.localizedDescription);
             _matchStarted = NO;
-            [_delegate matchEnded];
-        } else {
-            
+            [_delegate quitGame];
+        } else {            
             // Populate players dict
             self.playersDict = [NSMutableDictionary dictionaryWithCapacity:players.count];
             for (GKPlayer *player in players) {
                 NSLog(@"Found player: %@", player.alias);
                 [self.playersDict setObject:player forKey:player.playerID];
-            }
-            
+            }            
             // Notify delegate match can begin
             _matchStarted = YES;
             [_delegate matchStarted];
@@ -93,26 +101,19 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
     
 }
 
-- (void)matchEnded
-{
-    
-}
-
 - (void)sendData:(NSData *)data {
     NSError *error;
     BOOL success = [self.match sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:&error];
     if (!success) {
         NSLog(@"Error sending init packet");
-        [self matchEnded];
     }
 }
 
-#pragma mark User functions
+#pragma mark - User functions
 
 - (void)authenticateLocalUser { 
     
     if (!gameCenterAvailable) return;
-    
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) { 
         [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil]; 
@@ -126,26 +127,37 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
                        delegate:(id<SKCommonGameCenterServiceDelegate>)aDelegate {
     
     if (!gameCenterAvailable) return;
-    
     self.match = nil;
     _matchStarted = NO;
     self.gameViewController = viewController;
-    _delegate = aDelegate; 
-    [(UIViewController*)self.gameViewController dismissModalViewControllerAnimated:NO];
+    _delegate = aDelegate;
     
-    GKMatchRequest *request = [[GKMatchRequest alloc] init] ; 
-    request.minPlayers = minPlayers; 
-    request.maxPlayers = maxPlayers;
-    
-    GKMatchmakerViewController *mmvc = 
-    [[GKMatchmakerViewController alloc] initWithMatchRequest:request]; 
-    mmvc.matchmakerDelegate = self;
-    
-    [(UIViewController*)self.gameViewController presentModalViewController:mmvc animated:YES];
-    
+    if (_pendingInvite != nil) {
+        [(UIViewController*)self.gameViewController dismissModalViewControllerAnimated:NO];
+        GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithInvite:_pendingInvite] autorelease];
+        mmvc.matchmakerDelegate = self;
+        [(UIViewController*)self.gameViewController presentModalViewController:mmvc animated:YES];
+        
+        self.pendingInvite = nil;
+        self.pendingPlayersToInvite = nil;
+    } else {
+        [(UIViewController*)self.gameViewController dismissModalViewControllerAnimated:NO];
+        
+        GKMatchRequest *request = [[GKMatchRequest alloc] init] ; 
+        request.minPlayers = minPlayers; 
+        request.maxPlayers = maxPlayers;
+        
+        GKMatchmakerViewController *mmvc = 
+        [[GKMatchmakerViewController alloc] initWithMatchRequest:request]; 
+        mmvc.matchmakerDelegate = self;
+        
+        [(UIViewController*)self.gameViewController presentModalViewController:mmvc animated:YES];
+        self.pendingInvite = nil;
+        self.pendingPlayersToInvite = nil;
+    }
 }
 
-#pragma mark GKMatchDelegate
+#pragma mark - GKMatchDelegate
 
 // The match received data sent from the player.
 - (void)match:(GKMatch *)theMatch didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID { 
@@ -175,7 +187,7 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
             // a player just disconnected. 
             NSLog(@"Player disconnected!");
             _matchStarted = NO;
-            [_delegate matchEnded];
+            [_delegate playerLeaveGame:playerID];
             break;
     } 
 }
@@ -187,7 +199,7 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
     
     NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
     _matchStarted = NO;
-    [_delegate matchEnded];
+    //[_delegate playerLeaveGame:playerID];
 }
 
 // The match was unable to be established with any players due to an error.
@@ -197,7 +209,7 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
     
     NSLog(@"Match failed with error: %@", error.localizedDescription);
     _matchStarted = NO;
-    [_delegate matchEnded];
+    [_delegate quitGame];
 }
 
 #pragma mark GKMatchmakerViewControllerDelegate
@@ -224,12 +236,6 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
     }
 }
 
-- (void)show:(int)anItem
-{
-    NSNumber* number = [NSNumber numberWithInt:anItem];
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:number];
-    [self sendData:data];
-}
 
 - (void) reportScore: (int64_t) score forCategory: (NSString*) category
 {
@@ -258,6 +264,11 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
         [self reportScore:(int64_t)1000 forCategory:[categories objectAtIndex:0]];
         // use the category and title information
     }];
+}
+
+- (void)quitMatch
+{
+    [self.match disconnect];
 }
 
 @end
