@@ -7,8 +7,12 @@
 //
 
 #import "HelpController.h"
+#import "FontLabel.h"
+#import "FontManager.h"
 
 @implementation HelpController
+@synthesize fontLabel = _fontLabel;
+@synthesize backButton = _backButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +41,7 @@
 
 - (void)viewDidUnload
 {
+    [self setBackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -50,7 +55,11 @@
 
 - (IBAction)backToEntry:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)dealloc {
+    [_backButton release];
+    [super dealloc];
+}
 @end

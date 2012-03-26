@@ -22,5 +22,9 @@ enum GAME_RESULT {
 + (RecordManager*)shareInstance;
 - (void)addResult:(NSInteger)aResult rivalName:(NSString*)aName date:(NSDate*)aDate;
 - (void)loadRecord;
+- (NSInteger)getWinCount;
+- (NSInteger)getLoseCount;
+- (NSInteger)getFleeCount;
+- (void)clearAllRecords;
 
 @end

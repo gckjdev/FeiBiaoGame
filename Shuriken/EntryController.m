@@ -9,9 +9,15 @@
 #import "EntryController.h"
 #import "SKCommonMultiPlayerService.h"
 #import "GameController.h"
-#import "HelpController.h"
-#import "SettingController.h"
 #import "RecordController.h"
+#import "AnimationManager.h"
+#import "CustomLabelUtil.h"
+#import "SKCommonAudioManager.h"
+#import "SettingsManager.h"
+
+
+#define ENTRY_ANIM @"entryAnimations"
+#define BOY_COME_OUT @"boy_come_out"
 
 @implementation EntryController
 @synthesize bluetoothGameButton;
@@ -19,6 +25,7 @@
 @synthesize recordButton;
 @synthesize settingsButton;
 @synthesize helpButton;
+@synthesize theBoy;
 
 - (void)dealloc
 {
@@ -27,16 +34,74 @@
     [recordButton release];
     [settingsButton release];
     [helpButton release];
+    [theBoy release];
     [super dealloc];
 }
 
+- (void)buttonsAppear
+{
+    if ([SettingsManager shareInstance].isSoundOn) {
+        [[SKCommonAudioManager defaultManager] playSoundById:ATTACK_SOUND_INDEX];
+    }
+    [self.bluetoothGameButton setHidden:NO];
+    [self.gameCenterGameButton setHidden:NO];
+    [self.recordButton setHidden:NO];
+}
+
+- (void)theBoyGetThreeAttack
+{
+    if ([SettingsManager shareInstance].isSoundOn) {
+        [[SKCommonAudioManager defaultManager] playSoundById:DEFFEND_SOUND_INDEX];
+    }
+    [self.theBoy setImage:[UIImage imageNamed:@"default4"]];
+    CAAnimation* shakeTheBoy = [AnimationManager view:self.theBoy shakeFor:5 times:15 duration:0.3];
+    [self.theBoy.layer addAnimation:shakeTheBoy forKey:@"shakeTheBoy"];
+    [self performSelector:@selector(buttonsAppear) withObject:nil afterDelay:0.8];
+}
+
+- (void)theBoyGetTwoAttack
+{
+    if ([SettingsManager shareInstance].isSoundOn) {
+        [[SKCommonAudioManager defaultManager] playSoundById:DEFFEND_SOUND_INDEX];
+    }
+    [self.theBoy setImage:[UIImage imageNamed:@"default3"]];
+    CAAnimation* shakeTheBoy = [AnimationManager view:self.theBoy shakeFor:5 times:15 duration:0.3];
+    [self.theBoy.layer addAnimation:shakeTheBoy forKey:@"shakeTheBoy"];
+    [self performSelector:@selector(theBoyGetThreeAttack) withObject:nil afterDelay:0.8];
+}
+
+- (void)theBoyGetAnAttack
+{
+    if ([SettingsManager shareInstance].isSoundOn) {
+        [[SKCommonAudioManager defaultManager] playSoundById:DEFFEND_SOUND_INDEX];
+    }
+    [self.theBoy setImage:[UIImage imageNamed:@"default2"]];
+    CAAnimation* shakeTheBoy = [AnimationManager view:self.theBoy shakeFor:5 times:15 duration:0.3];
+    [self.theBoy.layer addAnimation:shakeTheBoy forKey:@"shakeTheBoy"];
+    [self performSelector:@selector(theBoyGetTwoAttack) withObject:nil afterDelay:0.8];
+}
+
+- (void)theBoyAppear
+{
+    CAAnimation* boyComeOut = [AnimationManager translationAnimationFrom:CGPointMake(-98, 253) to:CGPointMake(98, 253) duration:0.3 delegate:self removeCompeleted:NO];
+    [boyComeOut setValue:BOY_COME_OUT forKey:ENTRY_ANIM];
+    [self.theBoy.layer addAnimation:boyComeOut forKey:@"boy_appear"];
+}
+
+
 - (void)initTitles
 {
-    [self.bluetoothGameButton setTitle:NSLocalizedString(@"Bluetooth Game", @"蓝牙游戏") forState:UIControlStateNormal];
-    [self.gameCenterGameButton setTitle:NSLocalizedString(@"Game Center", @"GAMECENTER") forState:UIControlStateNormal];
-    [self.recordButton setTitle:NSLocalizedString(@"Records", @"个人战绩") forState:UIControlStateNormal];
-    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"设置") forState:UIControlStateNormal];
-    [self.helpButton setTitle:NSLocalizedString(@"Help", @"帮助") forState:UIControlStateNormal];
+    UIColor* titleColor = [UIColor colorWithRed:0x83/255.0 green:0x14/255.0 blue:0x00/255.0 alpha:1.0];
+    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.bluetoothGameButton.frame.size.width, self.bluetoothGameButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.bluetoothGameButton text:NSLocalizedString(@"蓝牙对战", @"蓝牙游戏") shadow:YES bold:YES];
+    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.gameCenterGameButton.frame.size.width, self.gameCenterGameButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.gameCenterGameButton text:NSLocalizedString(@"Game Center", @"游戏中心") shadow:YES bold:YES];
+    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.recordButton.frame.size.width, self.recordButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.recordButton text:NSLocalizedString(@"Record", @"战绩") shadow:YES bold:YES];
+//    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"设置") forState:UIControlStateNormal];
+//    [self.helpButton setTitle:NSLocalizedString(@"Help", @"帮助") forState:UIControlStateNormal];
+    
+    [CustomLabelUtil creatWithFrame:CGRectMake(44, 0, 115, 44) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor whiteColor] addTo:self.helpButton text:NSLocalizedString(@"HELP", @"帮助") bold:NO];
+
+    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, 115, 44) pointSize:20 alignment:UITextAlignmentRight textColor:[UIColor whiteColor]addTo:self.settingsButton text:NSLocalizedString(@"SETTING", @"设置") bold:NO];
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -61,7 +126,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[SKCommonAudioManager defaultManager] initSounds:[NSArray arrayWithObjects:@"get_hurt.wav", @"hit_shield.wav", @"shuriken_sound.wav" ,nil ]];
     [self initTitles];
+    [self theBoyAppear];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -72,6 +139,7 @@
     [self setRecordButton:nil];
     [self setSettingsButton:nil];
     [self setHelpButton:nil];
+    [self setTheBoy:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -81,6 +149,35 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - animation delegate
+- (void)animationDidStart:(CAAnimation *)anim
+{
+   
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    NSString* value = [anim valueForKey:ENTRY_ANIM];
+    if ([value isEqualToString:BOY_COME_OUT]) {
+        [self performSelector:@selector(theBoyGetAnAttack) withObject:nil afterDelay:0.3];
+    }
+}
+
+#define MASK_TAG 20120319
+#pragma mark - setting view delegate
+- (void)settingFinish
+{
+    UIView* view = [self.view viewWithTag:MASK_TAG];
+    [view removeFromSuperview];
+}
+
+#pragma mark - help view delegate
+- (void)clickOkButton
+{
+    UIView* view = [self.view viewWithTag:MASK_TAG];
+    [view removeFromSuperview];
 }
 
 - (IBAction)findDevice:(id)sender
@@ -102,32 +199,33 @@
 
 }
 
-- (IBAction)testGame:(id)sender
-{
-    GameController* sc =  [[GameController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
-}
-
 - (IBAction)records:(id)sender 
 {
     RecordController* sc =  [[RecordController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
+    [self presentModalViewController:sc animated:YES];
     [sc release];
 }
 
 - (IBAction)help:(id)sender 
 {
-    HelpController* sc =  [[HelpController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    UIView* view = [[UIView alloc] initWithFrame:self.view.frame];
+    view.tag = MASK_TAG;
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setAlpha:0.5];
+    HelpView* helpView = [HelpView createHelpViewWithDelegate:self];
+    [self.view addSubview:view];
+    [self.view addSubview:helpView];
 }
 
 - (IBAction)settings:(id)sender 
 {
-    SettingController* sc =  [[SettingController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    UIView* view = [[UIView alloc] initWithFrame:self.view.frame];
+    view.tag = MASK_TAG;
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setAlpha:0.5];
+    SettingView* settingView = [SettingView createSettingViewWithDelegate:self];
+    [self.view addSubview:view];
+    [self.view addSubview:settingView];
 }
 
 @end

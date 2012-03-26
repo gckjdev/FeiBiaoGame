@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface SettingsManager : NSObject {
+    BOOL _isVibration;
+    BOOL _isSoundOn;
     
 }
 

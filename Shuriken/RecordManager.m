@@ -61,4 +61,41 @@ static RecordManager* globalGetRecordManager()
     
 }
 
+- (NSInteger)getWinCount
+{
+    int count = 0;
+    for (Record* aRecord in self.recordArray) {
+        if (aRecord.gameResult == WIN) {
+            count ++;
+        }
+    }
+    return count;
+}
+- (NSInteger)getLoseCount
+{
+    int count = 0;
+    for (Record* aRecord in self.recordArray) {
+        if (aRecord.gameResult == LOSE) {
+            count ++;
+        }
+    }
+    return count;
+}
+- (NSInteger)getFleeCount
+{
+    int count = 0;
+    for (Record* aRecord in self.recordArray) {
+        if (aRecord.gameResult == RUN_AWAY) {
+            count ++;
+        }
+    }
+    return count;
+}
+
+- (void)clearAllRecords
+{
+    [self.recordArray removeAllObjects];
+    [self saveRecord];
+}
+
 @end

@@ -70,7 +70,7 @@
 
 - (IBAction)backToEntry:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc {
@@ -89,7 +89,7 @@
     [button setSelected:(!button.isSelected)];
 }
 
-- (IBAction)setttingDone:(id)sender
+- (IBAction)settingDone:(id)sender
 {
     SettingsManager* manager = [SettingsManager shareInstance];
     [manager setIsVibration:self.vibrationButton.isSelected];
@@ -99,7 +99,7 @@
         [manager setPlayerName:aName];
     }
     [manager saveSettings];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

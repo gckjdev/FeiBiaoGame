@@ -99,9 +99,9 @@ static SKCommonAudioManager* globalGetAudioManager()
 
 - (void)playSoundById:(NSInteger)aSoundIndex
 {
-        NSNumber* num = [self.sounds objectAtIndex:aSoundIndex];
-        SystemSoundID soundId = num.intValue;
-        AudioServicesPlaySystemSound(soundId);
+    NSNumber* num = [self.sounds objectAtIndex:aSoundIndex];
+    SystemSoundID soundId = num.intValue;
+    AudioServicesPlaySystemSound(soundId);
 }
 
 - (void)backgroundMusicStart

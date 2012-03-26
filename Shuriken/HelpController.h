@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HelpController : UIViewController
+@interface HelpController : UIViewController {
+    
+}
+@property (retain, nonatomic) IBOutlet UILabel* fontLabel;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 @end

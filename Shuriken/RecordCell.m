@@ -16,18 +16,20 @@
 {
     switch (aRecord.gameResult) {
         case 1:
-            [self.textLabel setText:[NSString stringWithFormat:@"defeated %@ at %@", aRecord.rivalName, dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:@"defeated %@!", aRecord.rivalName, dateToString(aRecord.date)]];
             break;
         case 0:
-            [self.textLabel setText:[NSString stringWithFormat:@"%@ defeated you at %@", aRecord.rivalName, dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:@"%@ defeated you!", aRecord.rivalName, dateToString(aRecord.date)]];
             break;
         case -1:
-            [self.textLabel setText:[NSString stringWithFormat:@"you ran away at %@!", dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:@"you ran away!", dateToString(aRecord.date)]];
             break;
             
         default:
             break;
     }
+    [self.textLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.textLabel setTextColor:[UIColor whiteColor]];
 }
 
 + (RecordCell *)createRecordCell
@@ -65,4 +67,7 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
 @end

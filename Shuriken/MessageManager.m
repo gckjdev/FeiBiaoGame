@@ -13,61 +13,69 @@
 
 + (NSData*)makeMyName
 {
-    NSNumber* messageId = [NSNumber numberWithInt:MY_NAME];
-    NSString* name = [SettingsManager getPlayerName];
-    NSArray* message = [NSArray arrayWithObjects:messageId, name, nil];
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
-    return data;
-}
-+ (NSData*)makeHurtWithBlood:(NSInteger)bloodCount
-{
-//    NSString* message =  [NSString stringWithFormat:@"%d^%@^%d", I_LOSE, [SettingsManager getPlayerName], bloodCount];
-//    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
-//    return data;
-    NSNumber* messageId = [NSNumber numberWithInt:I_GET_HURT];
-    NSNumber* bloods = [NSNumber numberWithInt:bloodCount];
-    NSString* name = [SettingsManager getPlayerName];
-    NSArray* message = [NSArray arrayWithObjects:messageId, name, bloods,nil];
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
-    return data;
-}
-+ (NSData*)makeLoseMessage
-{
-//    NSString* message =  [NSString stringWithFormat:@"%d^%@", I_LOSE, [SettingsManager getPlayerName]];
-//    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
-//    return data;
-    NSNumber* messageId = [NSNumber numberWithInt:I_LOSE];
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_MY_NAME];
     NSString* name = [SettingsManager getPlayerName];
     NSArray* message = [NSArray arrayWithObjects:messageId, name, nil];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
     return data;
 }
 
-+ (NSData*)makeAttack
++ (NSData*)makeAttack:(Weapon*)weapon
 {
-    NSNumber* messageId = [NSNumber numberWithInt:ATTACK];
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_ATTACK];
     NSString* name = [SettingsManager getPlayerName];
-    NSArray* message = [NSArray arrayWithObjects:messageId, name, nil];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, weapon, nil];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
     return data;
 }
 
-+ (NSData*)makePosture:(NSInteger)aPosture
++ (NSData*)makePosture:(NSInteger)aPosture shieldStat:(int)shieldStat
 {
-    NSNumber* messageId = [NSNumber numberWithInt:POSTURE];
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_POSTURE];
     NSString* name = [SettingsManager getPlayerName];
     NSNumber* posture = [NSNumber numberWithInt:aPosture];
-    NSArray* message = [NSArray arrayWithObjects:messageId, name, posture, nil];
+    NSNumber* shield = [NSNumber numberWithInt:shieldStat];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, posture, shield, nil];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
     return data;
 }
 
 + (NSData*)makeRestart:(NSInteger)aType
 {
-    NSNumber* messageId = [NSNumber numberWithInt:RESTART];
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_RESTART];
     NSString* name = [SettingsManager getPlayerName];
     NSNumber* type = [NSNumber numberWithInt:aType];
     NSArray* message = [NSArray arrayWithObjects:messageId, name, type, nil];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    return data;
+}
+
++ (NSData*)makeControl:(NSInteger)aControl
+{
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_GAME_CONTROL];
+    NSString* name = [SettingsManager getPlayerName];
+    NSNumber* control = [NSNumber numberWithInt:aControl];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, control, nil];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    return data;
+}
+
++ (NSData*)makeAttackResponse:(int)result
+{
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_ATTACK_RESULT];
+    NSString* name = [SettingsManager getPlayerName];
+    NSNumber* response = [NSNumber numberWithInt:result];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, response, nil];
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
+    return data;
+}
+
++ (NSData*)makeShieldStatus:(int)status
+{
+    NSNumber* messageId = [NSNumber numberWithInt:MSG_SHIELD_STAT];
+    NSString* name = [SettingsManager getPlayerName];
+    NSNumber* response = [NSNumber numberWithInt:status];
+    NSArray* message = [NSArray arrayWithObjects:messageId, name, response, nil];
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:message];
     return data;
 }
@@ -77,6 +85,8 @@
     NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     return array;
 }
+
+
 
 
 @end

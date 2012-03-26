@@ -49,4 +49,5 @@
                                  delegate:(id)delegate 
                          removeCompeleted:(BOOL)removedOnCompletion;
 + (CAAnimation *)shakeFor:(CGFloat)margin originX:(CGFloat)orginX times:(int)times duration:(CFTimeInterval)duration;
++ (CAAnimation *)view:(UIView*)view shakeFor:(CGFloat)margin times:(int)times duration:(CFTimeInterval)duration;
 @end

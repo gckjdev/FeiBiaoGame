@@ -9,6 +9,7 @@
 #import "SKAppDelegate.h"
 #import "EntryController.h"
 #import "SKCommonGameCenterService.h"
+#import "FontManager.h"
 
 @implementation SKAppDelegate
 
@@ -28,6 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[FontManager sharedManager] loadFont:@"fzkatjw"];
     [[SKCommonGameCenterService sharedInstance] authenticateLocalUser];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     EntryController* controller = [[[EntryController alloc] init] autorelease];

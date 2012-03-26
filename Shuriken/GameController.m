@@ -12,19 +12,27 @@
 #import "RecordManager.h"
 #import "MessageManager.h"
 #import "SettingsManager.h"
+#import "CustomLabelUtil.h"
 
+
+
+#define MASK_TAG        20120316
 #define GAME_ANIMATION @"game_animation"
 
 #define RESTART_REQUEST 0
 #define RESTART_RESPONSE 1
 
-#define FULL_SHURIKEN_COUNT     20
-#define FULL_BLOOD_COUNT        10
-#define FULL_SHIELD_DURABILITY  30
+#define REFLESH_TIME_INTERVAL 0.01
 
-#define OUCH_SOUND_INDEX 0
-#define DEFFEND_SOUND_INDEX 1
-#define ATTACK_SOUND_INDEX  2
+#define FULL_SHURIKEN_COUNT     12
+#define FULL_BLOOD_COUNT        10
+#define FULL_SHIELD_DURABILITY  10
+
+#define BROKEN_SHIELD @"shield4.png"
+#define BADLY_DAMAGE_SHIELD @"shield3.png"
+#define DAMAGE_SHIELD @"shield2.png"
+#define GOOD_SHIELD @"shield1.png"
+
 
 typedef enum{
     IllegalGestureRecognizer = -1,
@@ -40,43 +48,133 @@ typedef enum{
 typedef enum{
     ready = 0,
     onGo,
+    game_pause,
     end
 }GameStatus;
 
 @implementation GameController
-@synthesize weaponsCount = _weaponsCount;
-@synthesize shieldsCount = _shieldsCount;
+@synthesize myThrowHand = _myThrowHand;
+@synthesize redBlood = _redBlood;
+@synthesize blueBlood = _blueBlood;
+@synthesize myHand = _myHand;
+@synthesize shieldDurability = _shieldDurability;
+@synthesize weaponCount = _weaponCount;
 @synthesize weapon = _weapon;
 @synthesize shield = _shield;
-@synthesize bloodsCount = _bloodsCount;
 @synthesize multiPlayerService = _multiPlayerService;
 @synthesize rivalNameLabel = _rivalNameLabel;
 @synthesize rivalPosture = _rivalPosture;
 @synthesize readyView = _readyView;
-@synthesize brokenShield = _brokenShield;
+@synthesize mySelf = _mySelf;
+@synthesize rival = _rival;
+@synthesize myShield = _myShield;
+@synthesize myWeapon = _myWeapon;
 
 
 - (void)dealloc
 {
-
-    [_weaponsCount release];
-    [_shieldsCount release];
+    [_shieldDurability release];
+    [_weaponCount release];
     [_weapon release];
     [_shield release];
-    [_bloodsCount release];
     [_multiPlayerService release];
     [_rivalNameLabel release];
     [_rivalPosture release];
     [_readyView release];
-    [_brokenShield release];
+    [_myHand release];
+    [_blueBlood release];
+    [_redBlood release];
+    [_myThrowHand release];
+    [_mySelf release];
+    [_rival release];
     [super dealloc];
+}
+
+- (void)clickContinue
+{
+    [self continueGame];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:CONTINUE]];
+}
+
+- (void)creatMask
+{
+    UIView* mask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    [mask setBackgroundColor:[UIColor clearColor]];
+    UIView* maskBackground = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)] autorelease];
+    [maskBackground setBackgroundColor:[UIColor blackColor]];
+    [maskBackground setAlpha:0.5];
+    [mask addSubview:maskBackground];
+    [mask setTag:MASK_TAG];
+    UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(80, 120, 160, 240)] autorelease];
+    [btn setBackgroundImage:[UIImage imageNamed:@"pauseimg.png"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(clickContinue) forControlEvents:UIControlEventTouchUpInside];
+    [mask addSubview:btn];
+    [self.view addSubview:mask];
+}
+
+- (void)removeMask
+{
+    UIView* view = [self.view viewWithTag:MASK_TAG];
+    if (view) {
+        [view removeFromSuperview];
+    }
+}
+
+- (void)addOptionButton
+{
+    
+    HGQuadCurveMenuItem *help = [[HGQuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"help.png"] 
+                                                                  highlightedImage:[UIImage imageNamed:nil]
+                                                                      contentImage:nil 
+                                                           highlightedContentImage:nil 
+                                                                             title:nil];
+    HGQuadCurveMenuItem *setting = [[HGQuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"setting.png"]  
+                                                             highlightedImage:[UIImage imageNamed:nil]  
+                                                                    contentImage:nil 
+                                                         highlightedContentImage:nil 
+                                                                           title:nil];
+    HGQuadCurveMenuItem *escape = [[HGQuadCurveMenuItem alloc] initWithImage:[UIImage imageNamed:@"escape.png"]  
+                                                            highlightedImage:[UIImage imageNamed:nil]  
+                                                                     contentImage:nil 
+                                                          highlightedContentImage:nil 
+                                                                            title:nil];
+    
+    NSArray *menus = [NSArray arrayWithObjects:help, setting, escape, nil];
+    [help release];
+    [setting release];
+    [escape release];    
+    _menu = [[HGQuadCurveMenu alloc] 
+             initWithFrame:self.view.bounds
+             menus:menus 
+             nearRadius:150 - 30 
+             endRadius:160 - 30
+             farRadius:170 - 30
+             startPoint:CGPointMake(30, 450) 
+             timeOffset:0.036 
+             rotateAngle:0
+             menuWholeAngle:(M_PI/2)
+             buttonImage:[UIImage imageNamed:@"pause.png"] 
+             buttonHighLightImage:[UIImage imageNamed:@"pause.png"] 
+             contentImage:nil
+             contentHighLightImage:nil];
+    _menu.delegate = self;
+    [self.view addSubview:_menu];
+    [_menu release];
 }
 
 - (void)readyToFight
 {
     //[self.readyView setImage:[UIImage imageNamed:@"ready.png"]];
-    [self.readyView setImage:[UIImage imageNamed:@"ready.png"]];
+    if (!_readyView) {
+        _readyView = [[FontLabel alloc] initWithFrame:CGRectMake(0, 120, 320, 240) fontName:@"fzkatjw" pointSize:80];
+        [_readyView setBackgroundColor:[UIColor clearColor]];
+        [_readyView setTextAlignment:UITextAlignmentCenter];
+        [_readyView setTextColor:[UIColor blackColor]];
+        [self.view addSubview:_readyView];
+    }
+    
     [self.readyView setHidden:NO];
+    [self.readyView setText:@"ready"];
     CAAnimation* anim = [AnimationManager scaleAnimationWithFromScale:0.1 
                                                               toScale:1
                                                              duration:1
@@ -87,13 +185,29 @@ typedef enum{
     
 }
 
+- (void)popUpMessage:(NSString*)text color:(UIColor*)textColor center:(CGPoint)point
+{
+    FontLabel* label = [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, 40, 20) pointSize:15 alignment:UITextAlignmentCenter textColor:textColor addTo:self.view text:text bold:NO];    
+    CAAnimation *popUp = [AnimationManager 
+                          translationAnimationFrom:CGPointMake(160, 255) 
+                          to:CGPointMake(160, 120) 
+                          duration:2];
+    CAAnimation *popOpacity = [AnimationManager missingAnimationWithDuration:2];
+    
+    [label.layer addAnimation:popUp forKey:@"popUp"];
+    [label.layer addAnimation:popOpacity forKey:@"popOpacity"];
+}
+
 #pragma mark - animation delegate
 
 - (void)animationDidStart:(CAAnimation *)anim {
     NSString* value = [anim valueForKey:GAME_ANIMATION];
     if ([value isEqualToString:@"throwingWeapon"]) {
+        [self.myHand setHidden:YES];
+        [self.myThrowHand setHidden:NO];
         if ([[SettingsManager shareInstance] isSoundOn]) {
             [[SKCommonAudioManager defaultManager] playSoundById:ATTACK_SOUND_INDEX];
+            
         }
     }
 }
@@ -102,7 +216,7 @@ typedef enum{
     NSString* value = [anim valueForKey:GAME_ANIMATION];
     if ([value isEqualToString:@"showReady"]) {
         //[self.readyView setHidden:YES];
-        [self.readyView setImage:[UIImage imageNamed:@"fight.png"]];
+        [self.readyView setText:@"fight"];
         CAAnimation* anim = [AnimationManager scaleAnimationWithFromScale:0.1 
                                                                   toScale:1
                                                                  duration:1
@@ -116,14 +230,28 @@ typedef enum{
         //
         [self.readyView setHidden:YES];
         _gameStatus = onGo;
+        self.mySelf.posture = EXPOSEING;
+        self.mySelf.health = FULL_BLOOD_COUNT;
+        self.rival.posture = EXPOSEING;
+        self.rival.health = FULL_BLOOD_COUNT;
+        
+        self.myShield.durability = FULL_SHIELD_DURABILITY;
+        self.myShield.status = GOOD;
+        
+        self.myWeapon.weaponCount = FULL_SHURIKEN_COUNT;
+        
+        _counter = 0;
     }
     if ([value isEqualToString:@"throwingWeapon"]) {
-        if (_posture == ATTACKING && _darts >= 1) {        
-            NSData* attack = [MessageManager makeAttack];
+        if (self.mySelf.posture == ATTACKING && self.myWeapon.weaponCount >= 1) {        
+            NSData* attack = [MessageManager makeAttack:self.mySelf.currentWeapon];
             [self.multiPlayerService sendDataToAllPlayers:attack];
-            _darts -- ;
+            self.myWeapon.weaponCount -- ;
             NSLog(@"attack you !!!!");
-            
+            if (self.myWeapon.weaponCount > 1) {
+                [self.myHand setHidden:NO];
+                [self.myThrowHand setHidden:YES];
+            }            
         }
 
     }
@@ -131,17 +259,12 @@ typedef enum{
 
 - (void)gameEnd:(BOOL)didWin
 {
-    UIAlertView* view = [[UIAlertView alloc] initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"退出" otherButtonTitles:@"重来", nil];
-    if (didWin) {
-        [view setTitle:@"you win"];
-        [[RecordManager shareInstance] addResult:1 rivalName:self.rivalNameLabel.text date:[NSDate dateWithTimeIntervalSinceNow:0]];
-    } else {
-        [view setTitle:@"you lose"];
-        [[RecordManager shareInstance] addResult:0 rivalName:self.rivalNameLabel.text date:[NSDate dateWithTimeIntervalSinceNow:0]];
-    }
-    [view show];
-    _isRivalReady = NO;
-    _gameStatus = end;
+    if (_gameStatus == onGo) {
+        FinishView* view = [FinishView createSettingViewWithDelegate:self didWin:didWin];
+        [self.view addSubview:view];
+        _isRivalReady = NO;
+        _gameStatus = end;
+    }   
 }
 
 - (void)quitGame
@@ -150,94 +273,97 @@ typedef enum{
     [self.multiPlayerService quitMultiPlayersGame];
 }
 
+- (void)pauseGame
+{
+    [self creatMask];
+    _gameStatus = game_pause;
+}
+
+- (void)continueGame
+{
+    [_menu setHidden:NO];
+    if (_menu.isExpanding) {
+        [_menu closeItems];
+    }
+    [self removeMask];
+    _gameStatus = onGo;
+}
+
 - (void)updateRivalName:(NSString*)aName
 {
     [self.rivalNameLabel setText:aName];
 }
+
 #define BLOOD_TAG_OFFSET 20120301
-- (void)initRivalBlood
-{
-    for (int i = 0; i < 10; i++) {
-        UIImageView* heart = (UIImageView*)[self.view viewWithTag:(BLOOD_TAG_OFFSET + i)];
-        if (heart) {
-            [heart setHidden:NO];
-        } else {
-            heart = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart.png"]];
-            [heart setFrame:CGRectMake(60+i*20, 21, 20, 20)];
-            heart.tag = BLOOD_TAG_OFFSET + i;
-            [self.view addSubview:heart];
-            [heart release];
-        } 
-    }
-}
+//- (void)initRivalBlood
+//{
+//    [self.redBlood setImage:[UIImage imageNamed:@"redblood10.png"]];
+//}
+//
+//- (void)initMyBlood
+//{
+//    [self.blueBlood setImage:[UIImage imageNamed:@"blueblood10.png"]];
+//}
+//
+//- (void)updateRivalBlood:(int)bloodCount
+//{
+//    if (bloodCount == 0) {
+//        [self gameEnd:YES];
+//        return;
+//    }
+//    if (bloodCount > 0) {
+//        NSString* bloodString = [NSString stringWithFormat:@"redblood%d.png", bloodCount];
+//        [self.redBlood setImage:[UIImage imageNamed:bloodString]];
+//    }
+//}
+//
+//- (void)updateMyBlood:(int)bloodCount
+//{
+//    if (bloodCount > 0) {
+//        NSString* bloodString = [NSString stringWithFormat:@"blueblood%d.png", bloodCount];
+//        [self.blueBlood setImage:[UIImage imageNamed:bloodString]];
+//    }
+//    if (bloodCount == 0) {
+//        [self gameEnd:NO];
+//    }
+//}
 
-- (void)initMyBlood
-{
-    for (int i = 0; i < 10; i++) {
-        UIImageView* heart = (UIImageView*)[self.view viewWithTag:(BLOOD_TAG_OFFSET + i + 10)];
-        if (heart) {
-            [heart setHidden:NO];
-        } else {
-            heart = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart.png"]];
-            [heart setFrame:CGRectMake(60+i*20, 362, 20, 20)];
-            heart.tag = BLOOD_TAG_OFFSET + i +10;
-            [self.view addSubview:heart];
-            [heart release];
-        }
-    }
-}
-
-- (void)updateRivalBlood:(int)bloodCount
-{
-    //[self.rivalBloodBar setFrame:CGRectMake(60, 21, 20*bloodCount, 19)];
-    UIImageView* view = (UIImageView*)[self.view viewWithTag:(BLOOD_TAG_OFFSET + bloodCount)];
-    [view setHidden:YES];
-    if (bloodCount <= 0) {
-        [self gameEnd:YES];
-    }
-    
-}
-
-- (void)updateMyBlood:(int)bloodCount
-{
-    UIImageView* view = (UIImageView*)[self.view viewWithTag:(BLOOD_TAG_OFFSET +10 + bloodCount)];
-    [view setHidden:YES];
-    if (bloodCount == 0) {
-        [self gameEnd:NO];
-    }
-}
-
-- (void)updateRivalPosture:(NSInteger)aPosture
-{
-    switch (aPosture) {
-        case DEFENDING: {
-            [self.rivalPosture setImage:[UIImage imageNamed:@"defending.png"]];
-            break;
-        }
-        case UNAVAILABLE_DEFENDING:    
-        case EXPOSEING: {
-            [self.rivalPosture setImage:[UIImage imageNamed:@"exposing.png"]];
-            break;
-        }     
-        case ATTACKING: {
-            [self.rivalPosture setImage:[UIImage imageNamed:@"attacking.png"]];
-            break;
-        }
-        default:
-            break;
-    }
-}
+//- (void)updateRivalPosture:(NSInteger)aPosture rivalShields:(float)shieldsCount
+//{
+//    float shieldPercentage = shieldsCount/FULL_SHURIKEN_COUNT;
+//    switch (aPosture) {
+//        case DEFENDING: {
+//            if (shieldPercentage > 0.66) {
+//                [self.rivalPosture setImage:[UIImage imageNamed:@"shieldSmall.png"]];
+//            }
+//             else if (shieldPercentage > 0.33) {
+//                [self.rivalPosture setImage:[UIImage imageNamed:DAMAGE_SHIELD]];
+//             } 
+//             else if (shieldPercentage > 0) {
+//                 [self.rivalPosture setImage:[UIImage imageNamed:BADLY_DAMAGE_SHIELD]];
+//             } 
+//             else {
+//                 [self.rivalPosture setImage:[UIImage imageNamed:BROKEN_SHIELD]];
+//             }
+//            break;
+//        }
+//        case UNAVAILABLE_DEFENDING:    
+//        case EXPOSEING: {
+//            [self.rivalPosture setImage:[UIImage imageNamed:@"exposing.png"]];
+//            break;
+//        }     
+//        case ATTACKING: {
+//            [self.rivalPosture setImage:[UIImage imageNamed:@"shurikenSmall.png"]];
+//            break;
+//        }
+//        default:
+//            break;
+//    }
+//}
 
 - (void)holdUpShield
 {
     [self.shield setCenter:self.weapon.center];
-    [self.brokenShield setCenter:self.weapon.center];
-}
-
-- (void)shieldBroke
-{
-    [self.brokenShield setHidden:NO];
-    [self.shield setHidden:YES];
 }
 
 - (void)shieldShake
@@ -248,11 +374,11 @@ typedef enum{
 - (void)toUnavailableDefend
 {
     [self holdUpShield];
-    [self.shield setHidden:YES];
+    [self.shield setHidden:NO];
     [self.weapon setHidden:YES];
-    [self.brokenShield setHidden:NO];
-    _posture = UNAVAILABLE_DEFENDING;
-    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:UNAVAILABLE_DEFENDING]];
+    [self.myThrowHand setHidden:YES];
+    [self.myHand setHidden:YES];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:UNAVAILABLE_DEFENDING shieldStat:self.myShield.status]];
 }
 
 - (void)toDefend
@@ -260,27 +386,27 @@ typedef enum{
     [self holdUpShield];
     [self.shield setHidden:NO];
     [self.weapon setHidden:YES];
-    [self.brokenShield setHidden:YES];
-    _posture = DEFENDING;
-    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:DEFENDING]];
+    [self.myHand setHidden:YES];
+    [self.myThrowHand setHidden:YES];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:DEFENDING shieldStat:self.myShield.status]];
 }
 
 - (void)toExpose
 {
     [self.shield setHidden:YES];
     [self.weapon setHidden:YES];
-    [self.brokenShield setHidden:YES];
-    _posture = EXPOSEING;
-    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:EXPOSEING]];
+    [self.myHand setHidden:YES];
+    [self.myThrowHand setHidden:NO];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:EXPOSEING shieldStat:self.myShield.status]];
 }
 
 - (void)toAttack
 {
     [self.shield setHidden:YES];
     [self.weapon setHidden:NO];
-    [self.brokenShield setHidden:YES];
-    _posture = ATTACKING;
-    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:ATTACKING]];
+    [self.myHand setHidden:NO];
+    [self.myThrowHand setHidden:YES];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makePosture:ATTACKING shieldStat:self.myShield.status]];
 }
 
 - (void)defendAnAttack
@@ -289,13 +415,6 @@ typedef enum{
     NSLog(@"i defend!");
     if ([[SettingsManager shareInstance] isSoundOn]) {
         [[SKCommonAudioManager defaultManager] playSoundById:DEFFEND_SOUND_INDEX];
-    }
-    _shields = _shields -1;
-    _darts ++;
-    if (_shields < 0)
-    {
-        [self shieldBroke];
-        [self toUnavailableDefend];
     }
 }
 
@@ -307,16 +426,8 @@ typedef enum{
     if ([[SettingsManager shareInstance] isSoundOn]) {
         [[SKCommonAudioManager defaultManager] playSoundById:OUCH_SOUND_INDEX];
     } 
-    [self.view.layer addAnimation:[AnimationManager shakeFor:10 originX:self.shield.center.x times:10 duration:0.2] forKey:@"SHAKING"];
+    [self.view.layer addAnimation:[AnimationManager shakeFor:10 originX:self.view.center.x times:10 duration:0.2] forKey:@"SHAKING"];
     NSLog(@"Ouch!");
-    _blood--;
-    [self updateMyBlood:_blood];
-    if (_blood >= 0) {
-        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeHurtWithBlood:_blood]];
-    } else {
-        //[self.multiPlayerService sendDataToAllPlayers:[MessageManager makeLoseMessage]];
-        [self gameEnd:NO];
-    }
     
 }
 
@@ -324,58 +435,118 @@ typedef enum{
 
 - (void)throwWeapon
 {
-    if (_posture == ATTACKING) {
+    if (self.mySelf.posture == ATTACKING && self.myWeapon.weaponCount >0) {
         CAAnimation* anim = [AnimationManager translationAnimationFrom:self.weapon.center to:CGPointMake(160, -240) duration:0.3];
+        CAAnimation* scrollingAnim = [AnimationManager rotationAnimationWithRoundCount:10 duration:0.3];
         [anim setValue:@"throwingWeapon" forKey:GAME_ANIMATION];
+        [scrollingAnim setValue:@"throwingWeapon" forKey:GAME_ANIMATION];
         anim.delegate = self;
         [self.weapon.layer addAnimation:anim forKey:@"throwing"];
-        [self.weapon.layer addAnimation:[AnimationManager rotationAnimationWithRoundCount:10 duration:0.3] forKey:@"rotation"];
+        [self.weapon.layer addAnimation:scrollingAnim forKey:@"rotation"];
     }
 }
 
 - (void)refleshStatus
 {
-    if (_posture == DEFENDING || _posture == UNAVAILABLE_DEFENDING) {
-        _shields = _shields-0.1;
+    self.myShield.durability += 1.0/self.myShield.recoverTime * REFLESH_TIME_INTERVAL;
+    if (_counter == 1/REFLESH_TIME_INTERVAL) {
+        _counter = 0;
+        self.myWeapon.weaponCount ++;
     }
-    if (_darts < 1) {
-        [self.weapon setHidden:YES];
+    _counter ++;
+    float shieldPercentage = self.myShield.durability/self.myShield.maxDurability;
+    if (shieldPercentage > 0.66) {
+        self.myShield.status = GOOD;
+    } else if (shieldPercentage > 0.33) {
+        self.myShield.status = DAMAGE;
+        
+    } else if (shieldPercentage > 0) {
+        self.myShield.status = BADLY_DAMAGE;
+    } else {
+        self.myShield.status = BROKEN;
     }
     
-    if (_shields <= 0 && _posture == DEFENDING) {
-        [self toUnavailableDefend];
-    } 
-    [self.weaponsCount setText:[NSString stringWithFormat:@"%d", _darts]];
-    [self.shieldsCount setText:[NSString stringWithFormat:@"%f", _shields]];
-    [self.bloodsCount setText:[NSString stringWithFormat:@"%d", _blood]];
     
-    _counter++;
-    if (_counter%30 == 0 && _darts < 30) {
-        _darts ++;
-    }
-    if ((_counter%50 == 0 && _shields < 30)) {
-        _shields = _shields +1;
-        if (_posture == UNAVAILABLE_DEFENDING && _shields > 0) {
-            [self toDefend];
-        }
-    }
+//    switch (_shieldStatus) {
+//        case GOOD: {
+//            if (shieldPercentage < 0.66) {
+//                [self updateShieldStatus:DAMAGE];
+//            }
+//        }
+//            break;
+//        case DAMAGE: {
+//            if (shieldPercentage < 0.33) {
+//                [self updateShieldStatus:BADLY_DAMAGE];
+//            }
+//            if (shieldPercentage > 0.66) {
+//                [self updateShieldStatus:GOOD];
+//            }
+//            break;
+//        }
+//        case BADLY_DAMAGE: {
+//            if (shieldPercentage < 0) {
+//                [self updateShieldStatus:BROKEN];
+//            }
+//            if (shieldPercentage > 0.33) {
+//                [self updateShieldStatus:DAMAGE];
+//            }
+//            break;
+//        }
+//        case BROKEN: {
+//            if (shieldPercentage > 0) {
+//                [self updateShieldStatus:BADLY_DAMAGE];
+//            }
+//            break;
+//        }            
+//        default:
+//            break;
+//    }
+//    if (_posture == DEFENDING || _posture == UNAVAILABLE_DEFENDING) {
+//        //_shields = _shields-0.1;
+//        [self.shieldsCount setText:[NSString stringWithFormat:@"%.0f", _shields]];
+//    } else if (_posture == ATTACKING) {
+//        [self.shieldsCount setText:[NSString stringWithFormat:@"%d", _darts]];
+//    } else {
+//        [self.shieldsCount setText:@""];
+//    }
+//    if (_posture == ATTACKING) {
+//        if (_darts < 1) {
+//            [self.myHand setHidden:YES];
+//            [self.myThrowHand setHidden:NO];
+//            [self.weapon setHidden:YES];
+//        } else {
+//            [self.myHand setHidden:NO];
+//            [self.myThrowHand setHidden:YES];
+//            [self.weapon setHidden:NO];
+//        }
+//        
+//    }
+//    
+//    if (_shields <= 0 && _posture == DEFENDING) {
+//        [self toUnavailableDefend];
+//    }
+//   _counter++;
+//    if (_counter%10 == 0 && _darts < FULL_SHURIKEN_COUNT) {
+//        _darts ++;
+//    }
+//    if ((_shields < FULL_SHIELD_DURABILITY)) {
+//        _shields = _shields +0.1;
+//        [self.shieldDurabilty setFrame:CGRectMake(58, 419, 188*_shields/FULL_SHIELD_DURABILITY, 12)];
+//        if (_posture == UNAVAILABLE_DEFENDING && _shields > 0) {
+//            [self toDefend];
+//        }
+//    }
 }
 
 - (void)startGame
 {
-    _posture = EXPOSEING;
-    _counter = 0;
-    _darts = 30;
-    _shields = 30;
-    _blood = 10;
-    [self initMyBlood];
-    [self initRivalBlood];
-    [_statusChecker invalidate];
-    _statusChecker = nil;
-    _statusChecker = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(refleshStatus) userInfo:nil repeats:YES];
+    
+
     UIAccelerometer *accelerometer = [UIAccelerometer sharedAccelerometer];
     accelerometer.delegate = self;
     accelerometer.updateInterval = 0.05;
+    [_statusChecker invalidate];
+    _statusChecker = [NSTimer scheduledTimerWithTimeInterval:REFLESH_TIME_INTERVAL target:self selector:@selector(refleshStatus) userInfo:nil repeats:YES];
     if (_gameStatus == end || _gameStatus == ready) {
         [self.rivalNameLabel setText:NSLocalizedString(@"waiting", @"")];
     }  
@@ -392,25 +563,7 @@ typedef enum{
 
 #pragma mark - alert view delegate;
 #define RESTART_INDEX 1
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == RESTART_INDEX) {
-        if (_isRivalReady) {
-            [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_RESPONSE]];
-            [self startGame];
-        } else {
-            [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
-            _gameStatus = ready;
-            [self.readyView setImage:[UIImage imageNamed:@"waiting.png"]];
-            [self.readyView setHidden:NO];
-        }
-    }
-}
 
-- (void)alertViewCancel:(UIAlertView *)alertView
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 #pragma mark - multiplayer delegate
@@ -425,49 +578,52 @@ typedef enum{
 #define MESSAGE_ID 0
 #define MESSAGE_DELIVER 1
 #define MESSAGE    2
+#define SHIELD_STATS 3
 - (void)gameRecieveData:(NSData*)data from:(NSString*)playerId
 {
     NSArray* array = [MessageManager unpackMessage:data];
     NSNumber* messageId = [array objectAtIndex:MESSAGE_ID];
     NSString* message_deliver = [array objectAtIndex:MESSAGE_DELIVER];
     switch (messageId.intValue) {
-        case MY_NAME: {
+        case MSG_MY_NAME: {
             [self updateRivalName:message_deliver];
             //_gameStatus = onGo;
+            NSLog(@"get rival name!");
             break;
         }
-        case I_LOSE: {
+        case MSG_ATTACK: {
+            NSLog(@"you are under attack!");
+            Weapon* weapon = [array objectAtIndex:MESSAGE];
             if (_gameStatus == onGo) {
-                //[self updateRivalBlood:0];
-                //[self gameEnd:YES];
-            }
-            break;
-        }
-        case I_GET_HURT: {
-            if (_gameStatus == onGo) {
-                NSNumber* blood = [array objectAtIndex:MESSAGE];
-                [self updateRivalBlood:blood.intValue];
-            }
-            break;
-        }
-        case ATTACK: {
-            if (_gameStatus == onGo) {
-                if (_posture != DEFENDING) {
-                    [self getHurt];
-                } else {
-                    [self defendAnAttack];
+                ATTACK_RESPONSE result = [self.mySelf attackedByWeapon:weapon];
+                [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeAttackResponse:result]];
+                switch (result) {
+                    case HIT: {
+                        [self getHurt];
+                    }
+                        break;
+                    case BLOCK: {
+                        [self defendAnAttack];
+                    }
+                        break;
+                    default:
+                        break;
                 }
             }
             break; 
         }
-        case POSTURE: {
+        case MSG_POSTURE: {
+            NSLog(@"update rival posture!");
             if (_gameStatus == onGo) {
                 NSNumber* posture = [array objectAtIndex:MESSAGE];
-                [self updateRivalPosture:posture.intValue];
+                NSNumber* shieldStats = [array objectAtIndex:SHIELD_STATS];
+                [self.rival setPosture:posture.intValue];
+                self.rival.currentShield.status = shieldStats.intValue;
             }
             break;
         }
-        case RESTART: {
+        case MSG_RESTART: {
+            NSLog(@"restart request!");
             NSNumber* type = [array objectAtIndex:MESSAGE];
             if (type.intValue == RESTART_REQUEST) {
                 _isRivalReady = YES;
@@ -480,6 +636,62 @@ typedef enum{
             }
             break;
         }
+        case MSG_GAME_CONTROL: {
+            NSLog(@"game control!");
+            NSNumber* control = [array objectAtIndex:MESSAGE];
+            if (_gameStatus == onGo && control.intValue == PAUSE) {
+                [self pauseGame];
+            }
+            if (_gameStatus == game_pause && control.intValue == CONTINUE) {
+                [self continueGame];
+            }
+        }
+            break;
+        case MSG_ATTACK_RESULT: {
+            NSLog(@"attak result!");
+            NSNumber* reslut = [array objectAtIndex:MESSAGE];
+            switch (reslut.intValue) {
+                case HIT: {
+                    self.rival.health --;
+                }
+                    break;
+                case MISS: {
+                    [self popUpMessage:@"MISS" color:[UIColor greenColor] center:self.view.center];
+                }
+                    break;
+                case BLOCK: {
+                    
+                }
+                default:
+                    break;
+            }
+        }
+            break;
+        case MSG_SHIELD_STAT: {
+            NSLog(@"attak result!");
+            NSNumber* stat = [array objectAtIndex:MESSAGE];
+            switch (stat.intValue) {
+                case GOOD: {
+                    [self.rivalPosture setImage:[UIImage imageNamed:GOOD_SHIELD]];
+                }            
+                    break;
+                case DAMAGE: {
+                    [self.rivalPosture setImage:[UIImage imageNamed:DAMAGE_SHIELD]];
+                    break;
+                }
+                case BADLY_DAMAGE: {
+                    [self.rivalPosture setImage:[UIImage imageNamed:BADLY_DAMAGE_SHIELD]];
+                    break;
+                }
+                case BROKEN: {
+                    [self.rivalPosture setImage:[UIImage imageNamed:BROKEN_SHIELD]];
+                    break;
+                }   
+                default:
+                    break;
+            }
+        }
+            break;
         default:
             break;
     }
@@ -488,7 +700,7 @@ typedef enum{
 - (void)gameCanceled
 {
     //[self quitGame];
-    [[RecordManager shareInstance] addResult:-1 rivalName:nil date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    //[[RecordManager shareInstance] addResult:RUN_AWAY rivalName:nil date:[NSDate dateWithTimeIntervalSinceNow:0]];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -627,6 +839,7 @@ typedef enum{
     }
     recognizer.delegate = delegate;
     [view addGestureRecognizer:recognizer];
+    [recognizer release];
     
 }
 
@@ -637,30 +850,30 @@ typedef enum{
     if (_gameStatus != onGo) {
         return;
     }
-    switch (_posture) {
+    switch (self.mySelf.posture) {
         case ATTACKING: {
             if (abs(acceleration.z*10) < 6) {
-                [self toExpose];
+                [self.mySelf setPosture:EXPOSEING];
             }
         }
             break;
         case EXPOSEING: {
             if (abs(acceleration.z*10) < 4) {
-                if (_shields > 0) {
-                    [self toDefend];
+                if (self.myShield.durability > 0) {
+                    [self.mySelf setPosture:DEFENDING];
                 } else {
-                    [self toUnavailableDefend];
+                    [self.mySelf setPosture:UNAVAILABLE_DEFENDING];
                 }
                 
             } else if (abs(acceleration.z*10) >7) {
-                [self toAttack];
+                [self.mySelf setPosture:ATTACKING];
             }
         }
             break;
         case UNAVAILABLE_DEFENDING:
         case DEFENDING: {
             if (abs(acceleration.z*10) >5 ) {
-                [self toExpose];
+                [self.mySelf setPosture:EXPOSEING];
             }
         }
             break;
@@ -670,10 +883,191 @@ typedef enum{
 
 }
 
-- (IBAction)clickBackButton:(id)sender
+#pragma mark - helpView delegate
+- (void)clickOkButton
 {
-    [self quitGame];
+    _gameStatus = onGo;
+    [self continueGame];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:CONTINUE]];
+}
+
+#pragma mark - settingView delegate
+- (void)settingFinish
+{
+    _gameStatus = onGo;
+    [self continueGame];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:CONTINUE]];
+}
+
+#pragma mark - finishView delegate
+- (void)restart
+{
+    if (_isRivalReady) {
+        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_RESPONSE]];
+        [self startGame];
+    } else {
+        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
+        _gameStatus = ready;
+        [self.readyView setText:@"waiting"];
+        [self.readyView setHidden:NO];
+        [self toExpose];
+        [self.myThrowHand setHidden:YES];
+    }
+}
+
+- (void)exit
+{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - QUADCURVE MENU DELEGATE
+#define HELP 0
+#define SETTING 1
+#define ESCAPE 2
+- (void)quadCurveMenu:(HGQuadCurveMenu *)menu didSelectIndex:(NSInteger)anIndex
+{
+    [_menu setHidden:YES];
+    switch (anIndex) {
+        case HELP: {
+            HelpView* view = [HelpView createHelpViewWithDelegate:self];
+            UIView* mask = [self.view viewWithTag:MASK_TAG];
+            [mask addSubview:view];
+        }
+            break;
+        case SETTING: {
+            SettingView* view = [SettingView createSettingViewWithDelegate:self];
+            UIView* mask = [self.view viewWithTag:MASK_TAG];
+            [mask addSubview:view];
+        }
+            break;
+        case ESCAPE: {
+            [self quitGame];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (void)quadCurveMenuDidExpand
+{
+    [self pauseGame];
+    [self.view bringSubviewToFront:_menu];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:PAUSE]];
+}
+
+- (void)quadCurveMenuDidClose
+{
+    [self removeMask];
+    [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:CONTINUE]];
+}
+
+#pragma mark - player,weapon,shield delegate
+- (void)player:(Player *)thePlayer updatePlayerHealth:(int)health
+{
+    if (thePlayer.isRival) {
+        if (health > 0) {
+            NSString* bloodString = [NSString stringWithFormat:@"redblood%d.png", health];
+            [self.redBlood setImage:[UIImage imageNamed:bloodString]];
+        }
+        if (health == 0) {
+            [self gameEnd:YES];
+        }
+    } else {
+        if (health > 0) {
+            NSString* bloodString = [NSString stringWithFormat:@"blueblood%d.png", health];
+            [self.blueBlood setImage:[UIImage imageNamed:bloodString]];
+        }
+        if (health == 0) {
+            [self gameEnd:NO];
+        }
+    }
+}
+
+- (void)player:(Player *)thePlayer updatePlayerPosture:(int)posture
+{
+    if (thePlayer.isRival) {
+        switch (posture) {
+            case ATTACKING: {
+                [self.rivalPosture setImage:[UIImage imageNamed:@"shurikenSmall.png"]];
+            }
+                break;
+            case DEFENDING: {
+                [self.rivalPosture setImage:[UIImage imageNamed:@"shieldSmall.png"]];
+            }
+                break;
+            case UNAVAILABLE_DEFENDING:
+            case EXPOSEING: {
+                [self.rivalPosture setImage:[UIImage imageNamed:@"throw.png"]];
+            }
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (posture) {
+            case ATTACKING: {
+                [self toAttack];
+            }
+                break;
+            case DEFENDING: {
+                [self toDefend];
+            }
+                break;
+            case EXPOSEING: {
+                [self toExpose];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)shield:(Shield*)theShield updateShieldDurability:(float)durability
+{
+    [self.shieldDurability setText:[NSString stringWithFormat:@"%.0f%%", self.mySelf.currentShield.durability/self.mySelf.currentShield.maxDurability*100.0]];
+}
+
+- (void)shield:(Shield*)theShield updateShieldStatus:(int)shieldStatus
+{
+    if (theShield == self.mySelf.currentShield) {
+        switch (shieldStatus) {
+            case GOOD: {
+                [self.shield setImage:[UIImage imageNamed:GOOD_SHIELD]];
+            }            
+                break;
+            case DAMAGE: {
+                [self.shield setImage:[UIImage imageNamed:DAMAGE_SHIELD]];
+                break;
+            }
+            case BADLY_DAMAGE: {
+                [self.shield setImage:[UIImage imageNamed:BADLY_DAMAGE_SHIELD]];
+                break;
+            }
+            case BROKEN: {
+                [self.shield setImage:[UIImage imageNamed:BROKEN_SHIELD]];
+                break;
+            }
+            default:
+                break;
+        }
+        [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeShieldStatus:shieldStatus]];
+    } 
+}
+
+- (void)weapon:(Weapon*)theWeapon updateWeaponCount:(int)weaponCount
+{
+    [self.weaponCount setText:[NSString stringWithFormat:@"%d", self.myWeapon.weaponCount]];
+    if (weaponCount == 0) {
+        [self.weapon setHidden:YES];
+    } else if (self.mySelf.posture == ATTACKING) {
+        [self.weapon setHidden:NO];
+        [self.myThrowHand setHidden:YES];
+        [self.myHand setHidden:NO];
+    }
 }
 
 - (id)initWithMultiPlayerService:(SKCommonMultiPlayerService*)aMultiPlayerService
@@ -708,26 +1102,38 @@ typedef enum{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addOptionButton];
     for (int type = LongPressGestureRecognizer; type < GestureRecognizerTypeCount; ++ type) {
         [self view:self.view addGestureRecognizer:type delegate:self];
     }
+    self.rivalNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, -5, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:@"" shadow:NO bold:NO];
+    self.shieldDurability = [CustomLabelUtil creatWithFrame:CGRectMake(190, 400, 60, 31) pointSize:20 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:self.view text:@"" shadow:NO bold:NO];
+    self.weaponCount = [CustomLabelUtil creatWithFrame:CGRectMake(96, 400, 60, 31) pointSize:20 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:self.view text:@"" shadow:NO bold:NO];
+    
+    _mySelf = [[Player alloc] initWithPosture:EXPOSEING health:10 observer:self isRival:NO];
+    _rival = [[Player alloc] initWithPosture:EXPOSEING health:10 observer:self isRival:YES];
+    _myWeapon = [[Weapon alloc] initWithCount:FULL_SHURIKEN_COUNT damage:1.0 recoverTime:0.5 observer:self];
+    _myWeapon.accuracy = 0.9;
+    _myShield = [[Shield alloc] initWithDurability:FULL_SHIELD_DURABILITY status:GOOD recoverTime:1.5 observer:self];
+    _mySelf.currentWeapon = _myWeapon;
+    _mySelf.currentShield = _myShield;
     _gameStatus = ready;
-    [[SKCommonAudioManager defaultManager] initSounds:[NSArray arrayWithObjects:@"get_hurt.wav", @"hit_shield.wav", @"shuriken_sound.wav" ,nil ]];
     [self findMultiPlayers];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
-    [self setWeaponsCount:nil];
-    [self setShieldsCount:nil];
+    [self setShieldDurability:nil];
     [self setWeapon:nil];
     [self setShield:nil];
-    [self setBloodsCount:nil];
     [self setRivalNameLabel:nil];
     [self setRivalPosture:nil];
     [self setReadyView:nil];
-    [self setBrokenShield:nil];
+    [self setMyHand:nil];
+    [self setBlueBlood:nil];
+    [self setRedBlood:nil];
+    [self setMyThrowHand:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

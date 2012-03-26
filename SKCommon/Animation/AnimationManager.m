@@ -168,4 +168,15 @@ AnimationManager *animatinManager;
     
 }
 
++ (CAAnimation *)view:(UIView*)view shakeFor:(CGFloat)margin times:(int)times duration:(CFTimeInterval)duration
+{
+    CABasicAnimation * animation=[CABasicAnimation animationWithKeyPath:@"position.y"]; 
+    animation.fromValue = [NSNumber numberWithFloat:view.center.y-margin/2];
+    animation.toValue = [NSNumber numberWithFloat:view.center.y+margin/2];
+    animation.duration = duration / times;
+    animation.repeatCount = times;
+    animation.autoreverses = YES;
+    return animation;    
+}
+
 @end

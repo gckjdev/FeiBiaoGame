@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Weapon;
 
 enum MESSAGE_TYPE {
-    MY_NAME = 201202290,
-    I_GET_HURT ,
-    I_LOSE,
-    ATTACK,
-    POSTURE,
-    RESTART
+    MSG_MY_NAME = 201202290,
+    MSG_ATTACK,
+    MSG_POSTURE,
+    MSG_SHIELD_STAT,
+    MSG_RESTART,
+    MSG_GAME_CONTROL,
+    MSG_ATTACK_RESULT
     };
 
 @interface MessageManager : NSObject {
@@ -22,10 +24,11 @@ enum MESSAGE_TYPE {
 }
 
 + (NSData*)makeMyName;
-+ (NSData*)makeHurtWithBlood:(NSInteger)bloodCount;
-+ (NSData*)makeLoseMessage;
-+ (NSData*)makeAttack;
-+ (NSData*)makePosture:(NSInteger)aPosture;
++ (NSData*)makeAttack:(Weapon*)weapon;
++ (NSData*)makePosture:(NSInteger)aPosture shieldStat:(int)shieldStat;
 + (NSArray*)unpackMessage:(NSData*)data;
 + (NSData*)makeRestart:(NSInteger)aType;
++ (NSData*)makeControl:(NSInteger)aControl;
++ (NSData*)makeAttackResponse:(int)result;
++ (NSData*)makeShieldStatus:(int)status;
 @end
