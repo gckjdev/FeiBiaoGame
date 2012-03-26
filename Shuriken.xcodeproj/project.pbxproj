@@ -57,11 +57,6 @@
 		C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53E14FB597200EBFFC1 /* feibiao.png */; };
 		C2E3A54114FB597200EBFFC1 /* shield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53F14FB597200EBFFC1 /* shield.png */; };
 		C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A54614FB785900EBFFC1 /* brokenShield.png */; };
-		C2E98575150F172C0032A76B /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E9856B150F172C0032A76B /* FontLabel.m */; };
-		C2E98576150F172C0032A76B /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E9856D150F172C0032A76B /* FontLabelStringDrawing.m */; };
-		C2E98577150F172C0032A76B /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E9856F150F172C0032A76B /* FontManager.m */; };
-		C2E98578150F172C0032A76B /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E98571150F172C0032A76B /* ZAttributedString.m */; };
-		C2E98579150F172C0032A76B /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E98574150F172C0032A76B /* ZFont.m */; };
 		C2E9857C150F177E0032A76B /* fzkatjw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9857B150F177E0032A76B /* fzkatjw.ttf */; };
 		C2E985AD151073380032A76B /* blueblood1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E98599151073380032A76B /* blueblood1@2x.png */; };
 		C2E985AE151073380032A76B /* blueblood2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9859A151073380032A76B /* blueblood2@2x.png */; };
@@ -133,6 +128,11 @@
 		C2FBBB4C15070A9800A016F3 /* get_hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4915070A9800A016F3 /* get_hurt.wav */; };
 		C2FBBB4D15070A9800A016F3 /* hit_shield.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4A15070A9800A016F3 /* hit_shield.wav */; };
 		C2FBBB4E15070A9800A016F3 /* shuriken_sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = C2FBBB4B15070A9800A016F3 /* shuriken_sound.wav */; };
+		CA3221C2152015470039A384 /* FontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221B8152015470039A384 /* FontLabel.m */; };
+		CA3221C3152015470039A384 /* FontLabelStringDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221BA152015470039A384 /* FontLabelStringDrawing.m */; };
+		CA3221C4152015470039A384 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221BC152015470039A384 /* FontManager.m */; };
+		CA3221C5152015470039A384 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221BE152015470039A384 /* ZAttributedString.m */; };
+		CA3221C6152015470039A384 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221C1152015470039A384 /* ZFont.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,17 +216,6 @@
 		C2E3A53E14FB597200EBFFC1 /* feibiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feibiao.png; sourceTree = "<group>"; };
 		C2E3A53F14FB597200EBFFC1 /* shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield.png; sourceTree = "<group>"; };
 		C2E3A54614FB785900EBFFC1 /* brokenShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShield.png; sourceTree = "<group>"; };
-		C2E9856A150F172C0032A76B /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
-		C2E9856B150F172C0032A76B /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
-		C2E9856C150F172C0032A76B /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
-		C2E9856D150F172C0032A76B /* FontLabelStringDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabelStringDrawing.m; sourceTree = "<group>"; };
-		C2E9856E150F172C0032A76B /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
-		C2E9856F150F172C0032A76B /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontManager.m; sourceTree = "<group>"; };
-		C2E98570150F172C0032A76B /* ZAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedString.h; sourceTree = "<group>"; };
-		C2E98571150F172C0032A76B /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAttributedString.m; sourceTree = "<group>"; };
-		C2E98572150F172C0032A76B /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
-		C2E98573150F172C0032A76B /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
-		C2E98574150F172C0032A76B /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 		C2E9857B150F177E0032A76B /* fzkatjw.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzkatjw.ttf; sourceTree = "<group>"; };
 		C2E98599151073380032A76B /* blueblood1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood1@2x.png"; sourceTree = "<group>"; };
 		C2E9859A151073380032A76B /* blueblood2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood2@2x.png"; sourceTree = "<group>"; };
@@ -307,6 +296,17 @@
 		C2FBBB4915070A9800A016F3 /* get_hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = get_hurt.wav; sourceTree = "<group>"; };
 		C2FBBB4A15070A9800A016F3 /* hit_shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit_shield.wav; sourceTree = "<group>"; };
 		C2FBBB4B15070A9800A016F3 /* shuriken_sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shuriken_sound.wav; sourceTree = "<group>"; };
+		CA3221B7152015470039A384 /* FontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabel.h; sourceTree = "<group>"; };
+		CA3221B8152015470039A384 /* FontLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabel.m; sourceTree = "<group>"; };
+		CA3221B9152015470039A384 /* FontLabelStringDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontLabelStringDrawing.h; sourceTree = "<group>"; };
+		CA3221BA152015470039A384 /* FontLabelStringDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontLabelStringDrawing.m; sourceTree = "<group>"; };
+		CA3221BB152015470039A384 /* FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontManager.h; sourceTree = "<group>"; };
+		CA3221BC152015470039A384 /* FontManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontManager.m; sourceTree = "<group>"; };
+		CA3221BD152015470039A384 /* ZAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedString.h; sourceTree = "<group>"; };
+		CA3221BE152015470039A384 /* ZAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZAttributedString.m; sourceTree = "<group>"; };
+		CA3221BF152015470039A384 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
+		CA3221C0152015470039A384 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
+		CA3221C1152015470039A384 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,25 +555,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		C2E98569150F172C0032A76B /* FontLabel */ = {
-			isa = PBXGroup;
-			children = (
-				C2E9856A150F172C0032A76B /* FontLabel.h */,
-				C2E9856B150F172C0032A76B /* FontLabel.m */,
-				C2E9856C150F172C0032A76B /* FontLabelStringDrawing.h */,
-				C2E9856D150F172C0032A76B /* FontLabelStringDrawing.m */,
-				C2E9856E150F172C0032A76B /* FontManager.h */,
-				C2E9856F150F172C0032A76B /* FontManager.m */,
-				C2E98570150F172C0032A76B /* ZAttributedString.h */,
-				C2E98571150F172C0032A76B /* ZAttributedString.m */,
-				C2E98572150F172C0032A76B /* ZAttributedStringPrivate.h */,
-				C2E98573150F172C0032A76B /* ZFont.h */,
-				C2E98574150F172C0032A76B /* ZFont.m */,
-			);
-			name = FontLabel;
-			path = ../../FontLabel/FontLabel/Classes/FontLabel;
-			sourceTree = "<group>";
-		};
 		C2E98596151072E30032A76B /* bloods */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,7 +634,7 @@
 		C2E9860F1512EF350032A76B /* 3PP */ = {
 			isa = PBXGroup;
 			children = (
-				C2E98569150F172C0032A76B /* FontLabel */,
+				CA3221B6152015460039A384 /* FontLabel */,
 				C2E986101512EF370032A76B /* HGQuadCurveMenu.h */,
 				C2E986111512EF370032A76B /* HGQuadCurveMenu.m */,
 				C2E986121512EF370032A76B /* HGQuadCurveMenuItem.h */,
@@ -669,6 +650,25 @@
 				C2E9862D1516D2070032A76B /* CustomLabelUtil.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		CA3221B6152015460039A384 /* FontLabel */ = {
+			isa = PBXGroup;
+			children = (
+				CA3221B7152015470039A384 /* FontLabel.h */,
+				CA3221B8152015470039A384 /* FontLabel.m */,
+				CA3221B9152015470039A384 /* FontLabelStringDrawing.h */,
+				CA3221BA152015470039A384 /* FontLabelStringDrawing.m */,
+				CA3221BB152015470039A384 /* FontManager.h */,
+				CA3221BC152015470039A384 /* FontManager.m */,
+				CA3221BD152015470039A384 /* ZAttributedString.h */,
+				CA3221BE152015470039A384 /* ZAttributedString.m */,
+				CA3221BF152015470039A384 /* ZAttributedStringPrivate.h */,
+				CA3221C0152015470039A384 /* ZFont.h */,
+				CA3221C1152015470039A384 /* ZFont.m */,
+			);
+			name = FontLabel;
+			path = "../../Common_iPhone_20/Components/Component-View/FontLabel";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -874,11 +874,6 @@
 				C252050B14FDD83500904942 /* TimeUtils.m in Sources */,
 				C252050E14FDE04800904942 /* MessageManager.m in Sources */,
 				C206DAA11506119700C8C76B /* SKCommonAudioManager.m in Sources */,
-				C2E98575150F172C0032A76B /* FontLabel.m in Sources */,
-				C2E98576150F172C0032A76B /* FontLabelStringDrawing.m in Sources */,
-				C2E98577150F172C0032A76B /* FontManager.m in Sources */,
-				C2E98578150F172C0032A76B /* ZAttributedString.m in Sources */,
-				C2E98579150F172C0032A76B /* ZFont.m in Sources */,
 				C2E986141512EF370032A76B /* HGQuadCurveMenu.m in Sources */,
 				C2E986151512EF370032A76B /* HGQuadCurveMenuItem.m in Sources */,
 				C2E986181513283C0032A76B /* HelpView.m in Sources */,
@@ -888,6 +883,11 @@
 				C2E98631151A26020032A76B /* Weapon.m in Sources */,
 				C2E98634151A261D0032A76B /* Shield.m in Sources */,
 				C2E98637151A272E0032A76B /* Player.m in Sources */,
+				CA3221C2152015470039A384 /* FontLabel.m in Sources */,
+				CA3221C3152015470039A384 /* FontLabelStringDrawing.m in Sources */,
+				CA3221C4152015470039A384 /* FontManager.m in Sources */,
+				CA3221C5152015470039A384 /* ZAttributedString.m in Sources */,
+				CA3221C6152015470039A384 /* ZFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
