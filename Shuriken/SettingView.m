@@ -40,7 +40,7 @@
 {
     SettingsManager* manager = [SettingsManager shareInstance];
     [manager loadSettings];
-    [self.nameField setPlaceholder:manager.playerName];
+    [self.nameField setText:manager.playerName];
     [self refleshSwitchs];
     
 }

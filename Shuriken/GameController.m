@@ -98,7 +98,7 @@ typedef enum{
     [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeControl:CONTINUE]];
 }
 
-- (void)creatMask
+- (void)creatMask:(BOOL)hasButton
 {
     UIView* mask = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [mask setBackgroundColor:[UIColor clearColor]];
@@ -107,10 +107,12 @@ typedef enum{
     [maskBackground setAlpha:0.5];
     [mask addSubview:maskBackground];
     [mask setTag:MASK_TAG];
-    UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(80, 120, 160, 240)] autorelease];
-    [btn setBackgroundImage:[UIImage imageNamed:@"pauseimg.png"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(clickContinue) forControlEvents:UIControlEventTouchUpInside];
-    [mask addSubview:btn];
+    if (hasButton) {
+        UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(80, 120, 213, 273)] autorelease];
+        [btn setBackgroundImage:[UIImage imageNamed:@"pauseimg.png"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(clickContinue) forControlEvents:UIControlEventTouchUpInside];
+        [mask addSubview:btn];
+    }   
     [self.view addSubview:mask];
 }
 
@@ -212,6 +214,10 @@ typedef enum{
             
         }
     }
+    if ([value isEqualToString:@"showReady"]) {
+        [self creatMask:NO];
+        [self.view bringSubviewToFront:self.readyView];
+    }
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
@@ -229,7 +235,7 @@ typedef enum{
         [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeMyName]];
     }
     if ([value isEqualToString:@"showFight"]) {
-        //
+        [self removeMask];
         [self.readyView setHidden:YES];
         _gameStatus = onGo;
         self.mySelf.posture = EXPOSEING;
@@ -276,6 +282,9 @@ typedef enum{
 
 - (void)quitGame:(BOOL)didFlee
 {
+    if (didFlee) {
+        [[RecordManager shareInstance] addResult:RUN_AWAY rivalName:nil date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    }
     [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [self.multiPlayerService quitMultiPlayersGame];
     [self.navigationController popViewControllerAnimated:YES];
@@ -283,7 +292,7 @@ typedef enum{
 
 - (void)pauseGame
 {
-    [self creatMask];
+    [self creatMask:YES];
     _gameStatus = game_pause;
 }
 
@@ -1052,18 +1061,22 @@ typedef enum{
         switch (shieldStatus) {
             case GOOD: {
                 [self.shield setImage:[UIImage imageNamed:GOOD_SHIELD]];
+                [self.shieldDurability setTextColor:[UIColor greenColor]];
             }            
                 break;
             case DAMAGE: {
                 [self.shield setImage:[UIImage imageNamed:DAMAGE_SHIELD]];
+                [self.shieldDurability setTextColor:[UIColor orangeColor]];
                 break;
             }
             case BADLY_DAMAGE: {
                 [self.shield setImage:[UIImage imageNamed:BADLY_DAMAGE_SHIELD]];
+                [self.shieldDurability setTextColor:[UIColor redColor]];
                 break;
             }
             case BROKEN: {
                 [self.shield setImage:[UIImage imageNamed:BROKEN_SHIELD]];
+                [self.shieldDurability setTextColor:[UIColor grayColor]];
                 break;
             }
             default:
@@ -1122,8 +1135,8 @@ typedef enum{
         [self view:self.view addGestureRecognizer:type delegate:self];
     }
     self.rivalNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, -5, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:@"" shadow:NO bold:NO];
-    self.myNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, 460, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:NSLocalizedString(@"Me", @"") shadow:NO bold:NO];
-    self.shieldDurability = [CustomLabelUtil creatWithFrame:CGRectMake(190, 400, 60, 31) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self.view text:@"100%" shadow:NO bold:NO];
+    self.myNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, 455, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:NSLocalizedString(@"Me", @"") shadow:NO bold:NO];
+    self.shieldDurability = [CustomLabelUtil creatWithFrame:CGRectMake(190, 400, 60, 31) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor greenColor] addTo:self.view text:@"100%" shadow:NO bold:NO];
     self.weaponCount = [CustomLabelUtil creatWithFrame:CGRectMake(96, 400, 60, 31) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self.view text:@"12" shadow:NO bold:NO];
     
     _mySelf = [[Player alloc] initWithPosture:EXPOSEING health:10 observer:self isRival:NO];

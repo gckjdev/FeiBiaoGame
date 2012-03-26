@@ -14,6 +14,7 @@
 #import "CustomLabelUtil.h"
 #import "SKCommonAudioManager.h"
 #import "SettingsManager.h"
+#import "HelpController.h"
 
 
 #define ENTRY_ANIM @"entryAnimations"
@@ -120,12 +121,22 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+#pragma mark - game center delegate
+- (void)inviteReceived
+{
+    SKCommonMultiPlayerService* servcie = [[SKCommonMultiPlayerService alloc] initWithMultiPlayerGameType:GAME_CENTER_GAME];
+    GameController* vc = [[GameController alloc] initWithMultiPlayerService:servcie];
+    [self.navigationController pushViewController:vc animated:YES];
+    [servcie release];
+    [vc release];
+}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SKCommonGameCenterService sharedInstance].delegate = self;
     [[SKCommonAudioManager defaultManager] initSounds:[NSArray arrayWithObjects:@"get_hurt.wav", @"hit_shield.wav", @"shuriken_sound.wav" ,nil ]];
     [self initTitles];
     [self theBoyAppear];
@@ -215,6 +226,7 @@
     HelpView* helpView = [HelpView createHelpViewWithDelegate:self];
     [self.view addSubview:view];
     [self.view addSubview:helpView];
+    
 }
 
 - (IBAction)settings:(id)sender 

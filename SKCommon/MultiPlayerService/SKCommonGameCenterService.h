@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 @protocol SKCommonGameCenterServiceDelegate <NSObject>
+ @optional
 - (void)matchStarted;
 - (void)playerLeaveGame:(NSString*)playerId;
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data 

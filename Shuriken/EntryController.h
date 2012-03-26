@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "HelpView.h"
 #import "SettingView.h"
+#import "SKCommonGameCenterService.h"
 
-@interface EntryController : UIViewController <SettingViewDelegate, HelpViewDelegate>
+@interface EntryController : UIViewController <SettingViewDelegate, HelpViewDelegate, SKCommonGameCenterServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *bluetoothGameButton;
 @property (retain, nonatomic) IBOutlet UIButton *gameCenterGameButton;
 @property (retain, nonatomic) IBOutlet UIButton *recordButton;

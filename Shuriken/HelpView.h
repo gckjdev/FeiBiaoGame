@@ -20,6 +20,8 @@
     UIButton* _okButton; 
     id<HelpViewDelegate> _delegate;
 }
+@property (retain, nonatomic) IBOutlet UITextView *briefsContent;
+@property (retain, nonatomic) IBOutlet UITextView *operationContent;
 
 @property (retain, nonatomic) IBOutlet UIButton* okButton;
 @property (assign, nonatomic) id<HelpViewDelegate> delegate;

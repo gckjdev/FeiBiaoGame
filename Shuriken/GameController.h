@@ -55,4 +55,5 @@ enum GAME_CONTROL {
 @property (retain, nonatomic) Weapon* myWeapon;
 
 - (id)initWithMultiPlayerService:(SKCommonMultiPlayerService*)aMultiPlayerService;
+- (void)quitGame:(BOOL)didFlee;
 @end

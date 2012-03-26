@@ -13,12 +13,16 @@
 
 
 @implementation HelpView
+@synthesize briefsContent = _briefsContent;
+@synthesize operationContent = _operationContent;
 @synthesize okButton = _okButton;
 @synthesize delegate = _delegate;
 
 - (void)dealloc
 {
     [_okButton release];
+    [_briefsContent release];
+    [_operationContent release];
     [super dealloc];
 }
 
@@ -28,7 +32,6 @@
     [CustomLabelUtil creatWithFrame:CGRectMake(51, 49, 69, 21) pointSize:18 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self text:NSLocalizedString(@"Briefs", @"简介") shadow:NO bold:YES];
     [CustomLabelUtil creatWithFrame:CGRectMake(51, 158, 96, 21) pointSize:18 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self text:NSLocalizedString(@"Operate", @"操作") shadow:NO bold:YES];
     [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, 91, 50) pointSize:18 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:self.okButton text:NSLocalizedString(@"Back", @"退出") shadow:NO bold:NO];
-    
 }
 
 + (HelpView *)createHelpView

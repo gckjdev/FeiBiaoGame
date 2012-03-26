@@ -13,7 +13,6 @@
 		C25204DD14FCAF1800904942 /* RecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204DB14FCAF1800904942 /* RecordController.m */; };
 		C25204DE14FCAF1800904942 /* RecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204DC14FCAF1800904942 /* RecordController.xib */; };
 		C25204E214FCAF3700904942 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204E014FCAF3700904942 /* HelpController.m */; };
-		C25204E314FCAF3700904942 /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E114FCAF3700904942 /* HelpController.xib */; };
 		C25204E714FCAF4B00904942 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204E514FCAF4B00904942 /* SettingController.m */; };
 		C25204E814FCAF4B00904942 /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25204E614FCAF4B00904942 /* SettingController.xib */; };
 		C25204EC14FCBD6D00904942 /* SettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C25204EB14FCBD6D00904942 /* SettingsManager.m */; };
@@ -59,6 +58,8 @@
 		C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A54614FB785900EBFFC1 /* brokenShield.png */; };
 		C2E4D36E15201C96009CCF91 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D36C15201C96009CCF91 /* Localizable.strings */; };
 		C2E4D37115201CAD009CCF91 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D36C15201C96009CCF91 /* Localizable.strings */; };
+		C2E4D372152066A2009CCF91 /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D374152066A2009CCF91 /* HelpView.xib */; };
+		C2E4D377152072B2009CCF91 /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D379152072B2009CCF91 /* HelpController.xib */; };
 		C2E9857C150F177E0032A76B /* fzkatjw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9857B150F177E0032A76B /* fzkatjw.ttf */; };
 		C2E985AD151073380032A76B /* blueblood1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E98599151073380032A76B /* blueblood1@2x.png */; };
 		C2E985AE151073380032A76B /* blueblood2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9859A151073380032A76B /* blueblood2@2x.png */; };
@@ -118,7 +119,6 @@
 		C2E986141512EF370032A76B /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E986111512EF370032A76B /* HGQuadCurveMenu.m */; };
 		C2E986151512EF370032A76B /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E986131512EF370032A76B /* HGQuadCurveMenuItem.m */; };
 		C2E986181513283C0032A76B /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E98617151328390032A76B /* HelpView.m */; };
-		C2E9861A151328590032A76B /* HelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E98619151328570032A76B /* HelpView.xib */; };
 		C2E9861D151328760032A76B /* SettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E9861C151328730032A76B /* SettingView.m */; };
 		C2E9861F151328AA0032A76B /* SettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E9861E151328A80032A76B /* SettingView.xib */; };
 		C2E98621151328C90032A76B /* FinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E98620151328C70032A76B /* FinishView.xib */; };
@@ -157,7 +157,6 @@
 		C25204DC14FCAF1800904942 /* RecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordController.xib; sourceTree = "<group>"; };
 		C25204DF14FCAF3700904942 /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
 		C25204E014FCAF3700904942 /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
-		C25204E114FCAF3700904942 /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpController.xib; sourceTree = "<group>"; };
 		C25204E414FCAF4B00904942 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		C25204E514FCAF4B00904942 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		C25204E614FCAF4B00904942 /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
@@ -220,6 +219,10 @@
 		C2E3A54614FB785900EBFFC1 /* brokenShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShield.png; sourceTree = "<group>"; };
 		C2E4D36D15201C96009CCF91 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C2E4D37015201CAD009CCF91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C2E4D373152066A2009CCF91 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HelpView.xib; sourceTree = "<group>"; };
+		C2E4D3761520712C009CCF91 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/HelpView.xib"; sourceTree = "<group>"; };
+		C2E4D378152072B2009CCF91 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HelpController.xib; sourceTree = "<group>"; };
+		C2E4D37A152072BB009CCF91 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/HelpController.xib"; sourceTree = "<group>"; };
 		C2E9857B150F177E0032A76B /* fzkatjw.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzkatjw.ttf; sourceTree = "<group>"; };
 		C2E98599151073380032A76B /* blueblood1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood1@2x.png"; sourceTree = "<group>"; };
 		C2E9859A151073380032A76B /* blueblood2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood2@2x.png"; sourceTree = "<group>"; };
@@ -282,7 +285,6 @@
 		C2E986131512EF370032A76B /* HGQuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGQuadCurveMenuItem.m; sourceTree = "<group>"; };
 		C2E98616151328370032A76B /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		C2E98617151328390032A76B /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
-		C2E98619151328570032A76B /* HelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpView.xib; sourceTree = "<group>"; };
 		C2E9861B151328710032A76B /* SettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingView.h; sourceTree = "<group>"; };
 		C2E9861C151328730032A76B /* SettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingView.m; sourceTree = "<group>"; };
 		C2E9861E151328A80032A76B /* SettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingView.xib; sourceTree = "<group>"; };
@@ -451,7 +453,7 @@
 				C25204DC14FCAF1800904942 /* RecordController.xib */,
 				C25204DF14FCAF3700904942 /* HelpController.h */,
 				C25204E014FCAF3700904942 /* HelpController.m */,
-				C25204E114FCAF3700904942 /* HelpController.xib */,
+				C2E4D379152072B2009CCF91 /* HelpController.xib */,
 				C25204E414FCAF4B00904942 /* SettingController.h */,
 				C25204E514FCAF4B00904942 /* SettingController.m */,
 				C25204E614FCAF4B00904942 /* SettingController.xib */,
@@ -460,7 +462,7 @@
 				C252050314FDC88100904942 /* RecordCell.xib */,
 				C2E98616151328370032A76B /* HelpView.h */,
 				C2E98617151328390032A76B /* HelpView.m */,
-				C2E98619151328570032A76B /* HelpView.xib */,
+				C2E4D374152066A2009CCF91 /* HelpView.xib */,
 				C2E9861B151328710032A76B /* SettingView.h */,
 				C2E9861C151328730032A76B /* SettingView.m */,
 				C2E9861E151328A80032A76B /* SettingView.xib */,
@@ -754,7 +756,7 @@
 				C2E3A54114FB597200EBFFC1 /* shield.png in Resources */,
 				C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */,
 				C25204DE14FCAF1800904942 /* RecordController.xib in Resources */,
-				C25204E314FCAF3700904942 /* HelpController.xib in Resources */,
+				C2E4D377152072B2009CCF91 /* HelpController.xib in Resources */,
 				C25204E814FCAF4B00904942 /* SettingController.xib in Resources */,
 				C252050414FDC88200904942 /* RecordCell.xib in Resources */,
 				C252051814FF78A100904942 /* attacking.png in Resources */,
@@ -823,7 +825,7 @@
 				C2E9860C151217070032A76B /* on@2x.png in Resources */,
 				C2E9860D151217070032A76B /* poupbackground@2x.png in Resources */,
 				C2E9860E151217070032A76B /* win@2x.png in Resources */,
-				C2E9861A151328590032A76B /* HelpView.xib in Resources */,
+				C2E4D372152066A2009CCF91 /* HelpView.xib in Resources */,
 				C2E9861F151328AA0032A76B /* SettingView.xib in Resources */,
 				C2E98621151328C90032A76B /* FinishView.xib in Resources */,
 				C2E4D36E15201C96009CCF91 /* Localizable.strings in Resources */,
@@ -940,6 +942,24 @@
 				C2E4D37015201CAD009CCF91 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C2E4D374152066A2009CCF91 /* HelpView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2E4D373152066A2009CCF91 /* en */,
+				C2E4D3761520712C009CCF91 /* zh-Hans */,
+			);
+			name = HelpView.xib;
+			sourceTree = "<group>";
+		};
+		C2E4D379152072B2009CCF91 /* HelpController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2E4D378152072B2009CCF91 /* en */,
+				C2E4D37A152072BB009CCF91 /* zh-Hans */,
+			);
+			name = HelpController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
