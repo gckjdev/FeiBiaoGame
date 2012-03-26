@@ -1088,6 +1088,14 @@ typedef enum{
 
 - (void)weapon:(Weapon*)theWeapon updateWeaponCount:(int)weaponCount
 {
+    float percent = (weaponCount*1.0)/(self.mySelf.currentWeapon.maxWeaponCount);
+    if (percent > 0.66) {
+        [self.weaponCount setTextColor:[UIColor greenColor]];
+    } else if (percent >0.33) {
+        [self.weaponCount setTextColor:[UIColor orangeColor]];
+    } else {
+        [self.weaponCount setTextColor:[UIColor redColor]];
+    }
     [self.weaponCount setText:[NSString stringWithFormat:@"%d", self.myWeapon.weaponCount]];
     if (weaponCount == 0) {
         [self.weapon setHidden:YES];
@@ -1096,6 +1104,7 @@ typedef enum{
         [self.myThrowHand setHidden:YES];
         [self.myHand setHidden:NO];
     }
+    
 }
 
 - (id)initWithMultiPlayerService:(SKCommonMultiPlayerService*)aMultiPlayerService
