@@ -264,13 +264,19 @@ typedef enum{
         [self.view addSubview:view];
         _isRivalReady = NO;
         _gameStatus = end;
-    }   
+    }  
+    if (didWin) {
+        [[RecordManager shareInstance] addResult:WIN rivalName:[SettingsManager getPlayerName] date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    } else {
+        [[RecordManager shareInstance] addResult:LOSE rivalName:[SettingsManager getPlayerName] date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    }
 }
 
-- (void)quitGame
+- (void)quitGame:(BOOL)didFlee
 {
     [[UIAccelerometer sharedAccelerometer] setDelegate:nil];
     [self.multiPlayerService quitMultiPlayersGame];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)pauseGame
@@ -563,7 +569,10 @@ typedef enum{
 
 #pragma mark - alert view delegate;
 #define RESTART_INDEX 1
-
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+    [self quitGame:NO];
+}
 
 
 #pragma mark - multiplayer delegate
@@ -707,13 +716,15 @@ typedef enum{
 
 - (void)playerLeaveGame:(NSString*)playerId
 {
-    UIAlertView* view = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"You won!", @"") 
-                                                  message:[NSString stringWithFormat: NSLocalizedString(@"%@ ran away!", @""), self.rivalNameLabel.text]
-                                                 delegate:self 
-                                        cancelButtonTitle:NSLocalizedString(@"OK", @"") 
-                                        otherButtonTitles: nil];
-    [view show];
-    [view release];
+    if (_gameStatus != end) {
+        UIAlertView* view = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"You won!", @"") 
+                                                      message:[NSString stringWithFormat: NSLocalizedString(@"%@ ran away!", @""), self.rivalNameLabel.text]
+                                                     delegate:self 
+                                            cancelButtonTitle:NSLocalizedString(@"OK", @"") 
+                                            otherButtonTitles: nil];
+        [view show];
+        [view release];
+    }  
 }
 
 #pragma mark - game gesture process
@@ -908,7 +919,7 @@ typedef enum{
     } else {
         [self.multiPlayerService sendDataToAllPlayers:[MessageManager makeRestart:RESTART_REQUEST]];
         _gameStatus = ready;
-        [self.readyView setText:@"waiting"];
+        [self.readyView setText:NSLocalizedString(@"waiting", @"")];
         [self.readyView setHidden:NO];
         [self toExpose];
         [self.myThrowHand setHidden:YES];
@@ -917,7 +928,8 @@ typedef enum{
 
 - (void)exit
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self quitGame:NO];
+    
 }
 
 #pragma mark - QUADCURVE MENU DELEGATE
@@ -941,8 +953,7 @@ typedef enum{
         }
             break;
         case ESCAPE: {
-            [self quitGame];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self quitGame:YES];
         }
             break;
         default:
