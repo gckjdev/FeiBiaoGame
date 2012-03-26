@@ -15,6 +15,7 @@
    fromPlayer:(NSString *)playerID;
 - (void)inviteReceived;
 - (void)quitGame;
+- (void)cancelFromGameCenter;
 @end
 
 @interface SKCommonGameCenterService : NSObject <GKMatchDelegate, 

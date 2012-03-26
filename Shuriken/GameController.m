@@ -63,6 +63,7 @@ typedef enum{
 @synthesize shield = _shield;
 @synthesize multiPlayerService = _multiPlayerService;
 @synthesize rivalNameLabel = _rivalNameLabel;
+@synthesize myNameLabel = _myNameLabel;
 @synthesize rivalPosture = _rivalPosture;
 @synthesize readyView = _readyView;
 @synthesize mySelf = _mySelf;
@@ -79,6 +80,7 @@ typedef enum{
     [_shield release];
     [_multiPlayerService release];
     [_rivalNameLabel release];
+    [_myNameLabel release];
     [_rivalPosture release];
     [_readyView release];
     [_myHand release];
@@ -568,10 +570,12 @@ typedef enum{
 }
 
 #pragma mark - alert view delegate;
-#define RESTART_INDEX 1
-- (void)alertViewCancel:(UIAlertView *)alertView
+#define OK_INDEX 1
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self quitGame:NO];
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        [self quitGame:NO];
+    }
 }
 
 
@@ -1118,13 +1122,14 @@ typedef enum{
         [self view:self.view addGestureRecognizer:type delegate:self];
     }
     self.rivalNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, -5, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:@"" shadow:NO bold:NO];
-    self.shieldDurability = [CustomLabelUtil creatWithFrame:CGRectMake(190, 400, 60, 31) pointSize:20 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:self.view text:@"" shadow:NO bold:NO];
-    self.weaponCount = [CustomLabelUtil creatWithFrame:CGRectMake(96, 400, 60, 31) pointSize:20 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:self.view text:@"" shadow:NO bold:NO];
+    self.myNameLabel = [CustomLabelUtil creatWithFrame:CGRectMake(110, 460, 88, 30) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor whiteColor] addTo:self.view text:NSLocalizedString(@"Me", @"") shadow:NO bold:NO];
+    self.shieldDurability = [CustomLabelUtil creatWithFrame:CGRectMake(190, 400, 60, 31) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self.view text:@"100%" shadow:NO bold:NO];
+    self.weaponCount = [CustomLabelUtil creatWithFrame:CGRectMake(96, 400, 60, 31) pointSize:20 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:self.view text:@"12" shadow:NO bold:NO];
     
     _mySelf = [[Player alloc] initWithPosture:EXPOSEING health:10 observer:self isRival:NO];
     _rival = [[Player alloc] initWithPosture:EXPOSEING health:10 observer:self isRival:YES];
     _myWeapon = [[Weapon alloc] initWithCount:FULL_SHURIKEN_COUNT damage:1.0 recoverTime:0.5 observer:self];
-    _myWeapon.accuracy = 0.9;
+    _myWeapon.accuracy = 1;
     _myShield = [[Shield alloc] initWithDurability:FULL_SHIELD_DURABILITY status:GOOD recoverTime:1.5 observer:self];
     _mySelf.currentWeapon = _myWeapon;
     _mySelf.currentShield = _myShield;

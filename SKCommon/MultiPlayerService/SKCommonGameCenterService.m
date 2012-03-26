@@ -215,8 +215,12 @@ static SKCommonGameCenterService *globalGetGameCenterService ;
 #pragma mark GKMatchmakerViewControllerDelegate
 
 // The user has cancelled matchmaking
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController
+{
     [(UIViewController*)self.gameViewController dismissModalViewControllerAnimated:YES];
+    if (_delegate && [_delegate respondsToSelector:@selector(cancelFromGameCenter)]) {
+        [_delegate cancelFromGameCenter];
+    }
 }
 
 // Matchmaking has failed with an error

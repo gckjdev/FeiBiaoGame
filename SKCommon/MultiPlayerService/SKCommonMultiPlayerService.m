@@ -114,6 +114,13 @@
 }
 
 #pragma mark - Game Center Delegate
+- (void)cancelFromGameCenter
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(gameCanceled)]) {
+        [_delegate gameCanceled];
+    }
+}
+
 - (void)matchStarted
 {
     if (_delegate && [_delegate respondsToSelector:@selector(multiPlayerGamePrepared)]) {

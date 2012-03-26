@@ -46,6 +46,7 @@ enum GAME_CONTROL {
 @property (retain, nonatomic) IBOutlet UIImageView *shield;
 @property (retain, nonatomic) SKCommonMultiPlayerService* multiPlayerService;
 @property (retain, nonatomic) FontLabel *rivalNameLabel;
+@property (retain, nonatomic) FontLabel *myNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *rivalPosture;
 @property (retain, nonatomic) FontLabel* readyView;
 @property (retain, nonatomic) Player* mySelf;

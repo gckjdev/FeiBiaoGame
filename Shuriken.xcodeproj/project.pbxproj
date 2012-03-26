@@ -57,6 +57,8 @@
 		C2E3A54014FB597200EBFFC1 /* feibiao.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53E14FB597200EBFFC1 /* feibiao.png */; };
 		C2E3A54114FB597200EBFFC1 /* shield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A53F14FB597200EBFFC1 /* shield.png */; };
 		C2E3A54714FB785900EBFFC1 /* brokenShield.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E3A54614FB785900EBFFC1 /* brokenShield.png */; };
+		C2E4D36E15201C96009CCF91 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D36C15201C96009CCF91 /* Localizable.strings */; };
+		C2E4D37115201CAD009CCF91 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2E4D36C15201C96009CCF91 /* Localizable.strings */; };
 		C2E9857C150F177E0032A76B /* fzkatjw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2E9857B150F177E0032A76B /* fzkatjw.ttf */; };
 		C2E985AD151073380032A76B /* blueblood1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E98599151073380032A76B /* blueblood1@2x.png */; };
 		C2E985AE151073380032A76B /* blueblood2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E9859A151073380032A76B /* blueblood2@2x.png */; };
@@ -216,6 +218,8 @@
 		C2E3A53E14FB597200EBFFC1 /* feibiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feibiao.png; sourceTree = "<group>"; };
 		C2E3A53F14FB597200EBFFC1 /* shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield.png; sourceTree = "<group>"; };
 		C2E3A54614FB785900EBFFC1 /* brokenShield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brokenShield.png; sourceTree = "<group>"; };
+		C2E4D36D15201C96009CCF91 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C2E4D37015201CAD009CCF91 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C2E9857B150F177E0032A76B /* fzkatjw.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzkatjw.ttf; sourceTree = "<group>"; };
 		C2E98599151073380032A76B /* blueblood1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood1@2x.png"; sourceTree = "<group>"; };
 		C2E9859A151073380032A76B /* blueblood2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueblood2@2x.png"; sourceTree = "<group>"; };
@@ -470,6 +474,7 @@
 		C2E3A4E914FB207A00EBFFC1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C2E4D36C15201C96009CCF91 /* Localizable.strings */,
 				C2E3A4EA14FB207A00EBFFC1 /* Shuriken-Info.plist */,
 				C2E3A4EB14FB207A00EBFFC1 /* InfoPlist.strings */,
 				C2E3A4EE14FB207A00EBFFC1 /* main.m */,
@@ -821,6 +826,8 @@
 				C2E9861A151328590032A76B /* HelpView.xib in Resources */,
 				C2E9861F151328AA0032A76B /* SettingView.xib in Resources */,
 				C2E98621151328C90032A76B /* FinishView.xib in Resources */,
+				C2E4D36E15201C96009CCF91 /* Localizable.strings in Resources */,
+				C2E4D37115201CAD009CCF91 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,6 +931,15 @@
 				C2E3A50814FB207A00EBFFC1 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C2E4D36C15201C96009CCF91 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C2E4D36D15201C96009CCF91 /* zh-Hans */,
+				C2E4D37015201CAD009CCF91 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

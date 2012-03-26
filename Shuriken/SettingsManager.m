@@ -35,6 +35,16 @@ static SettingsManager* globalGetSettingsManager()
     [super dealloc];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.isSoundOn = YES;
+        self.isVibration = YES;
+    }
+    return self;
+}
+
 + (SettingsManager*)shareInstance
 {
     return globalGetSettingsManager();
@@ -48,18 +58,27 @@ static SettingsManager* globalGetSettingsManager()
 
 - (void)saveSettings
 {
+    NSNumber* vibration = [NSNumber numberWithBool:self.isVibration];
+    NSNumber* sound = [NSNumber numberWithBool:self.isSoundOn];
     [[NSUserDefaults standardUserDefaults] setObject:self.playerName forKey:PLAYER_NAME];
-    [[NSUserDefaults standardUserDefaults] setBool:isVibration forKey:VIBRATION];
-    [[NSUserDefaults standardUserDefaults] setBool:self.isSoundOn forKey:SOUND];
+    [[NSUserDefaults standardUserDefaults] setObject:vibration forKey:VIBRATION];
+    [[NSUserDefaults standardUserDefaults] setObject:sound forKey:SOUND];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)loadSettings
 {
     NSString* name = [[NSUserDefaults standardUserDefaults] objectForKey:PLAYER_NAME];
-    self.isVibration = [[NSUserDefaults standardUserDefaults] boolForKey:VIBRATION];
-    self.isSoundOn = [[NSUserDefaults standardUserDefaults] boolForKey:SOUND];
+    NSNumber* vibration = [[NSUserDefaults standardUserDefaults] objectForKey:VIBRATION];
+    NSNumber* sound = [[NSUserDefaults standardUserDefaults] objectForKey:SOUND];
     if (name) {
         self.playerName = name;
+    }
+    if (vibration) {
+        self.isVibration = vibration.boolValue;
+    }
+    if (sound) {
+        self.isSoundOn = sound.boolValue;
     }
 }
 @end
