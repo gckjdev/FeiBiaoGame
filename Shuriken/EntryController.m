@@ -92,7 +92,7 @@
 - (void)initTitles
 {
     UIColor* titleColor = [UIColor colorWithRed:0x83/255.0 green:0x14/255.0 blue:0x00/255.0 alpha:1.0];
-    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.bluetoothGameButton.frame.size.width, self.bluetoothGameButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.bluetoothGameButton text:NSLocalizedString(@"蓝牙对战", @"蓝牙游戏") shadow:YES bold:YES];
+    [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.bluetoothGameButton.frame.size.width, self.bluetoothGameButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.bluetoothGameButton text:NSLocalizedString(@"Bluetooth", @"蓝牙游戏") shadow:YES bold:YES];
     [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.gameCenterGameButton.frame.size.width, self.gameCenterGameButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.gameCenterGameButton text:NSLocalizedString(@"Game Center", @"游戏中心") shadow:YES bold:YES];
     [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, self.recordButton.frame.size.width, self.recordButton.frame.size.height) pointSize:20 alignment:UITextAlignmentCenter textColor:titleColor addTo:self.recordButton text:NSLocalizedString(@"Record", @"战绩") shadow:YES bold:YES];
 //    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"设置") forState:UIControlStateNormal];

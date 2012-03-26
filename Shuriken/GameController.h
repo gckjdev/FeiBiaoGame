@@ -27,7 +27,7 @@ enum GAME_CONTROL {
     CONTINUE = 1
     };
 
-@interface GameController : UIViewController <UIGestureRecognizerDelegate, UIAccelerometerDelegate, SKCommonMultiPlayerServiceDelegate, HGQuadCurveMenuDelegate, HelpViewDelegate, SettingViewDelegate, FinishViewDelegate, playerDelegate, ShieldDelegate, weaponDelegate> {
+@interface GameController : UIViewController <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIAccelerometerDelegate, SKCommonMultiPlayerServiceDelegate, HGQuadCurveMenuDelegate, HelpViewDelegate, SettingViewDelegate, FinishViewDelegate, playerDelegate, ShieldDelegate, weaponDelegate> {
     SKCommonMultiPlayerService* _multiPlayerService;
     NSTimer* _statusChecker;
     HGQuadCurveMenu* _menu;

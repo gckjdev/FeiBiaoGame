@@ -9,6 +9,7 @@
 #import "RecordCell.h"
 #import "Record.h"
 #import "TimeUtils.h"
+#define NSL(x) NSLocalizedString(x, @"胜绩")
 
 @implementation RecordCell
 
@@ -16,19 +17,19 @@
 {
     switch (aRecord.gameResult) {
         case 1:
-            [self.textLabel setText:[NSString stringWithFormat:@"defeated %@!", aRecord.rivalName, dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:NSLocalizedString(@"defeated %@!", @"胜绩-打败") , aRecord.rivalName, dateToString(aRecord.date)]];
             break;
         case 0:
-            [self.textLabel setText:[NSString stringWithFormat:@"%@ defeated you!", aRecord.rivalName, dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:NSL(@"%@ defeated you!"), aRecord.rivalName, dateToString(aRecord.date)]];
             break;
         case -1:
-            [self.textLabel setText:[NSString stringWithFormat:@"you ran away!", dateToString(aRecord.date)]];
+            [self.textLabel setText:[NSString stringWithFormat:NSL(@"you ran away!"), dateToString(aRecord.date)]];
             break;
             
         default:
             break;
     }
-    [self.textLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.textLabel setFont:[UIFont systemFontOfSize:13]];
     [self.textLabel setTextColor:[UIColor whiteColor]];
 }
 

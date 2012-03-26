@@ -42,6 +42,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 480}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="405510487"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -56,6 +57,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{52, 430}, {91, 50}}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="578315060"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -93,6 +95,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{118, 136}, {160, 34}}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="660332262"/>
 						<string key="NSReuseIdentifierKey">_NS:304</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -116,7 +119,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUIBackground">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">inputpng</string>
+							<string key="NSResourceName">input.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
@@ -133,6 +136,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{154, 198}, {88, 34}}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="248808106"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -163,6 +167,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{154, 268}, {88, 34}}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="536630132"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -190,6 +195,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{180, 432}, {91, 50}}</string>
 						<reference key="NSSuperview" ref="508351427"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -212,6 +218,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="684095349"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -392,7 +399,47 @@
 			<nil key="sourceID"/>
 			<int key="maxID">24</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">SettingView</string>
+					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="clickBackButton">UIButton</string>
+						<string key="clickDoneButton">UIButton</string>
+						<string key="nameField">UITextField</string>
+						<string key="soundSwitcher">UIButton</string>
+						<string key="vibrationSwitcher">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="clickBackButton">
+							<string key="name">clickBackButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="clickDoneButton">
+							<string key="name">clickDoneButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="nameField">
+							<string key="name">nameField</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="soundSwitcher">
+							<string key="name">soundSwitcher</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="vibrationSwitcher">
+							<string key="name">vibrationSwitcher</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SettingView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
@@ -403,7 +450,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="backicon.png">{16, 16}</string>
-			<string key="inputpng">{16, 16}</string>
+			<string key="input.png">{16, 16}</string>
 			<string key="off.png">{16, 16}</string>
 			<string key="on.png">{16, 16}</string>
 			<string key="on@2x.png">{176, 67}</string>
