@@ -30,7 +30,7 @@
     [CustomLabelUtil creatWithFrame:CGRectMake(0, 0, 91, 50) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:view.restartButton text:NSLocalizedString(@"restart", @"重玩") shadow:NO bold:YES];
     if (didWin) {
         [view.resultImage setImage:[UIImage imageNamed:@"win.png"]];
-        [CustomLabelUtil creatWithFrame:CGRectMake(88, 185, 135, 40) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:view text:@"Contratulations!" shadow:NO bold:YES];
+        [CustomLabelUtil creatWithFrame:CGRectMake(78, 185, 145, 40) pointSize:15 alignment:UITextAlignmentCenter textColor:[UIColor blackColor] addTo:view text:@"Contratulations!" shadow:NO bold:YES];
         [CustomLabelUtil creatWithFrame:CGRectMake(50, 229, 287, 21) pointSize:15 alignment:UITextAlignmentLeft textColor:[UIColor blackColor] addTo:view text:@"you win!" shadow:NO bold:YES];
     } else {
         [view.resultImage setImage:[UIImage imageNamed:@"lose.png"]];
