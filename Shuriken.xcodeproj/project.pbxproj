@@ -104,7 +104,6 @@
 		C2E985F3151073AD0032A76B /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985E3151073AD0032A76B /* setting@2x.png */; };
 		C2E985F4151073AD0032A76B /* subbackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985E4151073AD0032A76B /* subbackground@2x.png */; };
 		C2E985F5151073AD0032A76B /* submiticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985E5151073AD0032A76B /* submiticon@2x.png */; };
-		C2E985F81510782C0032A76B /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985F71510782C0032A76B /* default@2x.png */; };
 		C2E985FC1511CFA70032A76B /* shieldSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985F91511CFA50032A76B /* shieldSmall@2x.png */; };
 		C2E985FD1511CFA70032A76B /* shurikenSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985FA1511CFA60032A76B /* shurikenSmall@2x.png */; };
 		C2E985FE1511CFA70032A76B /* waiting.png in Resources */ = {isa = PBXBuildFile; fileRef = C2E985FB1511CFA60032A76B /* waiting.png */; };
@@ -135,6 +134,9 @@
 		CA3221C4152015470039A384 /* FontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221BC152015470039A384 /* FontManager.m */; };
 		CA3221C5152015470039A384 /* ZAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221BE152015470039A384 /* ZAttributedString.m */; };
 		CA3221C6152015470039A384 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221C1152015470039A384 /* ZFont.m */; };
+		CA3221FB152167660039A384 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3221FA152167650039A384 /* Default.png */; };
+		CA3221FD1521677E0039A384 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3221FC1521677E0039A384 /* Default@2x.png */; };
+		CA3221FF15216E0F0039A384 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CA3221FE15216E0E0039A384 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,7 +269,6 @@
 		C2E985E3151073AD0032A76B /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 		C2E985E4151073AD0032A76B /* subbackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "subbackground@2x.png"; sourceTree = "<group>"; };
 		C2E985E5151073AD0032A76B /* submiticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submiticon@2x.png"; sourceTree = "<group>"; };
-		C2E985F71510782C0032A76B /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
 		C2E985F91511CFA50032A76B /* shieldSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shieldSmall@2x.png"; sourceTree = "<group>"; };
 		C2E985FA1511CFA60032A76B /* shurikenSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shurikenSmall@2x.png"; sourceTree = "<group>"; };
 		C2E985FB1511CFA60032A76B /* waiting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waiting.png; sourceTree = "<group>"; };
@@ -313,6 +314,14 @@
 		CA3221BF152015470039A384 /* ZAttributedStringPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZAttributedStringPrivate.h; sourceTree = "<group>"; };
 		CA3221C0152015470039A384 /* ZFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFont.h; sourceTree = "<group>"; };
 		CA3221C1152015470039A384 /* ZFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFont.m; sourceTree = "<group>"; };
+		CA3221F4152162EB0039A384 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA3221F6152163A80039A384 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		CA3221F7152163E40039A384 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA3221F8152164620039A384 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA3221F91521647A0039A384 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		CA3221FA152167650039A384 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CA3221FC1521677E0039A384 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CA3221FE15216E0E0039A384 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -611,6 +620,9 @@
 		C2E98598151072F60032A76B /* Entry */ = {
 			isa = PBXGroup;
 			children = (
+				CA3221FE15216E0E0039A384 /* icon.png */,
+				CA3221FC1521677E0039A384 /* Default@2x.png */,
+				CA3221FA152167650039A384 /* Default.png */,
 				C2E985FF151217000032A76B /* icon@2x.png */,
 				C2E98600151217010032A76B /* input@2x.png */,
 				C2E98601151217020032A76B /* longinput@2x.png */,
@@ -619,7 +631,6 @@
 				C2E98604151217040032A76B /* on@2x.png */,
 				C2E98605151217050032A76B /* poupbackground@2x.png */,
 				C2E98606151217060032A76B /* win@2x.png */,
-				C2E985F71510782C0032A76B /* default@2x.png */,
 				C2E985D7151073AD0032A76B /* background@2x.png */,
 				C2E985D8151073AD0032A76B /* backicon@2x.png */,
 				C2E985D9151073AD0032A76B /* default1@2x.png */,
@@ -732,6 +743,7 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = C2E3A4D114FB207900EBFFC1;
 			productRefGroup = C2E3A4DD14FB207A00EBFFC1 /* Products */;
@@ -813,7 +825,6 @@
 				C2E985F3151073AD0032A76B /* setting@2x.png in Resources */,
 				C2E985F4151073AD0032A76B /* subbackground@2x.png in Resources */,
 				C2E985F5151073AD0032A76B /* submiticon@2x.png in Resources */,
-				C2E985F81510782C0032A76B /* default@2x.png in Resources */,
 				C2E985FC1511CFA70032A76B /* shieldSmall@2x.png in Resources */,
 				C2E985FD1511CFA70032A76B /* shurikenSmall@2x.png in Resources */,
 				C2E985FE1511CFA70032A76B /* waiting.png in Resources */,
@@ -830,6 +841,9 @@
 				C2E98621151328C90032A76B /* FinishView.xib in Resources */,
 				C2E4D36E15201C96009CCF91 /* Localizable.strings in Resources */,
 				C2E4D37115201CAD009CCF91 /* Localizable.strings in Resources */,
+				CA3221FB152167660039A384 /* Default.png in Resources */,
+				CA3221FD1521677E0039A384 /* Default@2x.png in Resources */,
+				CA3221FF15216E0F0039A384 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +937,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				C2E3A4EC14FB207A00EBFFC1 /* en */,
+				CA3221F8152164620039A384 /* zh-Hans */,
+				CA3221F91521647A0039A384 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -931,6 +947,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				C2E3A50814FB207A00EBFFC1 /* en */,
+				CA3221F4152162EB0039A384 /* zh-Hans */,
+				CA3221F7152163E40039A384 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -940,6 +958,7 @@
 			children = (
 				C2E4D36D15201C96009CCF91 /* zh-Hans */,
 				C2E4D37015201CAD009CCF91 /* en */,
+				CA3221F6152163A80039A384 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -970,7 +989,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -985,6 +1004,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "081BF019-D2A7-4C28-B770-5EE04A962956";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -994,7 +1014,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1003,6 +1023,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "16C67EC0-E6A2-4706-B56B-0D9E8769C291";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
