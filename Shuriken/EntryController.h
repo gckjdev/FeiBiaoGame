@@ -10,6 +10,7 @@
 #import "HelpView.h"
 #import "SettingView.h"
 #import "SKCommonGameCenterService.h"
+#import "GADBannerView.h"
 
 @interface EntryController : UIViewController <SettingViewDelegate, HelpViewDelegate, SKCommonGameCenterServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *bluetoothGameButton;
@@ -18,5 +19,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *settingsButton;
 @property (retain, nonatomic) IBOutlet UIButton *helpButton;
 @property (retain, nonatomic) IBOutlet UIImageView *theBoy;
+@property (retain, nonatomic) GADBannerView* bannerView;
 
 @end

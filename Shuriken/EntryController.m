@@ -15,6 +15,7 @@
 #import "SKCommonAudioManager.h"
 #import "SettingsManager.h"
 #import "HelpController.h"
+#import "GADBannerView.h"
 
 
 #define ENTRY_ANIM @"entryAnimations"
@@ -27,6 +28,7 @@
 @synthesize settingsButton;
 @synthesize helpButton;
 @synthesize theBoy;
+@synthesize bannerView = _bannerView;
 
 - (void)dealloc
 {
@@ -36,6 +38,7 @@
     [settingsButton release];
     [helpButton release];
     [theBoy release];
+    [_bannerView release];
     [super dealloc];
 }
 
@@ -130,8 +133,42 @@
     [servcie release];
     [vc release];
 }
-
+#define PUBLISHER_ID @"a14fbb61a340a25"
 #pragma mark - View lifecycle
+
+- (GADBannerView*)allocAdMobView:(UIViewController*)superViewController
+{
+    // Create a view of the standard size at the bottom of the screen.
+    GADBannerView* view = [[[GADBannerView alloc]
+                                  initWithFrame:CGRectMake(0.0,
+                                                           0,
+                                                           GAD_SIZE_320x50.width,
+                                                           GAD_SIZE_320x50.height)] autorelease];
+    
+    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
+    view.adUnitID = PUBLISHER_ID;
+    
+    // Let the runtime know which UIViewController to restore after taking
+    // the user wherever the ad goes and add it to the view hierarchy.
+    view.rootViewController = superViewController;
+    [superViewController.view addSubview:view];
+    [superViewController.view bringSubviewToFront:view];
+    // Initiate a generic request to load it with an ad.
+    [view loadRequest:[GADRequest request]];   
+    
+    return view;
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.bannerView == nil){
+        self.bannerView = [self allocAdMobView:self];  
+    }
+    
+    [super viewDidAppear:animated];
+}
+
 
 - (void)viewDidLoad
 {
@@ -151,6 +188,7 @@
     [self setSettingsButton:nil];
     [self setHelpButton:nil];
     [self setTheBoy:nil];
+    [self setBannerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
