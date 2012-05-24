@@ -15,7 +15,7 @@
 #import "SKCommonAudioManager.h"
 #import "SettingsManager.h"
 #import "HelpController.h"
-#import "GADBannerView.h"
+#import "AdvertiseManager.h"
 
 
 #define ENTRY_ANIM @"entryAnimations"
@@ -136,35 +136,14 @@
 #define PUBLISHER_ID @"a14fbb61a340a25"
 #pragma mark - View lifecycle
 
-- (GADBannerView*)allocAdMobView:(UIViewController*)superViewController
-{
-    // Create a view of the standard size at the bottom of the screen.
-    GADBannerView* view = [[[GADBannerView alloc]
-                                  initWithFrame:CGRectMake(0.0,
-                                                           0,
-                                                           GAD_SIZE_320x50.width,
-                                                           GAD_SIZE_320x50.height)] autorelease];
-    
-    // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
-    view.adUnitID = PUBLISHER_ID;
-    
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    view.rootViewController = superViewController;
-    [superViewController.view addSubview:view];
-    [superViewController.view bringSubviewToFront:view];
-    // Initiate a generic request to load it with an ad.
-    [view loadRequest:[GADRequest request]];   
-    
-    return view;
-}
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.bannerView == nil){
-        self.bannerView = [self allocAdMobView:self];  
-    }
+    [[AdvertiseManager defaultManager] showAdsInViewController:self 
+                                                      isUpside:YES 
+                                                       autoFit:NO 
+                                                     publishId:PUBLISHER_ID];
     
     [super viewDidAppear:animated];
 }

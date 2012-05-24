@@ -10,6 +10,10 @@
 #import "EntryController.h"
 #import "SKCommonGameCenterService.h"
 #import "FontManager.h"
+#import "MobClickUtils.h"
+
+
+#define SHURIKEN_UMENG_APP_KEY @"4fbb64625270152da000000d"
 
 @implementation SKAppDelegate
 
@@ -29,6 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MobClick startWithAppkey:SHURIKEN_UMENG_APP_KEY reportPolicy:REALTIME channelId:nil];
+    [MobClick updateOnlineConfig];
     [[FontManager sharedManager] loadFont:@"fzkatjw"];
     [[SKCommonGameCenterService sharedInstance] authenticateLocalUser];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
